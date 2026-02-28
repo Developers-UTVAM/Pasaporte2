@@ -4,4 +4,4 @@ $db = [
     "basededatos" => "BASEDATOS",
     "usuario" => "USUARIO",
     "contrasena" => "CONTRASEÑA",
-]
+];

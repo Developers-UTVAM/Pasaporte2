@@ -22,7 +22,7 @@ error_log
 .cache
 .phpunit.result.cache
 *.sqlite
-*.sql
+#*.sql
 *.zip
 *.tar.gz
 
@@ -41,4 +41,3 @@ Thumbs.db
 
 temp/
 configs.php
-
