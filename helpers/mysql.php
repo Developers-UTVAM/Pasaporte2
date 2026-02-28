@@ -1,5 +1,4 @@
 <?php
-
 class MyDatabase
 {
 	/** @var mysqli */
@@ -16,11 +15,29 @@ class MyDatabase
 	 */
 	public function __construct(array $config = [])
 	{
-		$host = $config['host'] ?? 'localhost';
-		$user = $config['user'] ?? 'root';
-		$pass = $config['pass'] ?? '';
-		$db   = $config['db'] ?? null;
-		$port = $config['port'] ?? 3306;
+		if(empty($config)) {
+			// Try to load from global $db if available
+			global $db;
+			if (!empty($db) && is_array($db)) {
+				$config = $db;
+			} else {
+				if (file_exists(__DIR__ . '/../configs.php')) {
+					include __DIR__ . '/../configs.php';
+					if (!empty($db) && is_array($db)) {
+						$config = $db;
+					} else {
+						throw new Exception('Database configuration not found in configs.php');
+					}
+				} else {
+					throw new Exception('Database configuration not provided and configs.php not found');
+				}
+			}
+		}
+		$host = $config['host'] ?? ($config['servidor'] ?? 'localhost');
+		$user = $config['user'] ?? ($config['usuario'] ?? 'root');
+		$pass = $config['pass'] ?? ($config['contrasena'] ?? '');
+		$db   = $config['db'] ?? ($config['basededatos'] ?? null);
+		$port = $config['port'] ?? ($config['puerto'] ?? 3306);
 
 		$this->conn = new mysqli($host, $user, $pass, $db, $port);
 		if ($this->conn->connect_error) {
@@ -268,5 +285,37 @@ class MyDatabase
 			return $copy;
 		}
 		return null;
+	}
+
+	public function getFields(string $table) : array
+	{
+		$sql = "SHOW COLUMNS FROM `{$table}`";
+		$stmt = $this->conn->prepare($sql);
+		if (!$stmt) throw new Exception('Prepare failed: ' . $this->conn->error);
+		if (!$stmt->execute()) {
+			$err = $stmt->error;
+			$stmt->close();
+			throw new Exception('Execute failed: ' . $err);
+		}
+		$fields = [];
+		if (method_exists($stmt, 'get_result')) {
+			$res = $stmt->get_result();
+			while ($r = $res->fetch_assoc()) $fields[] = $r['Field'];
+		} else {
+			$meta = $stmt->result_metadata();
+			if ($meta) {
+				$bindVars = [];
+				$row = [];
+				foreach ($meta->fetch_fields() as $field) {
+					$bindVars[] = &$row[$field->name];
+				}
+				call_user_func_array([$stmt, 'bind_result'], $bindVars);
+				while ($stmt->fetch()) {
+					$fields[] = $row['Field'];
+				}
+			}
+		}
+		$stmt->close();
+		return $fields;
 	}
 }
