@@ -9,7 +9,6 @@
     <main class="container">
         <h1>Bienvenido al sitio de TICs 2026</h1>
         Sitio
-        <h1>Prueaba Merch para ver si funcion Yael :P</h1>
     </main>
 
     <?php include 'templates/footer.php'; ?>
