@@ -15,6 +15,7 @@ $data = $object->getAll();
     <thead>
         <tr>
             <th>Nombre</th>
+            <th>Tipo</th>
             <th>Fecha y hora</th>
             <th>Lugar</th>
             <th>Responsable Interno</th>
