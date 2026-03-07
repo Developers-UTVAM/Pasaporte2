@@ -1,3 +1,12 @@
+<script type="text/javascript">
+    <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
+        let current_user = `<?php echo $_SESSION["current_user"] ?>`;
+    <?php else: ?>
+        let current_user = `Anonymous`;
+    <?php endif; ?>
+    console.log("Current User:", current_user)
+</script>
+
 <header id="main-header">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">

@@ -180,7 +180,7 @@ class Table
 
 class Model extends Table
 {
-	private $data = [];
+	protected $data = [];
 	public function __construct(string $table, array $config = [])
 	{
 		parent::__construct($table, $config);
