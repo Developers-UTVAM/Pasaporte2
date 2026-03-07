@@ -15,4 +15,7 @@
   <a class="nav-link" href="usuarios.php">Usuarios</a>
   <a class="nav-link" href="perfiles.php">Perfiles</a>
   <a class="nav-link" href="permisos.php">Permisos</a>
+  <a class="nav-link" href="escaner.php">Escanear QR</a>
+  <a class="nav-link" href="index.php">Mi QR</a>
+  <a class="nav-link text-danger" href="app/auth/logout.php">Cerrar Sesión</a>
 </nav>
