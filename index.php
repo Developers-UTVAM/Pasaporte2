@@ -90,7 +90,6 @@ if(getvar("accion") === "login") {
             <?php endif; ?>
 
             </div>
-
             <div class="mt-4 d-flex flex-column justify-content-center align-items-center flex-grow-1">
                 <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
                     <div class="card-body text-center p-4">
@@ -101,7 +100,6 @@ if(getvar("accion") === "login") {
                 </div>
             </div>
             <script src="assets/js/qr_generator.js"></script>
-
         <?php endif; ?>
 
     </main>

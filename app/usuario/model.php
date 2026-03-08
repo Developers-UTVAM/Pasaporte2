@@ -180,4 +180,5 @@ class Usuario extends Model
         }
         return "id:" . $this->pk;
     }
+    
 }
