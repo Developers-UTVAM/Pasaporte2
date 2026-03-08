@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Qr busca por ID
     const qrContainer = document.getElementById("qrcode");
 
     if (qrContainer && qrContainer.dataset.text) {
@@ -10,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: qrContainer.dataset.text,
                 width: 200,
                 height: 200,
-                colorDark : "#000000",
                 colorLight : "#ffffff",
+                colorDark : "#000000",
                 correctLevel : QRCode.CorrectLevel.H
             });
         };

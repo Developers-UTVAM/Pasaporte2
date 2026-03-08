@@ -40,14 +40,6 @@ if(getvar("accion") === "login") {
 
         <?php else: ?>
 
-            <?php
-            // Lógica para determinar si mostramos panel de admin o QR de usuario
-            $u = $_SESSION["current_user"];
-            $es_admin = $u->can("evento.*") || $u->can("usuario.*") || $u->can("perfil.*") || $u->can("permiso.*");
-            ?>
-
-            <?php if ($es_admin): ?>
-    
             <div class="row gy-3" id="modulos-de-sistema">
 
             <?php if ($_SESSION["current_user"]->can("evento.*")): ?>
@@ -99,18 +91,17 @@ if(getvar("accion") === "login") {
 
             </div>
 
-            <?php endif; ?>
-
-                <div class="<?php echo $es_admin ? 'mt-4' : 'flex-grow-1'; ?> d-flex flex-column justify-content-center align-items-center">
-                    <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
-                        <div class="card-body text-center p-4">
-                            <h3 class="card-title mb-4">Mi Pase de Acceso</h3>
-                            <div id="qrcode" class="d-flex justify-content-center mb-3" data-text="<?php echo $u->getQrData(); ?>"></div>
-                            <p class="text-muted font-monospace mb-0"><?php echo $u->getQrData(); ?></p>
-                        </div>
+            <div class="mt-4 d-flex flex-column justify-content-center align-items-center flex-grow-1">
+                <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
+                    <div class="card-body text-center p-4">
+                        <h3 class="card-title mb-4">Mi Pase de Acceso</h3>
+                        <div id="qrcode" class="d-flex justify-content-center mb-3" data-text="<?php echo $_SESSION["current_user"]->getQrData(); ?>"></div>
+                        <p class="text-muted font-monospace mb-0"><?php echo $_SESSION["current_user"]->getQrData(); ?></p>
                     </div>
                 </div>
-                <script src="assets/js/qr_generator.js"></script>
+            </div>
+            <script src="assets/js/qr_generator.js"></script>
+
         <?php endif; ?>
 
     </main>
