@@ -94,8 +94,20 @@ if(getvar("accion") === "login") {
                 <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
                     <div class="card-body text-center p-4">
                         <h3 class="card-title mb-4">Mi Pase de Acceso</h3>
-                        <div id="qrcode" class="d-flex justify-content-center mb-3" data-text="<?php echo $_SESSION["current_user"]->getQrData(); ?>"></div>
-                        <p class="text-muted font-monospace mb-0"><?php echo $_SESSION["current_user"]->getQrData(); ?></p>
+                        <div id="qrcode" class="d-flex justify-content-center mb-3" 
+                             data-matricula="<?php echo htmlspecialchars($_SESSION["current_user"]->matricula ?? ''); ?>"
+                             data-id="<?php echo htmlspecialchars($_SESSION["current_user"]->pk ?? ''); ?>"
+                             data-text="<?php echo $_SESSION["current_user"]->getQrData(); ?>"></div>
+                        <p class="text-muted font-monospace mb-0">
+                            <?php 
+                                $matricula = $_SESSION["current_user"]->matricula ?? '';
+                                if ($matricula && trim($matricula) !== '' && $matricula !== '0') {
+                                    echo htmlspecialchars($matricula);
+                                } else {
+                                   echo htmlspecialchars($_SESSION["current_user"]->pk);
+                                }
+                            ?>
+                        </p>
                     </div>
                 </div>
             </div>
