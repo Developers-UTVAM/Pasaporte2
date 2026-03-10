@@ -22,7 +22,7 @@ $data = $object->getAll();
             <th>Costo interno</th>
             <th>Costo externo</th>
             <th>Registro</th>
-
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@ $data = $object->getAll();
                 <td><?= htmlspecialchars($eventos['responsable_externo']) ?></td>
                 <td><?= htmlspecialchars($eventos['costo_interno']) ?></td>
                 <td><?= htmlspecialchars($eventos['costo_externo']) ?></td>
-                <td><?= htmlspecialchars($eventos['requiere_registro']) ?></td>
+                <td><?= $eventos['requiere_registro'] ? 'Sí' : 'No' ?></td>
                 <td class="text-center">
                     <a class="btn btn-outline-secondary" href="eventos.php?accion=mostrar&pk=<?= urlencode($eventos['id']) ?>">
                         <i class="fa-regular fa-eye"></i>

@@ -10,6 +10,7 @@ $object = new Evento();
 $errors = [];
 
 if ($accion === 'create') {
+    $_POST['requiere_registro'] = isset($_POST['requiere_registro']) ? 1 : 0;
     $object->fromArray($_POST);
     try {
         $object->save();
@@ -20,8 +21,9 @@ if ($accion === 'create') {
         $accion = 'crear';
     }
 } elseif ($accion === 'update') {
+    $_POST['requiere_registro'] = isset($_POST['requiere_registro']) ? 1 : 0;
     $object->fromArray($_POST);
-    $object->pk = getvar('pk');
+    $object->pk = isset($_POST['pk']) && $_POST['pk'] !== '' ? $_POST['pk'] : getvar('pk');
     try {
         $object->save();
         header('Location: eventos.php?accion=mostrar&pk=' . urlencode($object->pk));
