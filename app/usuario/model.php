@@ -78,12 +78,18 @@ class Usuario extends Model
             $this->data = $tmp_data;
             $this->pk = $current_pk;
             self::$tbl_usuario_tiene_permiso->delete("usuario_id = ?", [$this->pk]);
-            foreach (getvar("permisos") as $perm) {
-                self::$tbl_usuario_tiene_permiso->insert(["usuario_id" => $this->pk, "permiso_id" => $perm]);
+            $permisos = getvar("permisos");
+            if (is_array($permisos)) {
+                foreach ($permisos as $perm) {
+                    self::$tbl_usuario_tiene_permiso->insert(["usuario_id" => $this->pk, "permiso_id" => $perm]);
+                }
             }
             self::$tbl_usuario_tiene_perfil->delete("usuario_id = ?", [$this->pk]);
-            foreach (getvar("perfiles") as $perm) {
-                self::$tbl_usuario_tiene_perfil->insert(["usuario_id" => $this->pk, "perfil_id" => $perm]);
+            $perfiles = getvar("perfiles");
+            if (is_array($perfiles)) {
+                foreach ($perfiles as $perm) {
+                    self::$tbl_usuario_tiene_perfil->insert(["usuario_id" => $this->pk, "perfil_id" => $perm]);
+                }
             }
             return true;
         }
@@ -96,8 +102,9 @@ class Usuario extends Model
         if(is_string($perms)) {
             list($tipo, $codename) = explode(".", $perms);
             if($codename === "*") {
-                if (count($perms = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
-                    throw new Exception("No se ha encontrado el tipo de permiso: " . $tipo);
+                $perms = self::$permisos->selectAll("tipo = ?", [$tipo]);
+                if (count($perms) === 0) {
+                    return false; // Retorna falso en vez de error si el permiso no existe aun
                 }
                 $ids = array_column($perms, "id");
                 $placeholders = implode(',', array_fill(0, count($ids), '?'));
