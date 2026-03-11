@@ -121,8 +121,10 @@ foreach ($usuarios as $usr) {
                     <thead class="table-light">
                         <tr>
                             <th style="width:42px">
-                                <input type="checkbox" id="chk-todos" class="form-check-input" title="Marcar/desmarcar todos" />
-                            </th>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" id="chk-todos" class="form-check-input" role="switch" title="Marcar/desmarcar todos" />
+                            </div>
+                        </th>
                             <th>Matrícula</th>
                             <th>Nombre</th>
                             <th>Grupo</th>
@@ -143,10 +145,13 @@ foreach ($usuarios as $usr) {
                         <?php foreach ($disponibles as $usr): ?>
                             <tr class="fila-disponible">
                                 <td>
-                                    <input type="checkbox"
-                                           name="usuario_ids[]"
-                                           value="<?= $usr['id'] ?>"
-                                           class="form-check-input chk-usuario" />
+                                    <div class="form-check form-switch">
+                                    <input type="checkbox" 
+                                        name="usuario_ids[]" 
+                                        value="<?= $usr['id'] ?>" 
+                                        class="form-check-input chk-usuario" 
+                                        role="switch" />
+                                </div>
                                 </td>
                                 <td><?= htmlspecialchars($usr['username']) ?></td>
                                 <td><?= htmlspecialchars(trim($usr['nombre'] . ' ' . $usr['apaterno'] . ' ' . $usr['amaterno'])) ?></td>
@@ -159,7 +164,13 @@ foreach ($usuarios as $usr) {
                         <?php foreach ($ya_inscritos as $usr): ?>
                             <tr class="table-warning fila-inscrita">
                                 <td>
-                                    <input type="checkbox" class="form-check-input" disabled title="Ya registrado" />
+                                    <div class="form-check form-switch">
+                                        <input type="checkbox" 
+                                               class="form-check-input" 
+                                               disabled 
+                                               role="switch" 
+                                               title="Ya registrado" />
+                                    </div>
                                 </td>
                                 <td><?= htmlspecialchars($usr['username']) ?></td>
                                 <td><?= htmlspecialchars(trim($usr['nombre'] . ' ' . $usr['apaterno'] . ' ' . $usr['amaterno'])) ?></td>

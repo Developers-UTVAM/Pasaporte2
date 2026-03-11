@@ -136,7 +136,9 @@ if ($hay_filtro) {
                     <thead class="table-light">
                         <tr>
                             <th style="width:42px">
-                                <input type="checkbox" id="chk-todos" class="form-check-input" />
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" id="chk-todos" class="form-check-input" role="switch" title="Marcar/desmarcar todos" />
+                                </div>
                             </th>
                             <th>Evento actual</th>
                             <th>Matrícula</th>
@@ -150,11 +152,13 @@ if ($hay_filtro) {
                         <?php foreach ($registros as $reg): ?>
                             <tr class="fila-registro" style="cursor:pointer">
                                 <td>
+                                    <div class="form-check form-switch">
                                     <input type="checkbox"
                                            name="registros_sel[]"
                                            value="<?= $reg['evento_id'] ?>|<?= $reg['usuario_id'] ?>"
-                                           class="form-check-input chk-registro" />
-                                </td>
+                                           class="form-check-input chk-registro"
+                                           role="switch" />
+                                </div>
                                 <td>
                                     <span class="badge bg-secondary">
                                         <?= htmlspecialchars($reg['evento_nombre']) ?>
