@@ -102,9 +102,8 @@ class Usuario extends Model
         if(is_string($perms)) {
             list($tipo, $codename) = explode(".", $perms);
             if($codename === "*") {
-                $perms = self::$permisos->selectAll("tipo = ?", [$tipo]);
-                if (count($perms) === 0) {
-                    return false; // Retorna falso en vez de error si el permiso no existe aun
+                if (count($perms = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
+                    throw new Exception("No se ha encontrado el tipo de permiso: " . $tipo);
                 }
                 $ids = array_column($perms, "id");
                 $placeholders = implode(',', array_fill(0, count($ids), '?'));

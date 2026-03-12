@@ -1,33 +1,35 @@
 <?php
+include_once __DIR__ . '/../../helpers/db.php';
 
-class MigrationModel {
-    private $db;
+class MigrationModel extends Model {
     private $migrationsPath;
 
-    public function __construct($dbConnection) {
-        $this->db = $dbConnection;
+    public function __construct() {
+        parent::__construct('migraciones');
         $this->migrationsPath = __DIR__ . '/../../migraciones_db/';
     }
 
-    public function getAllAppliedMigrations() {
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM migraciones ORDER BY id DESC");
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return [];
+    private function getRawConnection() {
+        if (file_exists(__DIR__ . '/../../configs.php')) {
+            include __DIR__ . '/../../configs.php';
+        } else {
+            global $db;
         }
+        $conn = new mysqli($db['servidor'], $db['usuario'], $db['contrasena'], $db['basededatos']);
+        if ($conn->connect_error) {
+            throw new Exception("Error al conectar para migración: " . $conn->connect_error);
+        }
+        $conn->set_charset("utf8mb4");
+        return $conn;
+    }
+
+    public function getAllAppliedMigrations() {
+        return $this->query("SELECT * FROM migraciones ORDER BY id DESC");
     }
 
     public function getPendingMigrations() {
-        $applied = [];
-        try {
-            $stmt = $this->db->prepare("SELECT archivo FROM migraciones");
-            $stmt->execute();
-            $applied = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        } catch (PDOException $e) {
-            $applied = [];
-        }
+        $rows = $this->query("SELECT archivo FROM migraciones");
+        $applied = array_column($rows, 'archivo');
 
         if (!is_dir($this->migrationsPath)) {
             return [];
@@ -56,52 +58,108 @@ class MigrationModel {
         }
 
         $sql = file_get_contents($filePath);
-
+   
+        $mysqli = $this->getRawConnection();
         try {
-            $this->db->beginTransaction();
-            $this->db->exec($sql);
-            $this->db->commit();
-            return true;
-        } catch (PDOException $e) {
-            $this->db->rollBack();
+            $mysqli->begin_transaction();
             
-            $errorCode = $e->errorInfo[1] ?? 0;
+            // Ejecutar el SQL del archivo (DDL/DML) si no está vacío
+            if (trim($sql) !== '') {
+                if ($mysqli->multi_query($sql)) {
+                    do {
+                        if ($result = $mysqli->store_result()) {
+                            $result->free();
+                        }
+                        if (!$mysqli->more_results()) {
+                            break;
+                        }
+                    } while ($mysqli->next_result());
+                }
+                
+                if ($mysqli->errno) {
+                    throw new Exception($mysqli->error, $mysqli->errno);
+                }
+            }
+            // Registrar la migración automáticamente en la base de datos
+            $this->recordMigration($filename, $mysqli);
+
+            $mysqli->commit();
+            $mysqli->close();
+            return true;
+        } catch (Exception $e) {
+            $mysqli->rollback();
+            $mysqli->close();
+            
+            $errorCode = $e->getCode();
             if (in_array($errorCode, [1050, 1060, 1061, 1062])) {
                 $this->markAsSynced($filename);
                 return true; 
             }
+            throw new Exception("Error en $filename: " . $e->getMessage());
+        }
+    }
+    private function getMigrationMetadata($filename) {
+        $type = 'DDL';
+        $nombre = $filename;
+        $descripcion = 'Ejecución automática por sistema de migraciones';
 
-            throw new Exception("Error en $filename: " . $e->getMessage());
-        } catch (Exception $e) {
-            $this->db->rollBack();
-            throw new Exception("Error en $filename: " . $e->getMessage());
+        //nombre del archivo: mig_NUM_TIPO_NOMBRE.sql
+        if (preg_match('/mig_\d+_([a-zA-Z]+)_(.*)\.sql$/i', $filename, $matches)) {
+            $type = strtoupper($matches[1]); // DDL o DML
+            // Convertir 'usuario_upd' a 'Usuario upd'
+            $rawName = str_replace(['_', '-'], ' ', $matches[2]);
+            $nombre = ucfirst(trim($rawName));
+        }
+
+        // Opcional: Buscar etiquetas de comentarios en el archivo para sobrescribir
+        $filePath = $this->migrationsPath . $filename;
+        if (file_exists($filePath)) {
+            // Leemos solo el inicio del archivo para buscar cabeceras
+            $header = file_get_contents($filePath, false, null, 0, 1024);
+            if (preg_match('/--\s*NOMBRE:\s*(.*)/i', $header, $m)) {
+                $nombre = trim($m[1]);
+            }
+            if (preg_match('/--\s*DESCRIPCION:\s*(.*)/i', $header, $m)) {
+                $descripcion = trim($m[1]);
+            }
+        }
+
+        // Validar tipo permitido
+        if (!in_array($type, ['DDL', 'DML'])) {
+            $type = 'DDL';
+        }
+
+        return compact('type', 'nombre', 'descripcion');
+    }
+
+    private function recordMigration($filename, $mysqli) {
+        $meta = $this->getMigrationMetadata($filename);
+        
+        $stmt = $mysqli->prepare("INSERT INTO migraciones (tipo, nombre, descripcion, archivo, fecha_aplicacion) VALUES (?, ?, ?, ?, NOW())");
+        if ($stmt) {
+            $stmt->bind_param('ssss', $meta['type'], $meta['nombre'], $meta['descripcion'], $filename);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            throw new Exception("Error preparando registro de migración: " . $mysqli->error);
         }
     }
 
     private function markAsSynced($filename) {
-        $filePath = $this->migrationsPath . $filename;
-        if (!file_exists($filePath)) {
-            // Fallback por seguridad, aunque executeMigration ya debería haberlo detectado.
-            $stmt = $this->db->prepare("INSERT IGNORE INTO migraciones (tipo, nombre, descripcion, archivo, fecha_aplicacion) VALUES ('Error', 'Archivo no encontrado', 'Se intentó sincronizar un archivo de migración que no existe.', ?, NOW())");
-            $stmt->execute([$filename]);
-            return;
+        $mysqli = $this->getRawConnection();
+        
+        try {
+            $meta = $this->getMigrationMetadata($filename);
+            $meta['descripcion'] .= " (Sincronizado automáticamente por existencia previa)";
+
+            $stmt = $mysqli->prepare("INSERT IGNORE INTO migraciones (tipo, nombre, descripcion, archivo, fecha_aplicacion) VALUES (?, ?, ?, ?, NOW())");
+            $stmt->bind_param('ssss', $meta['type'], $meta['nombre'], $meta['descripcion'], $filename);
+            $stmt->execute();
+            $stmt->close();
+        } catch (Exception $e) {
+            // Si falla la sincronización, no interrumpimos el flujo principal
         }
-
-        $sql = file_get_contents($filePath);
-        $pattern = "/INSERT\s+INTO\s+`?migraciones`?.*?VALUES\s*\(\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*\)/is";
-
-        if (preg_match($pattern, $sql, $matches)) {
-            $tipo = $matches[1];
-            $nombre = $matches[2];
-            $descripcion = $matches[3] . " (Sincronizado automáticamente por existencia previa)";
-            $archivo = $matches[4];
-
-            $stmt = $this->db->prepare("INSERT IGNORE INTO migraciones (tipo, nombre, descripcion, archivo, fecha_aplicacion) VALUES (?, ?, ?, ?, NOW())");
-            $stmt->execute([$tipo, $nombre, $descripcion, $archivo]);
-        } else {
-            $stmt = $this->db->prepare("INSERT IGNORE INTO migraciones (tipo, nombre, descripcion, archivo, fecha_aplicacion) VALUES ('Mmto', 'Sincronizacion Automatica', 'Marcado como completado al detectar existencia previa (no se pudo parsear el SQL original).', ?, NOW())");
-            $stmt->execute([$filename]);
-        }
+        $mysqli->close();
     }
 
     public function getMigrationSql($filename) {
