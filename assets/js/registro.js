@@ -62,7 +62,7 @@
     }
 
    
-    var chkTodosEditar = document.getElementById('chk-todos');   // mismo id, distinta vista
+    var chkTodosEditar = document.getElementById('chk-todos');
     var panelMover     = document.getElementById('panel-mover');
     var panelElim      = document.getElementById('panel-eliminar');
 
