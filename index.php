@@ -33,8 +33,14 @@ if(getvar("accion") === "login") {
                     <?php if(isset($err) && $err):?>
                         <div class="alert alert-danger" role="alert"><?php echo $err; ?></div>
                     <?php endif; ?>
+                    <?php if(getvar("msg") === "registered"):?>
+                        <div class="alert alert-success" role="alert">Registro exitoso. Por favor inicie sesión.</div>
+                    <?php endif; ?>
                     <?php include "app/usuario/form_login.php"; ?>
                     <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    <div class="text-center mt-3">
+                        <a href="registro.php" class="text-decoration-none">¿No tienes cuenta? Regístrate aquí</a>
+                    </div>
                 </form>
             </div>
 
