@@ -79,47 +79,6 @@ $data = $object->getAll();
     </div>
 </div>
 
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($data as $eventos) : ?>
-            <tr>
-                <td><?= htmlspecialchars($eventos['nombre']) ?></td>
-                <td><?= htmlspecialchars($eventos['fecha_hora']) ?></td>
-                <td><?= htmlspecialchars($eventos['lugar']) ?></td>
-                <td><?= htmlspecialchars($eventos['responsable_interno']) ?></td>
-                <td><?= htmlspecialchars($eventos['responsable_externo']) ?></td>
-                <td><?= htmlspecialchars($eventos['costo_interno']) ?></td>
-                <td><?= htmlspecialchars($eventos['costo_externo']) ?></td>
-                <td><?= htmlspecialchars($eventos['requiere_registro']) ?></td>
-                <td class="text-center">
-                    <?php
-                    // botón de registro sólo si el evento aún no pasó y requiere registro
-                    $now = new DateTime();
-                    $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($eventos['requiere_registro'] && $fecha >= $now): ?>
-                        <a class="btn btn-sm btn-primary" href="autoregistro.php?evento_id=<?= urlencode($eventos['id']) ?>">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            Registrar
-                        </a>
-                    <?php endif; ?>
-                    <a class="btn btn-outline-secondary" href="eventos.php?accion=mostrar&pk=<?= urlencode($eventos['id']) ?>">
-                        <i class="fa-regular fa-eye"></i>
-                        Mostrar
-                    </a>
-                    <a class="btn btn-outline-secondary" href="eventos.php?accion=actualizar&pk=<?= urlencode($eventos['id']) ?>">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        Actualizar
-                    </a>
-                    <a class="btn btn-outline-danger" href="eventos.php?accion=eliminar&pk=<?= urlencode($eventos['id']) ?>" onclick="return confirm('¿Eliminar este evento?')">
-                        <i class="fa-regular fa-trash-can"></i>
-                        Eliminar
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table></div></div>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     if ($.fn.DataTable.isDataTable('#data-list')) {
