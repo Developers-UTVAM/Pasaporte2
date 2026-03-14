@@ -78,18 +78,12 @@ class Usuario extends Model
             $this->data = $tmp_data;
             $this->pk = $current_pk;
             self::$tbl_usuario_tiene_permiso->delete("usuario_id = ?", [$this->pk]);
-            $permisos = getvar("permisos");
-            if (is_array($permisos)) {
-                foreach ($permisos as $perm) {
-                    self::$tbl_usuario_tiene_permiso->insert(["usuario_id" => $this->pk, "permiso_id" => $perm]);
-                }
+            foreach (getvar("permisos") as $perm) {
+                self::$tbl_usuario_tiene_permiso->insert(["usuario_id" => $this->pk, "permiso_id" => $perm]);
             }
             self::$tbl_usuario_tiene_perfil->delete("usuario_id = ?", [$this->pk]);
-            $perfiles = getvar("perfiles");
-            if (is_array($perfiles)) {
-                foreach ($perfiles as $perm) {
-                    self::$tbl_usuario_tiene_perfil->insert(["usuario_id" => $this->pk, "perfil_id" => $perm]);
-                }
+            foreach (getvar("perfiles") as $perm) {
+                self::$tbl_usuario_tiene_perfil->insert(["usuario_id" => $this->pk, "perfil_id" => $perm]);
             }
             return true;
         }
