@@ -89,17 +89,6 @@ if(getvar("accion") === "login") {
                 </div>
             <?php endif; ?>
 
-            <?php if ($_SESSION["current_user"]->can("permiso.*")): ?>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="d-grid gap-2">
-                    <a href="registro.php" class="btn btn-outline-secondary">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Registros
-                    </a>
-                    </div>
-                </div>
-            <?php endif; ?>
-
             </div>
             <div class="mt-4 d-flex flex-column justify-content-center align-items-center flex-grow-1">
                 <div class="card shadow-sm" style="max-width: 400px; width: 100%;">
