@@ -1,4 +1,5 @@
 <?php
+include_once "app/usuario/model.php";
 session_start();
 
 include_once 'helpers/vars.php';

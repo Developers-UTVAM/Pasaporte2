@@ -95,11 +95,22 @@ class Usuario extends Model
         if($able_if_authenticated && !$this->is_authenticated()) { return false; }
         if(is_string($perms)) {
             list($tipo, $codename) = explode(".", $perms);
-            if(($perm = self::$permisos->select("tipo = ? and codename = ?", [$tipo, $codename])) === null) {
-                throw new Exception("No se ha encontrado el permiso: " . $perms);
-            }
-            if(self::$tbl_usuario_tiene_permiso->select("usuario_id = ? and permiso_id = ?", [$this->pk, $perm["id"]]) !== null) {
-                return true;
+            if($codename === "*") {
+                if (count($perms = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
+                    throw new Exception("No se ha encontrado el tipo de permiso: " . $tipo);
+                }
+                $ids = array_column($perms, "id");
+                $placeholders = implode(',', array_fill(0, count($ids), '?'));
+                if (self::$tbl_usuario_tiene_permiso->select("usuario_id = ? and permiso_id in ($placeholders)", [$this->pk, ...$ids]) !== null) {
+                    return true;
+                }
+            } else {
+                if(($perm = self::$permisos->select("tipo = ? and codename = ?", [$tipo, $codename])) === null) {
+                    throw new Exception("No se ha encontrado el permiso: " . $perms);
+                }
+                if(self::$tbl_usuario_tiene_permiso->select("usuario_id = ? and permiso_id = ?", [$this->pk, $perm["id"]]) !== null) {
+                    return true;
+                }
             }
             foreach(self::$tbl_usuario_tiene_perfil->selectAll("usuario_id = ?", [$this->pk]) as $p_id) {
                 $perfil = new Perfil(self::$db_config);
@@ -133,7 +144,7 @@ class Usuario extends Model
         return $this->authenticated;
     }
 
-    public function checkLogin($usr, $pwd): Usuario {
+    public function checkLogin($usr, $pwd): Usuario | null {
         $hash_pwd = "";
         $usr = $this->select("username = ?", [$usr]);
         if($usr !== null) {
@@ -163,4 +174,20 @@ class Usuario extends Model
         return false;
     }
 
+    public function logout(): void {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        unset($_SESSION["current_user"]);
+        session_destroy();
+        $this->authenticated = false;
+    }
+
+    public function getQrData(): string {
+        if (isset($this->matricula) && trim($this->matricula) !== '') {
+            return "mat:" . trim($this->matricula);
+        }
+        return "id:" . $this->pk;
+    }
+    
 }

@@ -54,10 +54,21 @@ class Perfil extends Model
     public function can($perms): bool {
         if(is_string($perms)) {
             list($tipo, $codename) = explode(".", $perms);
-            if(($perm = self::$permisos->select("tipo = ? and codename = ?", [$tipo, $codename])) === null) {
-                throw new Exception("No se ha encontrado el permiso: " . $perms);
+            if($codename === "*") {
+                if (count($perms = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
+                    throw new Exception("No se ha encontrado el tipo de permiso: " . $tipo);
+                }
+                $ids = array_column($perms, "id");
+                $placeholders = implode(',', array_fill(0, count($ids), '?'));
+                if (self::$tbl_usuario_tiene_permiso->select("usuario_id = ? and permiso_id in ($placeholders)", [$this->pk, ...$ids]) !== null) {
+                    return true;
+                }
+            } else {
+                if(($perm = self::$permisos->select("tipo = ? and codename = ?", [$tipo, $codename])) === null) {
+                    throw new Exception("No se ha encontrado el permiso: " . $perms);
+                }
+                return self::$tbl_perfil_tiene_permiso->select("perfil_id = ? and permiso_id = ?", [$this->pk, $perm["id"]]) !== null;
             }
-            return self::$tbl_perfil_tiene_permiso->select("perfil_id = ? and permiso_id = ?", [$this->pk, $perm["id"]]) !== null;
         } else {
             foreach($perms as $perm) {
                 if($this->can($perm)) {
