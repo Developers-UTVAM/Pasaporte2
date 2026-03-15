@@ -668,7 +668,7 @@ header#main-header nav.navbar .navbar-brand,
 }
 
 .big-text {
-    font-size: var(--text-7xl);
+    font-size: var(--text-5xl);
 }
 
 main .card {
@@ -791,6 +791,14 @@ table.table-hover tr:hover td {
     background: #ffffff0d;
 }
 
+main table.dataTable.dtr-inline.collapsed>tbody>tr.dtr-expanded>td.dtr-control::before {
+    border-top-color: var(--primary);
+}
+
+main table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control::before {
+    border-left-color: var(--primary);
+}
+
 #qrcode {
     position: relative;
 }
@@ -889,4 +897,22 @@ main .dt-paging li.page-item.active button {
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     color: var(--btn-text);
     background-color: var(--primary);
+}
+
+.modal-content {
+    color: var(--bg-color);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(var(--bg-color), var(--bg-color)), linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.modal-content .modal-title {
+    color: var(--primary);
+}
+
+.modal-content .btn-close {
+    background-color: var(--text-color);
 }
