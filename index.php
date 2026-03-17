@@ -43,7 +43,6 @@ if(getvar("accion") === "login") {
 
             <div class="row gy-3" id="modulos-de-sistema">
 
-            <?php if ($_SESSION["current_user"]->can("lector_qr.*")): ?>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="d-grid gap-2">
                     <a href="lector_qr.php" class="btn btn-outline-secondary">
@@ -52,8 +51,6 @@ if(getvar("accion") === "login") {
                     </a>
                     </div>
                 </div>
-            <?php endif; ?>
-
             <?php if ($_SESSION["current_user"]->can("evento.*")): ?>
                 <div class="col-12 col-md-6 col-lg-3">
                     <div class="d-grid gap-2">
@@ -124,10 +121,13 @@ if(getvar("accion") === "login") {
             </div>
             
             <script src="assets/js/qr_generator.js"></script>
+            <script src="assets/js/escaner.js"></script>
+
         <?php endif; ?>
 
     </main>
 
     <?php include 'templates/footer.php'; ?>
+
 </body>
 </html>

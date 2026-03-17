@@ -97,6 +97,7 @@ class Usuario extends Model
     }
 
     public function can($perms, $able_if_superuser = true, $able_if_authenticated = true): bool {
+
         if($able_if_superuser && $this->superusuario) { return true; }
         if($able_if_authenticated && !$this->is_authenticated()) { return false; }
         if(is_string($perms)) {
@@ -195,4 +196,12 @@ class Usuario extends Model
         }
         return "id:" . $this->pk;
     }
+    public function getQrDataPublic(): string {
+        if (isset($this->matricula) && trim($this->matricula) !== '') {
+            return "mat:" . trim($this->matricula);
+        }
+        return "id:" . $this->pk;
+    }
+    
+    
 }
