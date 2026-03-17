@@ -5,7 +5,7 @@ session_start();
 
 include_once 'helpers/vars.php';
 
-if (!isset($_SESSION["current_user"]) || !$_SESSION["current_user"]->can("migracion.*")) {
+if (!isset($_SESSION["current_user"]) || !$_SESSION["current_user"]->can("migracion.run_migracion")) {
     header("Location: index.php");
     exit();
 }
@@ -36,7 +36,7 @@ extract($data);
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="m-0"><i class="fa-solid fa-database"></i> Control de Migraciones</h2>
-                <?php $_SESSION["current_user"]->can("migracion.run_migracion"): ?>
+                <?php if($_SESSION["current_user"]->can("migracion.run_migracion")): ?>
                 <a href="migrations.php" class="btn btn-primary">
                     <i class="fa-solid fa-rotate"></i> Sincronizar
                 </a>
@@ -106,7 +106,7 @@ extract($data);
                                 <td><?= htmlspecialchars($row['descripcion']) ?></td>
                                 <td><span class="badge bg-secondary"><?= htmlspecialchars($row['tipo']) ?></span></td>
                                 <td class="text-center">
-                                    <?php $_SESSION["current_user"]->can("migracion.view_migracion"): ?>
+                                    <?php if($_SESSION["current_user"]->can("migracion.view_migracion")): ?>
                                     <button class="btn btn-sm btn-outline-primary view-sql-btn" data-file="<?= htmlspecialchars($row['archivo']) ?>" title="Ver SQL"><i class="fa-solid fa-code"></i></button>
                                     <?php endif; ?>
                                 </td>
