@@ -46,7 +46,7 @@
                     </a></li>
                     <?php endif; ?>
 
-                    <?php if ($_SESSION["current_user"]->can("migracion.*")): ?>
+                    <?php if ($_SESSION["current_user"]->can("migracion.run_migracion")): ?>
                         <li class="nav-item text-center"><a href="migrations.php" class="nav-link">
                             <i class="fa-solid fa-database"></i>
                             Migraciones
