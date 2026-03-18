@@ -1,0 +1,25 @@
+-- Creacion de tabla para almacenar tokens de recuperacion de contrasena
+
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0;
+SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- INICIO DE LA MIGRACION
+
+CREATE TABLE IF NOT EXISTS `password_reset` (
+    `usuario_id` BIGINT NOT NULL,
+    `token` VARCHAR(64) NOT NULL,
+    `expira_en` DATETIME NOT NULL,
+    PRIMARY KEY (`token`),
+    INDEX `fk_password_reset_usuario_idx` (`usuario_id` ASC),
+    CONSTRAINT `fk_password_reset_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB;
+
+INSERT INTO `migraciones` (`tipo`, `nombre`, `descripcion`, `archivo`)
+VALUES ('DDL', 'Create password_reset tbl', 'Tabla para manejar los tokens temporales de recuperacion de contrasena', 'mig_017_ddl_password_reset.sql');
+
+-- FIN DE LA MIGRACION
+
+SET SQL_MODE = @OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;

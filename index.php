@@ -36,9 +36,15 @@ if(getvar("accion") === "login") {
                     <?php endif; ?>
                     <?php include "app/usuario/form_login.php"; ?>
                     <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                    <p class="text-center mt-3 mb-0">
-                        ¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a>.
-                    </p>
+
+                    <div class="d-flex flex-column gap-2 mt-4 text-center">
+                        <small class="text-muted">
+                            ¿No tienes una cuenta? <a href="registro.php" class="text-decoration-none fw-bold">Regístrate aquí</a>
+                        </small>
+                        <small class="text-muted">
+                            ¿Olvidaste tu contraseña? <a href="recuperar-contrasena.php" class="text-decoration-none fw-bold">Recupérala aquí</a>
+                        </small>
+                    </div>
                 </form>
             </div>
 
