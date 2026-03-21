@@ -77,6 +77,13 @@
                     </a></li>
                     <?php endif; ?>
 
+                    <?php if ($_SESSION["current_user"]->can("registroevento.*")): ?>
+                    <li class="nav-item text-center"><a href="registroevento.php" class="nav-link">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Administrar Registros a Eventos
+                    </a></li>
+                    <?php endif; ?>
+
                 </ul>
             </div>
             <?php endif; ?>
