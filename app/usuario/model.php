@@ -105,7 +105,7 @@ class Usuario extends Model
         return false;
     }
 
-    public function can($perms, $able_if_superuser = true, $able_if_authenticated = true): bool {
+    public function can($perms, $able_if_superuser = true, $able_if_authenticated = true, $only_direct_perm = false): bool {
         if($able_if_superuser && $this->superusuario) { return true; }
         if($able_if_authenticated && !$this->is_authenticated()) { return false; }
         if(is_string($perms)) {
@@ -127,6 +127,7 @@ class Usuario extends Model
                     return true;
                 }
             }
+            if($only_direct_perm) { return false; }
             foreach(self::$tbl_usuario_tiene_perfil->selectAll("usuario_id = ?", [$this->pk]) as $p_id) {
                 $perfil = new Perfil(self::$db_config);
                 $perfil->get($p_id["perfil_id"]);
