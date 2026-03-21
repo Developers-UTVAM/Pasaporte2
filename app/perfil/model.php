@@ -55,12 +55,12 @@ class Perfil extends Model
         if(is_string($perms)) {
             list($tipo, $codename) = explode(".", $perms);
             if($codename === "*") {
-                if (count($perms = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
+                if (count($permisos_encontrados = self::$permisos->selectAll("tipo = ?", [$tipo])) === 0) {
                     throw new Exception("No se ha encontrado el tipo de permiso: " . $tipo);
                 }
-                $ids = array_column($perms, "id");
+                $ids = array_column($permisos_encontrados, "id");
                 $placeholders = implode(',', array_fill(0, count($ids), '?'));
-                if (self::$tbl_usuario_tiene_permiso->select("usuario_id = ? and permiso_id in ($placeholders)", [$this->pk, ...$ids]) !== null) {
+                if (self::$tbl_perfil_tiene_permiso->select("perfil_id = ? and permiso_id in ($placeholders)", [$this->pk, ...$ids]) !== null) {
                     return true;
                 }
             } else {

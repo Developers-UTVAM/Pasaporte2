@@ -4,10 +4,12 @@ $data = $object->getAll();
 
 <div class="clearfix mb-3">
 <div class="btn-group float-end" role="group" aria-label="Barra de Herramientas">
-    <a type="button" class="btn btn-outline-secondary" href="eventos.php?accion=crear">
+    <?php if($_SESSION["current_user"]->can("usuario.add_usuario")): ?>
+    <a type="button" class="btn btn-outline-primary" href="eventos.php?accion=crear">
         <i class="fa-solid fa-plus"></i>
         Nuevo
     </a>
+    <?php endif; ?>
 </div>
 </div>
 
@@ -22,7 +24,7 @@ $data = $object->getAll();
             <th>Costo interno</th>
             <th>Costo externo</th>
             <th>Registro</th>
-
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,18 +39,24 @@ $data = $object->getAll();
                 <td><?= htmlspecialchars($eventos['costo_externo']) ?></td>
                 <td><?= htmlspecialchars($eventos['requiere_registro']) ?></td>
                 <td class="text-center">
+                    <?php if($_SESSION["current_user"]->can("evento.view_evento")): ?>
                     <a class="btn btn-outline-secondary" href="eventos.php?accion=mostrar&pk=<?= urlencode($eventos['id']) ?>">
                         <i class="fa-regular fa-eye"></i>
                         Mostrar
                     </a>
+                    <?php endif; ?>
+                    <?php if($_SESSION["current_user"]->can("evento.change_evento")): ?>
                     <a class="btn btn-outline-secondary" href="eventos.php?accion=actualizar&pk=<?= urlencode($eventos['id']) ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Actualizar
                     </a>
+                    <?php endif; ?>
+                    <?php if($_SESSION["current_user"]->can("evento.delete_evento")): ?>
                     <a class="btn btn-outline-danger" href="eventos.php?accion=eliminar&pk=<?= urlencode($eventos['id']) ?>" onclick="return confirm('¿Eliminar este evento?')">
                         <i class="fa-regular fa-trash-can"></i>
                         Eliminar
                     </a>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

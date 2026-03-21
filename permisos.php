@@ -5,11 +5,16 @@ session_start();
 include_once 'helpers/vars.php';
 include_once 'app/permiso/model.php';
 
+if (!isset($_SESSION["current_user"]) || !$_SESSION["current_user"]->can("permiso.*")) {
+    header("Location: index.php");
+    exit();
+}
+
 $accion = getvar('accion');
 $object = new Permiso();
 $errors = [];
 
-if ($accion === 'create') {
+if ($accion === 'create' && $_SESSION["current_user"]->can("permiso.add_permiso")) {
     $object->fromArray($_POST);
     try {
         $object->save();
@@ -19,7 +24,7 @@ if ($accion === 'create') {
         $errors[] = "Error al guardar el permiso: " . $e->getMessage();
         $accion = 'crear';
     }
-} elseif ($accion === 'update') {
+} elseif ($accion === 'update' && $_SESSION["current_user"]->can("permiso.change_permiso")) {
     $object->fromArray($_POST);
     $object->pk = getvar('pk');
     try {
@@ -30,7 +35,7 @@ if ($accion === 'create') {
         $errors[] = "Error al guardar el permiso: " . $e->getMessage();
         $accion = 'actualizar';
     }
-} elseif ($accion === 'delete' || $accion === 'eliminar') {
+} elseif (($accion === 'delete' || $accion === 'eliminar') && $_SESSION["current_user"]->can("permiso.delete_permiso")) {
     $object->pk = getvar('pk');
     try {
         $object->delete();
@@ -64,13 +69,13 @@ if ($accion === 'create') {
         <?php endforeach; ?>
 
         <?php
-        if($accion === 'listar' || $accion === null) {
+        if(($accion === 'listar' || $accion === null) && $_SESSION["current_user"]->can("permiso.list_permiso")) {
             include 'app/permiso/listar.php';
-        } elseif($accion === 'actualizar') {
+        } elseif($accion === 'actualizar' && $_SESSION["current_user"]->can("permiso.change_permiso")) {
             include 'app/permiso/actualizar.php';
-        } elseif ($accion === 'crear') {
+        } elseif ($accion === 'crear' && $_SESSION["current_user"]->can("permiso.add_permiso")) {
             include 'app/permiso/crear.php';
-        } elseif ($accion === 'mostrar') {
+        } elseif ($accion === 'mostrar' && $_SESSION["current_user"]->can("permiso.view_permiso")) {
             include 'app/permiso/mostrar.php';
         }
         ?>

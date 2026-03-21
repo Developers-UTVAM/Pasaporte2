@@ -17,7 +17,7 @@ insert into `permiso` (`tipo`, `codename`, `nombre`) values
 ('usuario', 'add_usuario', 'Agregar usuario'),
 ('usuario', 'change_usuario', 'Cambiar usuario'),
 ('usuario', 'delete_usuario', 'Eliminar usuario'),
-('usuario', 'view_usuario', 'Ver usuario');
+('usuario', 'view_usuario', 'Ver usuario'),
 ('usuario', 'list_usuario', 'Listar usuarios');
 
 INSERT INTO
