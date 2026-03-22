@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const matricula = qrContainer.getAttribute("data-matricula");
         const id = qrContainer.getAttribute("data-id");
         if (matricula && matricula.trim() !== "" && matricula !== "0") {
-            qrContent = matricula;
+            qrContent = `mat:${matricula}`;
         } else if (id && id.trim() !== "") {
-            qrContent = `math:${id}`;
+            qrContent = `id:${id}`;
         }
 
         if (qrContent) {
             const script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
             script.onload = () => {
-                qrContainer.innerHTML = ""; 
+                qrContainer.innerHTML = "";
                 new QRCode(qrContainer, {
                     text: qrContent,
                     width: 200,
