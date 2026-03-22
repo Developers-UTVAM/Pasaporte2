@@ -6,13 +6,20 @@ include_once 'helpers/vars.php';
 include_once 'app/usuario/model.php';
 include_once 'app/perfil/model.php';
 
+$accion = getvar('accion');
+$object = new Usuario();
+
+if ($accion === 'logout' || $accion === 'salir') {
+    $object->logout();
+    header('Location: index.php');
+    exit();
+}
+
 if (!isset($_SESSION["current_user"]) || !$_SESSION["current_user"]->can("usuario.*")) {
     header("Location: index.php");
     exit();
 }
 
-$accion = getvar('accion');
-$object = new Usuario();
 $errors = [];
 
 if ($accion === 'create' && $_SESSION["current_user"]->can("usuario.add_usuario")) {
@@ -46,10 +53,6 @@ if ($accion === 'create' && $_SESSION["current_user"]->can("usuario.add_usuario"
         $errors[] = "Error al eliminar el usuario: " . $e->getMessage();
         $accion = 'mostrar';
     }
-} elseif ($accion === 'logout' || $accion === 'salir') {
-    $object->logout();
-    header('Location: index.php');
-    exit();
 }
 ?><!DOCTYPE html>
 <html lang="es-MX">
