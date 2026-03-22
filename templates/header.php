@@ -34,6 +34,19 @@
             <div id="nav-principal" class="collapse navbar-collapse me-4">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5">
 
+                    <?php if ($_SESSION["current_user"]->can("registrorapidoevento.*")): ?>
+                    <li class="nav-item text-center"><a href="registrorapidoevento.php" class="nav-link">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Registro Rápido a Eventos
+                    <?php endif; ?>
+
+                    <?php if ($_SESSION["current_user"]->can("registroevento.*")): ?>
+                    <li class="nav-item text-center"><a href="registroevento.php" class="nav-link">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Administrar Registros a Eventos
+                    </a></li>
+                    <?php endif; ?>
+
                     <li class="nav-item text-center"><a href="lector_qr.php" class="nav-link">
                         <i class="fa-solid fa-qrcode"></i>
                         Lector QR
@@ -74,17 +87,6 @@
                     <li class="nav-item text-center"><a href="permisos.php" class="nav-link">
                         <i class="fa-brands fa-superpowers"></i>
                         Permisos
-                    </a></li>
-                    <?php endif; ?>
-
-                    <?php if ($_SESSION["current_user"]->can("registrorapidoevento.*")): ?>
-                    <li class="nav-item text-center"><a href="registrorapidoevento.php" class="nav-link">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Registro Rápido a Eventos
-                    <?php if ($_SESSION["current_user"]->can("registroevento.*")): ?>
-                    <li class="nav-item text-center"><a href="registroevento.php" class="nav-link">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Administrar Registros a Eventos
                     </a></li>
                     <?php endif; ?>
 
