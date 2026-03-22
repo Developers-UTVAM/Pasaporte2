@@ -63,7 +63,7 @@
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" value="<?php echo $perm["id"]; ?>" role="switch"
                 id="perm-<?php echo $perm["id"]; ?>" name="permisos[]"
-                <?php echo $object->can($perm["tipo"] . "." . $perm["codename"], false, false) ? 'checked="checked"' : ''; ?> />
+                <?php echo $object->can($perm["tipo"] . "." . $perm["codename"], false, false, true) ? 'checked="checked"' : ''; ?> />
             <label class="form-check-label" for="perm-<?php echo $perm["id"]; ?>">
                 <?php echo $perm["tipo"] . "." . $perm["codename"] . ": " . $perm["nombre"]; ?>
             </label>
