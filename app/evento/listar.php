@@ -43,9 +43,9 @@ $data = $object->getAll();
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
                     if ($fecha >= $now): ?>
-                        <a class="btn btn-sm btn-primary" href="eventos.php?accion=autoregistrar&evento_id=<?= urlencode($eventos['id']) ?>">
+                        <a title="Registrarme" class="btn btn-sm btn-primary" href="eventos.php?accion=autoregistrar&evento_id=<?= urlencode($eventos['id']) ?>">
                             <i class="fa-solid fa-right-to-bracket"></i>
-                            Registrar
+                            Registrarme
                         </a>
                     <?php endif; ?>
                     <?php if($_SESSION["current_user"]->can("evento.view_evento")): ?>

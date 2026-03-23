@@ -22,9 +22,9 @@
                     <td>
                         <form method="post" style="margin:0;display:inline;">
                             <input type="hidden" name="evento_id" value="<?php echo htmlspecialchars($ev['id']); ?>">
-                            <button type="submit" class="btn btn-primary btn-sm">
+                            <button title="Registrarme" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa-solid fa-right-to-bracket"></i>
-                                Registrar
+                                Registrarme
                             </button>
                         </form>
                     </td>
