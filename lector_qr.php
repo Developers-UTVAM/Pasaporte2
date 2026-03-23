@@ -1,12 +1,12 @@
 <?php
-include_once "app/usuario/model.php";
-session_start();
 
+include_once "app/usuario/model.php";
 include_once 'helpers/vars.php';
 ?><!DOCTYPE html>
 <html lang="es-MX">
 <head>
     <?php include 'templates/head.php'; ?>
+    <title>Testeo Lector QR</title>
 </head>
 <body class="d-flex flex-column vh-100">
     <?php include 'templates/header.php'; ?>
