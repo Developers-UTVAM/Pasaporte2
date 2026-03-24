@@ -24,6 +24,9 @@
                 <?php endif; ?>
                 <span class="me-3 colores-gay">TICS 2026</span>
                 <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
+                    <a href="olvide_mi_contrasena.php" class="me-3 text-white" title="Cambiar Contraseña">
+                        <i class="fa-solid fa-key fs-5"></i>
+                    </a>
                     <a href="usuarios.php?accion=logout" title="Cerrar Sesión">
                         <img src="assets/img/Logout.png" alt="Salir" width="24" height="24">
                     </a>
