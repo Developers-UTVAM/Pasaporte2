@@ -15,7 +15,6 @@
             <img src="assets/img/utvam_logo_favicon.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
             UTVAM Pasaporte
             </a>
-
             <div class="d-flex align-items-center order-lg-last">
                 <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
                 <button id="menu-toggler" class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#nav-principal" aria-controls="nav-principal" aria-expanded="false" aria-label="Toggle navigation">

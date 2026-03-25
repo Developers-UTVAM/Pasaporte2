@@ -1,5 +1,6 @@
 <?php
-$data = $object->getAll();
+
+$data = $data; 
 ?>
 
 <div class="clearfix mb-3">
@@ -17,6 +18,21 @@ $data = $object->getAll();
         <i class="fa-solid fa-plus"></i>
         Nuevo
     </a>
+    <?php endif; ?>
+  
+  
+    <?php if($_SESSION["current_user"]->can("evento.*")): ?>
+    <?php if($accion !== 'listar_expirados'): ?>
+    <a type="button" class="btn btn-outline-warning" href="eventos.php?accion=listar_expirados">
+        <i class="fa-solid fa-clock"></i>
+        Ver Expirados
+    </a>
+    <?php else: ?>
+    <a type="button" class="btn btn-outline-primary" href="eventos.php?accion=listar">
+        <i class="fa-solid fa-calendar"></i>
+        Ver Activos
+    </a>
+    <?php endif; ?>
     <?php endif; ?>
 
 </div>

@@ -16,4 +16,25 @@ class Evento extends Model
     {
         return $this->nombre ?? "Evento";
     }
-}
+    public function getEventosDisponibles(): array
+    {
+        date_default_timezone_set('America/Mexico_City');
+        $fecha_hora_actual = date('Y-m-d H:i:s');
+        
+        return $this->selectAll('fecha_hora >= ?', [$fecha_hora_actual]);
+    }
+    
+    public function getEventosExpirados(): array
+    {
+        return $this->selectAll('fecha_hora < NOW()', []);
+    }
+
+   public function getEventosPorRol($es_admin): array
+    {
+        if ($es_admin) {
+            return $this->getEventosDisponibles(); 
+        } else {
+            return $this->getEventosDisponibles(); 
+        }
+    }
+} 
