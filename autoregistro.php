@@ -32,8 +32,12 @@ if (!isset($_SESSION['current_user']) || !$_SESSION['current_user']) {
             if ($yaRegistrado !== null) {
                 $mensaje = ['tipo' => 'info', 'texto' => 'Ya estás registrado en este evento.'];
             } else {
-     
-                $res = $tblRegistro->insert(['usuario_id' => $userId, 'evento_id' => $eventoId]);
+                $equipo = getvar('equipo') ?? '';
+                $datosInsert = ['usuario_id' => $userId, 'evento_id' => $eventoId];
+                if ($equipo !== '') {
+                    $datosInsert['equipo'] = $equipo;
+                }
+                $res = $tblRegistro->insert($datosInsert);
                 if ($res !== false) {
                     $mensaje = ['tipo' => 'success', 'texto' => 'Tu registro se guardó correctamente.'];
                 } else {

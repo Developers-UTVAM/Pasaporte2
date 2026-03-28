@@ -20,9 +20,10 @@
                     <td><?php echo htmlspecialchars($ev['fecha_hora']); ?></td>
                     <td><?php echo htmlspecialchars($ev['lugar']); ?></td>
                     <td>
-                        <form method="post" style="margin:0;display:inline;">
+                        <form method="post" style="margin:0; display:flex; gap: 0.5rem; align-items: center;">
                             <input type="hidden" name="evento_id" value="<?php echo htmlspecialchars($ev['id']); ?>">
-                            <button title="Registrarme" type="submit" class="btn btn-primary btn-sm">
+                            <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 150px;">
+                            <button title="Registrarme" type="submit" class="btn btn-primary btn-sm text-nowrap">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 Registrarme
                             </button>

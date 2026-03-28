@@ -62,10 +62,15 @@ $data = $data;
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
                     if ($fecha >= $now): ?>
-                        <a title="Registrarme" class="btn btn-sm btn-primary" href="eventos.php?accion=autoregistrar&evento_id=<?= urlencode($eventos['id']) ?>">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            Registrarme
-                        </a>
+                        <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
+                            <input type="hidden" name="accion" value="autoregistrar">
+                            <input type="hidden" name="evento_id" value="<?= htmlspecialchars($eventos['id']) ?>">
+                            <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 140px;">
+                            <button title="Registrarme" type="submit" class="btn btn-primary btn-sm text-nowrap">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                                Registrarme
+                            </button>
+                        </form>
                     <?php endif; ?>
                     <?php if($_SESSION["current_user"]->can("evento.view_evento")): ?>
                     <a title="Mostrar" class="btn btn-outline-secondary" href="eventos.php?accion=mostrar&pk=<?= urlencode($eventos['id']) ?>">

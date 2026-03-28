@@ -80,7 +80,12 @@ if ($accion === 'create' && $_SESSION["current_user"]->can("evento.add_evento"))
                 if ($yaRegistrado !== null) {
                     $errors[] = 'Ya estás registrado en este evento.';
                 } else {
-                    $res = $tblRegistro->insert(['usuario_id' => $userId, 'evento_id' => $eventoId]);
+                    $equipo = getvar('equipo') ?? '';
+                    $datosInsert = ['usuario_id' => $userId, 'evento_id' => $eventoId];
+                    if ($equipo !== '') {
+                        $datosInsert['equipo'] = $equipo;
+                    }
+                    $res = $tblRegistro->insert($datosInsert);
                     if ($res !== false) {
                         header('Location: eventos.php?accion=listar&mensaje=' . urlencode('Tu registro se guardó correctamente.'));
                         exit;
