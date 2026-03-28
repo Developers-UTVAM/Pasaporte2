@@ -103,6 +103,15 @@ foreach ($usuarios as $usr) {
             <input type="hidden" name="accion"    value="crear" />
             <input type="hidden" name="evento_id" value="<?= $sel_evento ?>" />
 
+            <div class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold mb-1">Equipo <span class="text-muted fw-normal">(opcional)</span></label>
+                    <input type="text" name="equipo" class="form-control"
+                           placeholder="Nombre del equipo"
+                           value="<?= htmlspecialchars(getvar('equipo') ?? '') ?>" maxlength="50" />
+                </div>
+            </div>
+
             <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
                 <span class="fw-semibold text-secondary">
                     <i class="fa-solid fa-users"></i>

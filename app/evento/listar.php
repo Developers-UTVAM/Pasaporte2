@@ -1,6 +1,6 @@
 <?php
 
-$data = $data; 
+$data = $data;
 ?>
 
 <div class="clearfix mb-3">
@@ -19,8 +19,8 @@ $data = $data;
         Nuevo
     </a>
     <?php endif; ?>
-  
-  
+
+
     <?php if($_SESSION["current_user"]->can("evento.*")): ?>
     <?php if($accion !== 'listar_expirados'): ?>
     <a type="button" class="btn btn-outline-warning" href="eventos.php?accion=listar_expirados">
@@ -52,16 +52,13 @@ $data = $data;
     <tbody>
         <?php foreach ($data as $eventos) : ?>
             <tr>
-                <td><?= htmlspecialchars($eventos['nombre']) ?></td>
-                <td><?= htmlspecialchars((new DateTime($eventos['fecha_hora']))->format('d/m/Y H:i')) ?></td>
-                <td><?= htmlspecialchars($eventos['lugar']) ?></td>
-                <td><?= htmlspecialchars($eventos['responsable_interno']) ?></td>
-                <td><?= htmlspecialchars($eventos['responsable_externo']) ?></td>
-                <td class="text-center">
+                <td>
+                    <?= htmlspecialchars($eventos['nombre']) ?>
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
                     if ($fecha >= $now): ?>
+                        <br />
                         <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
                             <input type="hidden" name="accion" value="autoregistrar">
                             <input type="hidden" name="evento_id" value="<?= htmlspecialchars($eventos['id']) ?>">
@@ -72,6 +69,12 @@ $data = $data;
                             </button>
                         </form>
                     <?php endif; ?>
+                </td>
+                <td><?= htmlspecialchars((new DateTime($eventos['fecha_hora']))->format('d/m/Y H:i')) ?></td>
+                <td><?= htmlspecialchars($eventos['lugar']) ?></td>
+                <td><?= htmlspecialchars($eventos['responsable_interno']) ?></td>
+                <td><?= htmlspecialchars($eventos['responsable_externo']) ?></td>
+                <td class="text-center">
                     <?php if($_SESSION["current_user"]->can("evento.view_evento")): ?>
                     <a title="Mostrar" class="btn btn-outline-secondary" href="eventos.php?accion=mostrar&pk=<?= urlencode($eventos['id']) ?>">
                         <i class="fa-regular fa-eye"></i>

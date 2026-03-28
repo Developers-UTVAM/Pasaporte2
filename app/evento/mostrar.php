@@ -5,7 +5,8 @@ $tblRegistro = new Table('registro');
 $participantes = $tblRegistro->query(
     "SELECT u.id, TRIM(CONCAT(u.nombre,' ',u.apaterno,' ',COALESCE(u.amaterno,''))) AS nombre,
             u.matricula, u.grupo, u.email,
-            IF(a.usuario_id IS NOT NULL, 1, 0) AS asistio
+            IF(a.usuario_id IS NOT NULL, 1, 0) AS asistio,
+            r.equipo
      FROM registro r
      JOIN usuario u ON u.id = r.usuario_id
      LEFT JOIN asistencia a ON a.evento_id = r.evento_id AND a.usuario_id = r.usuario_id
@@ -69,6 +70,7 @@ $participantes = $tblRegistro->query(
                 <th>Matrícula</th>
                 <th>Grupo</th>
                 <th>Email</th>
+                <th>Equipo</th>
                 <th class="text-center">Registrado</th>
                 <th class="text-center">Asistió</th>
             </tr>
@@ -80,6 +82,7 @@ $participantes = $tblRegistro->query(
                 <td><?php echo htmlspecialchars($p['matricula'] ?? ''); ?></td>
                 <td><?php echo htmlspecialchars($p['grupo'] ?? ''); ?></td>
                 <td><?php echo htmlspecialchars($p['email'] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($p['equipo'] ?? ''); ?></td>
                 <td class="text-center">
                     <i class="fa-solid fa-circle-check text-success"></i>
                 </td>

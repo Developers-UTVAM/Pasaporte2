@@ -95,11 +95,18 @@ include_once "helpers/vars.php";
 
             <div class="col">
                 <div class="card h-100">
-                    <img src="assets/img/the-tech-pantheon/tt.png" alt="Jonathan Valenzuela" class="card-img-top">
+                    <img src="assets/img/the-tech-pantheon/jona.jpg" alt="Jonathan Valenzuela" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">Jonathan Valenzuela</h5>
-                        <p class="card-text"></p>
-                        <div class="card-footer"><small class="text-body-secondary"></small></div>
+                        <p class="card-text">
+                            Soy Jonathan, estudiante de desarrollo de software. Me gustan los videojuegos, el anime, el fútbol y
+                            soy gymrat. Me apasiona crear aplicaciones innovadoras con React y Laravel, siempre buscando
+                            eficiencia técnica. Soy una persona disciplinada, competitiva y orientada a resultados, que disfruta
+                            enfrentar desafíos tanto en el código como en el deporte.
+                        </p>
+                        <div class="card-footer"><small class="text-body-secondary">
+                            <a href="https://www.facebook.com/jonathan.valenzuela.633432" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                        </small></div>
                     </div>
                 </div>
             </div>
