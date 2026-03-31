@@ -52,7 +52,7 @@
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($fecha >= $now): ?>
+                    if ($fecha >= $now && $_SESSION['current_user']->can('usuario.autorregistrarse', false)): ?>
                         <br />
                         <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
                             <input type="hidden" name="accion" value="autoregistrar">

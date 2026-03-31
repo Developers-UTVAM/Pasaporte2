@@ -50,30 +50,34 @@ if (checkVar("accion", 'create') && currentUserCan("evento.add_evento")) {
         $accion = 'mostrar';
     }
 } elseif (checkVar("accion", 'autoregistrar')) {
-    $userId = $_SESSION['current_user']->id;
-    $eventoId = getvar('evento_id');
-    if ($eventoId !== null) {
-        $tblRegistro = new Table('registro');
-        try {
-            $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$userId, $eventoId]);
-            if ($yaRegistrado !== null) {
-                $errors[] = 'Ya estás registrado en este evento.';
-            } else {
-                $equipo = getvar('equipo') ?? '';
-                $datosInsert = ['usuario_id' => $userId, 'evento_id' => $eventoId];
-                if ($equipo !== '') {
-                    $datosInsert['equipo'] = $equipo;
-                }
-                $res = $tblRegistro->insert($datosInsert);
-                if ($res !== false) {
-                    header('Location: eventos.php?accion=listar&mensaje=' . urlencode('Tu registro se guardó correctamente.'));
-                    exit;
+    if (!$_SESSION['current_user']->can('usuario.autorregistrarse', false)) {
+        $errors[] = "No tienes permiso para autorregistrarte en eventos.";
+    } else {
+        $userId = $_SESSION['current_user']->id;
+        $eventoId = getvar('evento_id');
+        if ($eventoId !== null) {
+            $tblRegistro = new Table('registro');
+            try {
+                $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$userId, $eventoId]);
+                if ($yaRegistrado !== null) {
+                    $errors[] = 'Ya estás registrado en este evento.';
                 } else {
-                    $errors[] = 'No se pudo completar el registro.';
+                    $equipo = getvar('equipo') ?? '';
+                    $datosInsert = ['usuario_id' => $userId, 'evento_id' => $eventoId];
+                    if ($equipo !== '') {
+                        $datosInsert['equipo'] = $equipo;
+                    }
+                    $res = $tblRegistro->insert($datosInsert);
+                    if ($res !== false) {
+                        header('Location: eventos.php?accion=listar&mensaje=' . urlencode('Tu registro se guardó correctamente.'));
+                        exit;
+                    } else {
+                        $errors[] = 'No se pudo completar el registro.';
+                    }
                 }
+            } catch (Exception $e) {
+                $errors[] = 'Error al registrar: ' . $e->getMessage();
             }
-        } catch (Exception $e) {
-            $errors[] = 'Error al registrar: ' . $e->getMessage();
         }
     }
     $accion = 'listar';
