@@ -50,7 +50,7 @@ if (checkVar("accion", 'create') && currentUserCan("evento.add_evento")) {
         $accion = 'mostrar';
     }
 } elseif (checkVar("accion", 'autoregistrar')) {
-    if (!$_SESSION['current_user']->can('otro.autorregistrarse', false)) {
+    if (!$_SESSION['current_user']->can('otro.autorregistrarse')) {
         $errors[] = "No tienes permiso para autorregistrarte en eventos.";
     } else {
         $userId = $_SESSION['current_user']->id;

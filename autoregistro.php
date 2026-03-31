@@ -8,7 +8,7 @@ $eventos = [];
 $mensaje = null;
 
 try {
-    if (!$_SESSION['current_user']->can('otro.autorregistrarse', false)) {
+    if (!$_SESSION['current_user']->can('otro.autorregistrarse')) {
         $errors[] = "No tienes permiso para autorregistrarte en eventos.";
     }
 } catch (Exception $e) {
