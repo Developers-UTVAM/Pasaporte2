@@ -51,16 +51,26 @@ if(!function_exists("currentUserCan")) {
                     </li>
                     <?php endif; ?>
 
-                    <?php if (currentUserCan("otro.registrar_en_evento_rapido")): ?>
-                    <li class="nav-item text-center"><a href="registrorapidoevento.php" class="nav-link">
-                        <i class="fa-solid fa-user-plus"></i>
-                        Registro Rápido a Eventos
+                    <?php if (currentUserCan("asistencia.add_asistencia")): ?>
+                        <li class="nav-item text-center"><a href="asistencia.php" class="nav-link">
+                            <i class="fa-solid fa-check"></i>
+                            Asistencia
+                        </a></li>
                     <?php endif; ?>
 
-                    <li class="nav-item text-center"><a href="lector_qr.php" class="nav-link">
-                        <i class="fa-solid fa-qrcode"></i>
-                        Lector QR
+                    <?php if (currentUserCan("otro.autorregistrarse")): ?>
+                    <li class="nav-item text-center"><a href="autoregistro.php" class="nav-link">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Registrarme en Eventos
                     </a></li>
+                    <?php endif; ?>
+
+                    <?php if (currentUserCan("otro.registrar_en_evento_rapido")): ?>
+                        <li class="nav-item text-center"><a href="registrorapidoevento.php" class="nav-link">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Registro Rápido a Eventos
+                        </a></li>
+                    <?php endif; ?>
 
                     <?php if(currentUserCan(["otro.registrar_en_evento", "evento.*"])): ?>
                     <li class="nav-item text-center">
@@ -139,13 +149,6 @@ if(!function_exists("currentUserCan")) {
                             </ul>
                         </div>
                     </li>
-                    <?php endif; ?>
-
-                    <?php if (currentUserCan("asistencia.add_asistencia")): ?>
-                    <li class="nav-item text-center"><a href="asistencia.php" class="nav-link">
-                        <i class="fa-solid fa-check"></i>
-                        Asistencia
-                    </a></li>
                     <?php endif; ?>
                 </ul>
             </div>
