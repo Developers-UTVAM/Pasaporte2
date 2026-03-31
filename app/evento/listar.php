@@ -45,15 +45,20 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($data as $eventos) : ?>
+        <?php 
+        $tblRegistro = new Table('registro');
+        foreach ($data as $eventos) : ?>
             <tr>
                 <td>
                     <?= htmlspecialchars($eventos['nombre']) ?>
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($fecha >= $now && $_SESSION['current_user']->can('otro.autorregistrarse')): ?>
+                    if ($fecha >= $now && $_SESSION['current_user']->can('otro.autorregistrarse')): 
+                        $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$_SESSION['current_user']->id, $eventos['id']]);
+                    ?>
                         <br />
+                        <?php if (!$yaRegistrado): ?>
                         <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
                             <input type="hidden" name="accion" value="autoregistrar">
                             <input type="hidden" name="evento_id" value="<?= htmlspecialchars($eventos['id']) ?>">
@@ -63,6 +68,9 @@
                                 Registrarme
                             </button>
                         </form>
+                        <?php else: ?>
+                        <span class="badge bg-success" style="font-size: 0.85em;"><i class="fa-solid fa-check"></i> Registrado</span>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </td>
                 <td><?= htmlspecialchars((new DateTime($eventos['fecha_hora']))->format('d/m/Y H:i')) ?></td>
