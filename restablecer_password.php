@@ -2,7 +2,7 @@
 
 include_once __DIR__ . "/init.php";
 
-startAPI("login");
+startAPI();
 
 include_once 'app/Olvidar-contrasena/controlador_recuperacion.php';
 
