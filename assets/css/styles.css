@@ -815,8 +815,13 @@ main table.table tr.fila-inscrita td {
     color: var(--bs-info);
 }
 
+
 #qrcode {
     position: relative;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 #qrcode::after {
@@ -843,20 +848,43 @@ main table.table tr.fila-inscrita td {
     }
 }
 
-#qrcode img {
-
+#qrcode img,
+#qrcode canvas {
     background-color: var(--color-white);
     display: block;
-    border-radius: var(--radius-lg);
-    font-family: Inter, sans-serif;
-    padding: 25px;
-
+    border-radius: var(--radius-2xl);
+    padding: 15px;
     height: var(--qr-size);
     width: var(--qr-size);
+    margin: 0 auto;
 
     --tw-shadow: 0 0 25px var(--tw-shadow-color, var(--primary));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    transition: transform 0.3s ease;
+}
 
+#qrcode:hover img,
+#qrcode:hover canvas {
+    transform: scale(1.02);
+}
+
+/* Estilos para embellecer el título y texto de la tarjeta del QR */
+main .card-title {
+    font-weight: var(--font-weight-black);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}
+
+#qr-label {
+    color: var(--primary) !important;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
+    margin-top: 15px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
