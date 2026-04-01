@@ -2,11 +2,14 @@
 if(!function_exists("currentUserCan")) {
     include_once __DIR__ . "/../init.php";
 }
-?><script type="text/javascript">
-    <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>     
+?>
+    <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
+    <?php endif; ?>
+<script type="text/javascript">
+    <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
         let current_user = `<?php echo $_SESSION["current_user"] ?>`;
     <?php else: ?>
         let current_user = `Anonymous`;
@@ -14,12 +17,12 @@ if(!function_exists("currentUserCan")) {
     console.log("Current User:", current_user)
 </script>
 
-<header id="main-header">
-    <nav class="navbar navbar-expand-lg">
+<header id="main-header" class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="index.php">
-            <img src="assets/img/utvam_logo_favicon.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand d-flex align-items-center fw-bold" href="index.php">
+            <img src="assets/img/utvam_logo_favicon.png" alt="" width="30" height="30" class="d-inline-block align-text-top me-2 bg-white rounded-circle p-1">
             UTVAM Pasaporte
             </a>
             <div class="d-flex align-items-center order-lg-last">
@@ -28,15 +31,14 @@ if(!function_exists("currentUserCan")) {
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <?php endif; ?>
-                <span class="me-3 colores-gay">TICS 2026</span>
                 <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
                     <?php if(currentUserCan("otro.restaturar_contraseña")): ?>
-                    <a href="olvide_mi_contrasena.php" class="me-3 text-white" title="Cambiar Contraseña">
+                    <a href="olvide_mi_contrasena.php" class="me-3 text-white text-decoration-none" title="Cambiar Contraseña">
                         <i class="fa-solid fa-key fs-5"></i>
                     </a>
                     <?php endif; ?>
-                    <a href="logout.php" title="Cerrar Sesión">
-                        <img src="assets/img/Logout.png" alt="Salir" width="24" height="24">
+                    <a href="logout.php" title="Cerrar Sesión" class="text-decoration-none">
+                        <img src="assets/img/Logout.png" alt="Salir" width="26" height="26">
                     </a>
                 <?php endif; ?>
             </div>
