@@ -8,58 +8,69 @@
 
     <main class="container flex-grow-1 d-flex flex-column">
 
-        <h1 class="my-3">
+        <div class="text-center my-4">
+            <h1 class="fw-bold mb-2">
+                <i class="fa-solid fa-passport me-2" style="color: var(--primary);"></i>
+                Pasaporte TICs
+            </h1>
+            <h4 style="color: var(--text-color); opacity: 0.8; font-weight: var(--font-weight-light);">
             Pasaporte TICs: Tu Ruta al Conocimiento
-        </h1>
+            </h4>
+        </div>
 
-        <div class="row my-3">
+        <div class="row mb-4">
             <div class="col text-center">
-                <button onclick="toggleTheme()" id="theme-toggle-1" type="button" class="btn btn-outline-primary btn-sm">
+                <button onclick="toggleTheme()" id="theme-toggle-1" type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 shadow-sm">
+                    <i class="fa-solid fa-palette me-1"></i>
                     UI_THEME_SELECT
                 </button>
             </div>
         </div>
 
-        <h2>¿De qué se trata?</h2>
+        <div class="card p-4 p-md-5 shadow-lg glass-panel mx-auto mb-5" style="max-width: 900px; border-radius: 24px;">
 
-        <p>
-            En el marco de la <strong>Semana de TICs</strong> de la <strong>Universidad Tecnológica de la Zona Metropolitana del Valle de México</strong>,
-            presentamos el <strong>Pasaporte TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="creditos.php" ><em>The Tech Pantheon</em></a>.
-        </p>
+            <h2 class="mb-3" style="color: var(--primary);"><i class="fa-solid fa-circle-question me-2 opacity-75"></i>¿De qué se trata?</h2>
+            <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
+                En el marco de la <strong style="color: var(--secondary);">Semana de TICs</strong> de la <strong>Universidad Tecnológica de la Zona Metropolitana del Valle de México</strong>,
+                presentamos el <strong>Pasaporte TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
+            </p>
 
-        <h2>¿Cómo funciona?</h2>
+            <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-gears me-2 opacity-75"></i>¿Cómo funciona?</h2>
+            <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
+                El <strong>Pasaporte TICs</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
+                evento. Olvida los registros tradicionales; con esta herramienta, los alumnos podrán validar su asistencia y
+                participación en conferencias, talleres y actividades especiales de manera ágil y moderna.
+            </p>
 
-        <p>
-            El <strong>Pasaporte TICs</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
-            evento. Olvida los registros tradicionales; con esta herramienta, los alumnos podrán validar su asistencia y
-            participación en conferencias, talleres y actividades especiales de manera ágil y moderna.
-        </p>
+            <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-bullseye me-2 opacity-75"></i>Nuestra Misión</h2>
+            <p class="fs-5 mb-3" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
+                Cada participación cuenta. A través de este "pasaporte digital", los estudiantes pueden:
+            </p>
 
-        <h2>Nuestra Misión</h2>
+            <ul class="list-unstyled fs-5 mb-4 ms-2 ms-md-4" style="color: var(--text-color); opacity: 0.9;">
+                <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i> <strong>Registrar su asistencia</strong> a las diversas actividades del calendario.</li>
+                <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i> <strong>Visualizar su progreso</strong> en tiempo real durante la semana.</li>
+                <li class="mb-2"><i class="fa-solid fa-check-circle text-success me-2"></i> <strong>Acreditar su participación</strong> académica de forma transparente y eficiente.</li>
+            </ul>
 
-        <p>
-            Cada participación cuenta. A través de este "pasaporte digital", los estudiantes pueden:
-        </p>
+            <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
+                Desarrollado bajo la sinergia de nuestros equipos (<strong>Tech Titans</strong>, <strong>Defect Destroyers</strong> y <strong>Mission Accelerators</strong>), este
+                proyecto busca integrar la tecnología con la vida universitaria, fomentando el compromiso estudiantil y facilitando
+                la gestión administrativa del evento.
+            </p>
 
-        <ul>
-            <li><strong>Registrar su asistencia</strong> a las diversas actividades del calendario.</li>
-            <li><strong>Visualizar su progreso</strong> en tiempo real durante la semana.</li>
-            <li><strong>Acreditar su participación</strong> académica de forma transparente y eficiente.</li>
-        </ul>
+            <hr style="border-color: var(--glass-border); margin: 2rem 0;">
 
-        <p>
-            Desarrollado bajo la sinergia de nuestros equipos (<strong>Tech Titans</strong>, <strong>Defect Destroyers</strong> y <strong>Mission Accelerators</strong>), este
-            proyecto busca integrar la tecnología con la vida universitaria, fomentando el compromiso estudiantil y facilitando
-            la gestión administrativa del evento.
-        </p>
+            <h2 class="text-center mb-0 mt-3" style="line-height: 1.3;"><span class="colores-gay fw-black">¡Prepara tu perfil y comienza tu viaje por la Semana de TICs!</span></h2>
 
-        <h1 class="mb-4"><span class="colores-gay big-text">¡Prepara tu perfil y comienza tu viaje por la Semana de TICs!</span></h1>
+        </div>
 
-        <p class="lead">Pasaporte TICs. Copyright &copy; 2026. Todos los derechos reservados.</p>
+        <p class="text-center mb-2" style="color: var(--text-color); opacity: 0.6; font-size: 0.9rem;">Pasaporte TICs. Copyright &copy; <?php echo date("Y"); ?>. Todos los derechos reservados.</p>
 
-        <div class="row my-3">
+        <div class="row mb-5">
             <div class="col text-center">
-                <button onclick="toggleTheme()" id="theme-toggle-2" type="button" class="btn btn-outline-primary btn-sm">
+                <button onclick="toggleTheme()" id="theme-toggle-2" type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 shadow-sm">
+                    <i class="fa-solid fa-palette me-1"></i>
                     UI_THEME_SELECT
                 </button>
             </div>
