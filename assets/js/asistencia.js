@@ -14,14 +14,37 @@ function reproducirSonido() {
 function mostrarAlerta(mensaje, tipo = 'warning') {
     const container = document.getElementById('modal-alert-container');
     if (container) {
-        container.innerHTML = `
-            <div class="alert alert-${tipo} alert-dismissible fade show shadow-sm text-start" role="alert" style="background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-color); border-radius: 16px; font-weight: bold;">
-                <i class="fa-solid ${tipo === 'danger' ? 'fa-triangle-exclamation' : (tipo === 'success' ? 'fa-circle-check' : 'fa-circle-info')} me-2"></i> ${mensaje}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${tipo} alert-dismissible fade show shadow-sm text-start mb-2`;
+        alertDiv.style.cssText = 'background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-color); border-radius: 16px; font-weight: normal; transition: opacity 0.3s ease;';
+
+        let icon = 'fa-circle-info';
+        if (tipo === 'danger') icon = 'fa-triangle-exclamation';
+        if (tipo === 'success') icon = 'fa-circle-check';
+        if (tipo === 'warning') icon = 'fa-circle-exclamation';
+
+        alertDiv.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="fa-solid ${icon} fs-2 me-3 text-${tipo}"></i>
+                <div style="font-size: 1.05rem;">${mensaje}</div>
             </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close" style="top: 50%; transform: translateY(-50%);"></button>
         `;
-        if (alertTimeout) clearTimeout(alertTimeout);
-        alertTimeout = setTimeout(() => { container.innerHTML = ''; }, 4500);
+
+        container.prepend(alertDiv);
+
+        while (container.children.length > 3) {
+            container.lastElementChild.remove();
+        }
+
+        setTimeout(() => {
+            if (alertDiv.parentNode) {
+                alertDiv.classList.remove('show');
+                setTimeout(() => {
+                    if (alertDiv.parentNode) alertDiv.remove();
+                }, 150);
+            }
+        }, 5000);
     }
 }
 
@@ -149,9 +172,17 @@ function procesarAsistencia(matricula) {
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            if(statusDiv) statusDiv.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check-circle"></i> ${data.message}</span>`;
-            mostrarAlerta(data.message, 'success');
-            agregarALista(data.message, 'success');
+            if(statusDiv) statusDiv.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check-circle"></i> Asistencia confirmada</span>`;
+
+            let msgAlerta = data.message;
+            let msgLista = data.message;
+            if (data.nombre && data.matricula) {
+                msgAlerta = `<strong>Alumno:</strong> ${data.nombre}<br><strong>Matrícula:</strong> <span class="badge bg-secondary">${data.matricula}</span><br><span class="text-success fw-bold mt-1 d-block">Asistencia tomada correctamente</span>`;
+                msgLista = `${data.nombre} (${data.matricula})`;
+            }
+
+            mostrarAlerta(msgAlerta, 'success');
+            agregarALista(msgLista, 'success');
             actualizarKPIs(data.kpi);
             if (!isContinuous) detenerEscaneo();
         } else if (data.status === 'not_registered') {
@@ -167,9 +198,9 @@ function procesarAsistencia(matricula) {
                 </div>
             `;
         } else {
-            if(statusDiv) statusDiv.innerHTML = `<span class="text-danger fw-bold"><i class="fa-solid fa-circle-xmark"></i> ${data.message}</span>`;
-            mostrarAlerta(data.message, 'danger');
-            agregarALista(data.message, 'danger');
+            if(statusDiv) statusDiv.innerHTML = `<span class="text-danger fw-bold"><i class="fa-solid fa-circle-xmark"></i> Error al registrar</span>`;
+            mostrarAlerta(`<strong>Atención:</strong><br>${data.message}`, 'danger');
+            agregarALista(`Error: ${data.message}`, 'danger');
             if (!isContinuous) detenerEscaneo();
         }
     })
@@ -203,14 +234,24 @@ function confirmarAutoRegistro(evento_id, usuario_id, nombre) {
     .then(data => {
         const statusDiv = document.getElementById('qr-status');
         if (data.status === 'success') {
-            if(statusDiv) statusDiv.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check-circle"></i> ${data.message}</span>`;
-            mostrarAlerta(`Auto-registro correcto: ${nombre}`, 'success');
-            agregarALista(`Auto-registro correcto: ${nombre}`, 'success');
+            if(statusDiv) statusDiv.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check-circle"></i> Auto-registro confirmado</span>`;
+
+            let msgAlerta = data.message;
+            let msgLista = `Auto-registro: ${nombre}`;
+            if (data.nombre && data.matricula) {
+                msgAlerta = `<strong>Alumno:</strong> ${data.nombre}<br><strong>Matrícula:</strong> <span class="badge bg-secondary">${data.matricula}</span><br><span class="text-success fw-bold mt-1 d-block">¡Auto-registro y asistencia exitosos!</span>`;
+                msgLista = `Auto-registro: ${data.nombre} (${data.matricula})`;
+            } else {
+                msgAlerta = `<strong>Auto-registro correcto:</strong><br>${nombre}`;
+            }
+
+            mostrarAlerta(msgAlerta, 'success');
+            agregarALista(msgLista, 'success');
             actualizarKPIs(data.kpi);
             if (isContinuous) iniciarEscaneo(); else detenerEscaneo();
         } else {
-            if(statusDiv) statusDiv.innerHTML = `<span class="text-danger fw-bold"><i class="fa-solid fa-circle-xmark"></i> ${data.message}</span>`;
-            mostrarAlerta(`Error auto-registro: ${nombre}`, 'danger');
+            if(statusDiv) statusDiv.innerHTML = `<span class="text-danger fw-bold"><i class="fa-solid fa-circle-xmark"></i> Error al registrar</span>`;
+            mostrarAlerta(`<strong>Error auto-registro:</strong><br>${data.message}`, 'danger');
             agregarALista(`Error auto-registro: ${nombre}`, 'danger');
             if (isContinuous) iniciarEscaneo();
         }
