@@ -49,12 +49,14 @@ class Asistencia
             return false;
         }
 
-        return $this->tbl->insert([
+        $this->tbl->insert([
             'evento_id'      => $evento_id,
             'usuario_id'     => $usuario_id,
             'registrado_por' => $admin_id,
             'fecha_entrada'  => date('Y-m-d H:i:s')
         ]);
+
+        return true;
     }
 
     public function autoRegistrarYAsistir(int $evento_id, int $usuario_id, int $admin_id): bool
@@ -64,8 +66,7 @@ class Asistencia
         if (!$this->verificarRegistro($evento_id, $usuario_id)) {
             $tblRegistro->insert([
                 'evento_id' => $evento_id,
-                'usuario_id' => $usuario_id,
-                'fecha_registro' => date('Y-m-d H:i:s')
+                'usuario_id' => $usuario_id
             ]);
         }
 
