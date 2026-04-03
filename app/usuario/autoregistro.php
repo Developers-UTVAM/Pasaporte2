@@ -1,6 +1,3 @@
-<?php
-?>
-
 <?php if (empty($eventos)): ?>
     <p>No hay eventos pendientes disponibles para registro.</p>
 <?php else: ?>

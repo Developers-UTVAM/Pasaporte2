@@ -50,11 +50,16 @@
         foreach ($data as $eventos) : ?>
             <tr>
                 <td>
+                    <div class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" role="switch"
+                        <?php if ($eventos['permitir_autorregistro']) { echo 'checked="checked"'; } ?>"
+                        disabled="disabled" />
+                    </div>
                     <?= htmlspecialchars($eventos['nombre']) ?>
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($fecha >= $now && $_SESSION['current_user']->can('otro.autorregistrarse')): 
+                    if ($fecha >= $now && $eventos['permitir_autorregistro'] && $_SESSION['current_user']->can('otro.autorregistrarse')): 
                         $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$_SESSION['current_user']->id, $eventos['id']]);
                     ?>
                         <br />
@@ -101,3 +106,16 @@
         <?php endforeach; ?>
     </tbody>
 </table></div></div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        let sortTable = () => {
+            if(datatblDataList !== null) {
+                datatblDataList.order([1, 'asc'], [0, 'asc']).draw();
+            } else {
+                setTimeout(sortTable, 100);
+            }
+        }
+        sortTable();
+    });
+</script>
