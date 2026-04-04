@@ -11,9 +11,9 @@
             </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
             $tblRegistro = new Table('registro');
-            foreach ($eventos as $ev): 
+            foreach ($eventos as $ev):
                 $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$_SESSION['current_user']->id, $ev['id']]);
             ?>
                 <tr>
@@ -27,7 +27,7 @@
                         <?php echo htmlspecialchars($ev['lugar']); ?>
                     </td>
                     <!--<td>
-                        <form method="post" style="margin:0; display:flex; gap: 0.5rem; align-items: center;">
+                        <form autocomplete="off" method="post" style="margin:0; display:flex; gap: 0.5rem; align-items: center;">
                             <input type="hidden" name="evento_id" value="<?php echo htmlspecialchars($ev['id']); ?>">
                             <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 150px;">
                             <button title="Registrarme" type="submit" class="btn btn-primary btn-sm text-nowrap">
@@ -40,7 +40,7 @@
                 <tr>
                     <td colspan="3">
                         <?php if (!$yaRegistrado): ?>
-                        <form method="post" style="margin:0; display:flex; gap: 0.5rem; align-items: center;">
+                        <form autocomplete="off" method="post" style="margin:0; display:flex; gap: 0.5rem; align-items: center;">
                             <input type="hidden" name="evento_id" value="<?php echo htmlspecialchars($ev['id']); ?>">
                             <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 150px;">
                             <button title="Registrarme" type="submit" class="btn btn-primary btn-sm text-nowrap">

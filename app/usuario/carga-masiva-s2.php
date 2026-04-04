@@ -61,7 +61,7 @@ if(isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0){
 </div>
 <?php endforeach;?>
 
-<form method="post" id="main-form">
+<form autocomplete="off" method="post" id="main-form">
 <div class="card mb-3"><div class="card-body"><table id="data-list" class="table table-hover table-sm">
     <thead>
         <tr>

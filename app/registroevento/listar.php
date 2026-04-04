@@ -26,7 +26,7 @@ $categorias = $object->getCategorias();
         <i class="fa-solid fa-filter"></i> Filtrar Registros
     </div>
     <div class="card-body">
-        <form method="get" action="registroevento.php" class="row g-2 align-items-end">
+        <form autocomplete="off" method="get" action="registroevento.php" class="row g-2 align-items-end">
             <input type="hidden" name="accion" value="listar" />
 
             <div class="col-md-3">

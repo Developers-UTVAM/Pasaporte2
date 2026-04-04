@@ -29,7 +29,7 @@ foreach ($usuarios as $usr) {
 <div class="card">
     <div class="card-body">
 
-        <form method="get" action="registroevento.php" class="row g-2 align-items-end mb-3" id="form-busqueda">
+        <form autocomplete="off" method="get" action="registroevento.php" class="row g-2 align-items-end mb-3" id="form-busqueda">
             <input type="hidden" name="accion" value="crear" />
 
             <div class="col-md-3">
@@ -99,7 +99,7 @@ foreach ($usuarios as $usr) {
 
         <?php else: ?>
 
-        <form method="post" action="registroevento.php?accion=crear" id="form-registro">
+        <form autocomplete="off" method="post" action="registroevento.php?accion=crear" id="form-registro">
             <input type="hidden" name="accion"    value="crear" />
             <input type="hidden" name="evento_id" value="<?= $sel_evento ?>" />
 

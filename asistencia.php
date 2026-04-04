@@ -187,7 +187,7 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                     </div>
                 </div>
                 <div class="tab-pane fade" id="manual-pane" role="tabpanel" aria-labelledby="manual-tab">
-                    <form method="post" action="asistencia.php" id="form-manual">
+                    <form autocomplete="off" method="post" action="asistencia.php" id="form-manual">
                         <input type="hidden" name="accion" value="marcar" />
                         <input type="hidden" name="evento_id" id="evento_id_manual_hidden" value="" />
                         <div class="row justify-content-center mt-2 mb-4">

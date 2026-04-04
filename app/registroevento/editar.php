@@ -23,7 +23,7 @@ if ($hay_filtro) {
         <i class="fa-solid fa-magnifying-glass"></i> Paso 1 — Buscar registros existentes
     </div>
     <div class="card-body">
-        <form method="get" action="registroevento.php" class="row g-2 align-items-end">
+        <form autocomplete="off" method="get" action="registroevento.php" class="row g-2 align-items-end">
             <input type="hidden" name="accion" value="editar" />
 
             <div class="col-md-3">
@@ -106,7 +106,7 @@ if ($hay_filtro) {
 
 <?php else: ?>
 
-<form method="post" action="registroevento.php?accion=editar" id="form-editar">
+<form autocomplete="off" method="post" action="registroevento.php?accion=editar" id="form-editar">
     <input type="hidden" name="accion"           value="editar" />
     <input type="hidden" name="filtro_evento"    value="<?= $filtro_evento ?>" />
     <input type="hidden" name="filtro_grupo"     value="<?= htmlspecialchars($filtro_grupo) ?>" />

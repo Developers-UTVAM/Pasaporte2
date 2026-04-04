@@ -64,7 +64,7 @@
                     ?>
                         <br />
                         <?php if (!$yaRegistrado): ?>
-                        <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
+                        <form autocomplete="off" method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
                             <input type="hidden" name="accion" value="autoregistrar">
                             <input type="hidden" name="evento_id" value="<?= htmlspecialchars($eventos['id']) ?>">
                             <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 140px;">
