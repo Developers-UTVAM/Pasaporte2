@@ -23,7 +23,7 @@ $can_delete = $_SESSION["current_user"]->can("asistencia.delete_asistencia") || 
             <?php endif; ?>
         </div>
 
-        <form method="get" action="asistencia.php" class="row g-3 align-items-center">
+        <form autocomplete="off" method="get" action="asistencia.php" class="row g-3 align-items-center">
             <input type="hidden" name="accion" value="listar" />
 
             <div class="col-12 col-md-3">

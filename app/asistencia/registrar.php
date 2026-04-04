@@ -21,7 +21,7 @@ if (!isset($eventos)) {
         <div class="card mb-3 custom-border shadow-sm">
             <div class="card-body p-md-4">
                 <h3 class="mb-4 text-center"><i class="fa-solid fa-keyboard"></i> Registro Manual</h3>
-                <form method="post" action="asistencia.php">
+                <form autocomplete="off" method="post" action="asistencia.php">
                     <input type="hidden" name="accion" value="marcar" />
                     <div class="form-floating mb-3">
                         <select name="evento_id" id="evento_id_manual" class="form-select" required>

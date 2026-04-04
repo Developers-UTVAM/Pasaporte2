@@ -2,13 +2,7 @@
 if(!function_exists("currentUserCan")) {
     include_once __DIR__ . "/../init.php";
 }
-?>
-    <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-    <?php endif; ?>
-<script type="text/javascript">
+?><script type="text/javascript">
     <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
         let current_user = `<?php echo $_SESSION["current_user"] ?>`;
     <?php else: ?>
@@ -111,7 +105,7 @@ if(!function_exists("currentUserCan")) {
                     </li>
                     <?php endif; ?>
 
-                    <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*"])): ?>
+                    <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*", "reporte.*"])): ?>
                     <li class="nav-item text-center">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" href="#" role="button">
@@ -124,6 +118,27 @@ if(!function_exists("currentUserCan")) {
                                     <li><a href="migrations.php" class="dropdown-item text-center">
                                         <i class="fa-solid fa-database"></i>
                                         Migraciones
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("reporte.usuario")): ?>
+                                    <li><a href="reporte.php?type=usuario" class="dropdown-item text-center">
+                                        <i class="fa-solid fa-users"></i>
+                                        Reporte de Usuarios
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("reporte.evento")): ?>
+                                    <li><a href="reporte.php?type=evento" class="dropdown-item text-center">
+                                        <i class="fa-solid fa-calendar-day"></i>
+                                        Reporte de Eventos
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("reporte.evento")): ?>
+                                    <li><a href="reporte.php?type=evento-usuario" class="dropdown-item text-center">
+                                        <i class="fa-regular fa-chart-bar"></i>
+                                        Reporte Eventos - Usuario
                                     </a></li>
                                 <?php endif; ?>
 

@@ -50,7 +50,7 @@ if (empty($errors)) {
     try {
         $tblEvento = new Table('evento');
         $now = date('Y-m-d H:i:s');
-        $eventos = $tblEvento->selectAll('fecha_hora >= ? ORDER BY fecha_hora ASC', [$now]);
+        $eventos = $tblEvento->selectAll('fecha_hora >= ? and permitir_autorregistro = 1 ORDER BY fecha_hora, nombre', [$now]);
     } catch (Exception $e) {
         $errors[] = 'Error al obtener eventos: ' . $e->getMessage();
     }

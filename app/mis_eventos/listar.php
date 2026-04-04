@@ -42,3 +42,16 @@ $mis_eventos = $registro->listarPorUsuario($usuario_id);
         </div>
     </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        let sortTable = () => {
+            if(datatblDataList !== null) {
+                datatblDataList.order([1, 'asc'], [0, 'asc']).draw();
+            } else {
+                setTimeout(sortTable, 100);
+            }
+        }
+        sortTable();
+    });
+</script>

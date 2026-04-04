@@ -87,6 +87,89 @@
         </div>
         -->
 
+        <h1>Aviso de Privacidad - Pasaporte TICs 2026 (UTVAM)</h1>
+
+        <h2>1. Identidad y Domicilio del Responsable</h2>
+
+        <p>
+            El proyecto <strong>Pasaporte TICs 2026</strong>, desarrollado por los
+            equipos de la carrera de TICs en colaboración con el profesor Rubén Ramírez,
+            con domicilio digital en
+            <a href="http://utvam.imagilex.com.mx/pasaporte">utvam.imagilex.com.mx</a>,
+            es el responsable del
+            tratamiento directo de sus datos personales.
+        </p>
+
+        <h2>2. Datos Personales Recabados</h2>
+
+        <p>
+            Para el funcionamiento de la plataforma, recolectamos los siguientes
+            datos:
+        </p>
+        <ul>
+            <li><strong>Identificadores:</strong> Nombre completo y Matrícula escolar.</li>
+            <li><strong>Datos Académicos:</strong> Carrera y grupo.</li>
+            <li><strong>Datos Personales:</strong> Correo electrónico y número de teléfono móvil.</li>
+            <li>
+                <strong>Datos de Uso:</strong> Registros de asistencia (fecha,
+                hora y evento visitado) y dirección IP por motivos de seguridad.
+            </li>
+        </ul>
+
+        <h2>3. Finalidad del Tratamiento de Datos</h2>
+
+        <p>Sus datos serán utilizados exclusivamente para:</p>
+        <ol>
+            <li>Gestionar el acceso y autenticación en la plataforma.</li>
+            <li>
+                Llevar el control de asistencia a las actividades de la Semana
+                de TICs.
+            </li>
+            <li>
+                Generar reportes de acreditación académica para la
+                <strong>UTVAM</strong>.
+            </li>
+            <li>Fines estadísticos internos (totalmente anonimizados).</li>
+        </ol>
+
+        <h2>4. Limitación de Uso y Divulgación</h2>
+
+        <p>
+            Nos comprometemos a que sus datos no serán compartidos, vendidos ni
+            transferidos a terceros ajenos a la institución educativa o al equipo
+            administrativo del evento. El acceso a la base de datos está
+            restringido únicamente al administrador del sistema y personal docente
+            autorizado.
+        </p>
+
+        <h2>5. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h2>
+
+        <p>
+            Usted tiene derecho a conocer qué datos tenemos de usted. En cualquier
+            momento puede solicitar la rectificación de sus datos o la eliminación
+            de su perfil una vez terminada la validez académica del evento,
+            enviando un correo a:
+            <strong><a href="mailto:r.ramirez@utvam.edu.mx">r.ramirez@utvam.edu.mx</a></strong>.
+        </p>
+
+        <h2>6. Seguridad de la Información</h2>
+
+        <p>
+            Se han implementado medidas de seguridad técnicas como el uso de
+            protocolos <strong>HTTPS (SSL)</strong> para el cifrado de datos en
+            tránsito y almacenamiento en servidores con acceso controlado para
+            prevenir la pérdida, mal uso o alteración de su información.
+        </p>
+
+        <h2>7. Cambios al Aviso de Privacidad</h2>
+
+        <p>
+            Cualquier cambio en esta política será notificado a través del portal
+            oficial de la aplicación.
+        </p>
+
+        <p class="lead">Pasaporte TICs. Copyright &copy; 2026. Todos los derechos reservados.</p>
+
         <div style="min-height: 100px;"></div>
 
     </main>

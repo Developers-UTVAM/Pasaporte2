@@ -26,7 +26,7 @@ $categorias = $object->getCategorias();
         <i class="fa-solid fa-filter"></i> Filtrar Registros
     </div>
     <div class="card-body">
-        <form method="get" action="registroevento.php" class="row g-2 align-items-end">
+        <form autocomplete="off" method="get" action="registroevento.php" class="row g-2 align-items-end">
             <input type="hidden" name="accion" value="listar" />
 
             <div class="col-md-3">
@@ -89,7 +89,7 @@ $categorias = $object->getCategorias();
 <div class="card">
     <div class="card-body p-0">
         <table id="data-list" class="table table-hover table-sm mb-0">
-            <thead class="table-light">
+            <thead>
                 <tr>
                     <th>Evento</th>
                     <th>Fecha Evento</th>
@@ -126,5 +126,18 @@ $categorias = $object->getCategorias();
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        let sortTable = () => {
+            if(datatblDataList !== null) {
+                datatblDataList.order([1, 'asc'], [0, 'asc'], [3, 'asc']).draw();
+            } else {
+                setTimeout(sortTable, 100);
+            }
+        }
+        sortTable();
+    });
+</script>
 
 <script src="assets/js/registroevento.js"></script>

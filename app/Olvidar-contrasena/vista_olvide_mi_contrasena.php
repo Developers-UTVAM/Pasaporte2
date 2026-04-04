@@ -11,7 +11,7 @@
                     </div>
                 <?php endforeach; ?>
 
-                <form method="post" action="olvide_mi_contrasena.php">
+                <form autocomplete="off" method="post" action="olvide_mi_contrasena.php">
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="pwd_actual" name="pwd_actual" required placeholder="Contraseña actual">
                         <label for="pwd_actual">Contraseña Actual</label>

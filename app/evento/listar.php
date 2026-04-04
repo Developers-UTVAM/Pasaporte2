@@ -45,21 +45,26 @@
         </tr>
     </thead>
     <tbody>
-        <?php 
+        <?php
         $tblRegistro = new Table('registro');
         foreach ($data as $eventos) : ?>
             <tr>
                 <td>
+                    <?php if($eventos['permitir_autorregistro']): ?>
+                        <span class="text-success" title="Permite autorregistro"><i class="fa-solid fa-circle-check"></i></span>
+                    <?php else: ?>
+                        <span class="text-danger" title="No permite autorregistro"><i class="fa-solid fa-circle-xmark"></i></span>
+                    <?php endif; ?>
                     <?= htmlspecialchars($eventos['nombre']) ?>
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($fecha >= $now && $_SESSION['current_user']->can('otro.autorregistrarse')): 
+                    if ($fecha >= $now && $eventos['permitir_autorregistro'] && $_SESSION['current_user']->can('otro.autorregistrarse')):
                         $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$_SESSION['current_user']->id, $eventos['id']]);
                     ?>
                         <br />
                         <?php if (!$yaRegistrado): ?>
-                        <form method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
+                        <form autocomplete="off" method="post" action="eventos.php" style="margin:0; display:inline-flex; gap: 0.25rem; align-items: center; justify-content: center; vertical-align: middle;">
                             <input type="hidden" name="accion" value="autoregistrar">
                             <input type="hidden" name="evento_id" value="<?= htmlspecialchars($eventos['id']) ?>">
                             <input type="text" name="equipo" class="form-control form-control-sm" placeholder="Nombre de equipo" style="width: 140px;">
@@ -101,3 +106,16 @@
         <?php endforeach; ?>
     </tbody>
 </table></div></div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        let sortTable = () => {
+            if(datatblDataList !== null) {
+                datatblDataList.order([1, 'asc'], [0, 'asc']).draw();
+            } else {
+                setTimeout(sortTable, 100);
+            }
+        }
+        sortTable();
+    });
+</script>
