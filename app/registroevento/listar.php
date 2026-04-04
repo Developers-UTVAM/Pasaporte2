@@ -89,7 +89,7 @@ $categorias = $object->getCategorias();
 <div class="card">
     <div class="card-body p-0">
         <table id="data-list" class="table table-hover table-sm mb-0">
-            <thead class="table-light">
+            <thead>
                 <tr>
                     <th>Evento</th>
                     <th>Fecha Evento</th>

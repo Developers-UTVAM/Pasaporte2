@@ -127,7 +127,7 @@ foreach ($usuarios as $usr) {
 
             <div class="table-responsive">
                 <table class="table table-hover table-sm align-middle" id="tabla-usuarios">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th style="width:42px">
                             <div class="form-check form-switch">
