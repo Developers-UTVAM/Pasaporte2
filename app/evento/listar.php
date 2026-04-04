@@ -45,21 +45,21 @@
         </tr>
     </thead>
     <tbody>
-        <?php 
+        <?php
         $tblRegistro = new Table('registro');
         foreach ($data as $eventos) : ?>
             <tr>
                 <td>
-                    <div class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input" role="switch"
-                        <?php if ($eventos['permitir_autorregistro']) { echo 'checked="checked"'; } ?>"
-                        disabled="disabled" />
-                    </div>
+                    <?php if($eventos['permitir_autorregistro']): ?>
+                        <span class="text-success" title="Permite autorregistro"><i class="fa-solid fa-circle-check"></i></span>
+                    <?php else: ?>
+                        <span class="text-danger" title="No permite autorregistro"><i class="fa-solid fa-circle-xmark"></i></span>
+                    <?php endif; ?>
                     <?= htmlspecialchars($eventos['nombre']) ?>
                     <?php
                     $now = new DateTime();
                     $fecha = new DateTime($eventos['fecha_hora']);
-                    if ($fecha >= $now && $eventos['permitir_autorregistro'] && $_SESSION['current_user']->can('otro.autorregistrarse')): 
+                    if ($fecha >= $now && $eventos['permitir_autorregistro'] && $_SESSION['current_user']->can('otro.autorregistrarse')):
                         $yaRegistrado = $tblRegistro->select('usuario_id = ? AND evento_id = ?', [$_SESSION['current_user']->id, $eventos['id']]);
                     ?>
                         <br />
