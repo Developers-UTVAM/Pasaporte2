@@ -130,7 +130,7 @@ select
     e.registrado_por
 from
     reporte_eventos_detalle e
-    right join usuario u on e.u_id = u.id
+    right join usuario u on e.u_id = u.id;
 
 INSERT IGNORE INTO `permiso` (`tipo`, `codename`, `nombre`)
 VALUES ('reporte', 'usuario', 'Reporte de Usuarios');
