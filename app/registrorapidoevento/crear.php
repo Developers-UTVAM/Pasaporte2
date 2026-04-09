@@ -2,17 +2,26 @@
 $eventos    = $object->getTodosEventos();
 $grupos     = $object->getGrupos();
 $categorias = $object->getCategorias();
-
+ 
+if (isset($success) && $success !== null) {
+    $sel_evento    = 0;
+    $sel_grupo     = '';
+    $sel_categoria = '';
+    $busqueda      = '';
+    $usuarios      = [];
+    $disponibles   = [];
+    $ya_inscritos  = [];
+} else {
 $sel_evento   = intval(getvar('evento_id')   ?? 0);
 $sel_grupo    = getvar('grupo')     ?? '';
 $sel_categoria = getvar('categoria') ?? '';
 $busqueda     = getvar('busqueda')  ?? '';
-
+ 
 $usuarios = [];
 if ($sel_evento > 0) {
     $usuarios = $object->buscarUsuarios($busqueda, $sel_grupo, $sel_categoria);
 }
-
+ 
 $disponibles   = [];
 $ya_inscritos  = [];
 foreach ($usuarios as $usr) {
@@ -21,6 +30,7 @@ foreach ($usuarios as $usr) {
     } else {
         $disponibles[] = $usr;
     }
+}
 }
 ?>
 
