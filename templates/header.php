@@ -105,7 +105,7 @@ if(!function_exists("currentUserCan")) {
                     </li>
                     <?php endif; ?>
 
-                    <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*", "reporte.*"])): ?>
+                    <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*", "reporte.*", "eventos.*", "eventos.admin_eventos_config"])): ?>
                     <li class="nav-item text-center">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" href="#" role="button">
@@ -163,6 +163,13 @@ if(!function_exists("currentUserCan")) {
                                     <li><a href="permisos.php" class="dropdown-item text-center">
                                         <i class="fa-brands fa-superpowers"></i>
                                         Permisos
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("eventos.admin_eventos_config")): ?>
+                                    <li><a href="administrador_eventos.php" class="dropdown-item text-center">
+                                        <i class="fa-solid fa-id-card-clip"></i>
+                                        Config. Eventos
                                     </a></li>
                                 <?php endif; ?>
 
