@@ -1,12 +1,12 @@
 <?php
 include_once __DIR__ . "/init.php";
 
-startAPI(null, ["evento", "registroevento"]);
+startAPI("login", ["evento", "registroevento"]);
 
-if (!isset($_SESSION["current_user"])) {
-    header("Location: index.php");
-    exit();
-}
+//if (!isset($_SESSION["current_user"])) {
+    //header("Location: index.php");
+    //exit();
+//}
 
 $accion = getvar('accion');
 $registro = new Registro();
