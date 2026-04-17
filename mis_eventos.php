@@ -1,6 +1,11 @@
 <?php
 include_once __DIR__ . "/init.php";
 
+if (!isset($_SESSION["current_user"])) {
+    header("Location: index.php");
+    exit();
+}
+
 startAPI(null, ["evento", "registroevento"]);
 
 $accion = getvar('accion');
