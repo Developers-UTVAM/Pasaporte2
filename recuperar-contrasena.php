@@ -21,27 +21,32 @@ $mensajes = procesar_solicitud_recuperacion();
 <body class="d-flex flex-column vh-100">
     <?php include 'templates/header.php'; ?>
 
-    <main class="container flex-grow-1 d-flex flex-column">
-        <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-            <form class="p-4 rounded shadow custom-border" style="width: 100%; max-width: 450px;" method="post" action="recuperar-contrasena.php" autocomplete="off">
-                <h2 class="text-center mb-4">Recuperar Contraseña</h2>
+    <main class="container flex-grow-1 d-flex flex-column py-4">
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center pb-5">
+            <form class="card p-4 p-md-5 shadow-lg w-100 animate-on-load delay-1" style="max-width: 450px; border-radius: 20px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08);" method="post" action="recuperar-contrasena.php" autocomplete="off">
+                <div class="text-center mb-4">
+                    <div class="d-inline-flex justify-content-center align-items-center mb-3 shadow-sm" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, color-mix(in oklab, var(--secondary) 20%, transparent), rgba(0,0,0,0.5)); border: 1px solid color-mix(in oklab, var(--secondary) 50%, transparent);">
+                        <i class="fa-solid fa-unlock-keyhole" style="font-size: 2.2rem; color: var(--secondary); filter: drop-shadow(0 0 10px color-mix(in oklab, var(--secondary) 60%, transparent));"></i>
+                    </div>
+                    <h2 class="mb-1 fw-bold" style="color: #fff; letter-spacing: 0.5px;">Recuperar Acceso</h2>
+                </div>
 
                 <?php if (!empty($mensajes['error'])): ?>
-                    <div class="alert alert-danger" role="alert"><?php echo htmlspecialchars($mensajes['error']); ?></div>
+                    <div class="alert alert-dismissible fade show shadow-sm" role="alert" style="background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: var(--color-red-400); border-radius: 16px;"><i class="fa-solid fa-triangle-exclamation me-2"></i><?php echo htmlspecialchars($mensajes['error']); ?><button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button></div>
                 <?php endif; ?>
 
                 <?php if (!empty($mensajes['exito'])): ?>
-                    <div class="alert alert-success" role="alert"><?php echo htmlspecialchars($mensajes['exito']); ?></div>
+                    <div class="alert alert-dismissible fade show shadow-sm" role="alert" style="background: rgba(25, 135, 84, 0.1); border: 1px solid rgba(25, 135, 84, 0.3); color: var(--color-green-400); border-radius: 16px;"><i class="fa-solid fa-circle-check me-2"></i><?php echo htmlspecialchars($mensajes['exito']); ?><button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button></div>
                 <?php else: ?>
                     <div class="mb-4">
-                        <label for="identificador" class="form-label">Usuario o Correo Electrónico</label>
+                        <label for="identificador" class="form-label text-light opacity-75">Usuario o Correo Electrónico</label>
                         <input type="text" class="form-control" id="identificador" name="identificador" required autofocus>
-                        <div class="form-text">Te enviaremos un enlace para restaurar tu contraseña.</div>
+                        <div class="form-text" style="color: rgba(255,255,255,0.5);">Te enviaremos un enlace para restaurar tu contraseña.</div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Enviar Enlace</button>
+                    <button type="submit" class="btn btn-action-gradient w-100 py-3"><i class="fa-solid fa-envelope-open-text me-2"></i> Enviar Enlace</button>
                 <?php endif; ?>
 
-                <p class="text-center mt-4 mb-0"><a href="index.php">Volver al inicio de sesión</a></p>
+                <p class="text-center mt-4 mb-0"><a href="index.php" class="text-decoration-none fw-bold" style="color: var(--primary); text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);"><i class="fa-solid fa-arrow-left me-1"></i> Volver al inicio de sesión</a></p>
             </form>
         </div>
     </main>

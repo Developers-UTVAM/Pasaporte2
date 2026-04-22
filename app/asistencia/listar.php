@@ -150,6 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchPlaceholder: "Filtrar en tabla..."
             }
         });
+
+        // Inicializar Select2 para los filtros
+        if ($.fn.select2) {
+            $('#f_evento').select2({
+                width: '100%',
+                language: { noResults: function() { return "No se encontraron eventos"; } }
+            });
+            $('#f_grupo').select2({
+                width: '100%',
+                language: { noResults: function() { return "No se encontraron grupos"; } }
+            });
+        }
     }
 });
 </script>
