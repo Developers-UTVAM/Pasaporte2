@@ -8,8 +8,13 @@ $object = new Usuario();
 
 $errors = [];
 
+$usuarioActualEsSuperusuario = isset($_SESSION['current_user']) && $_SESSION['current_user']->is_authenticated() && $_SESSION['current_user']->superusuario;
+
 if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
     $object->fromArray($_POST);
+    if (!$usuarioActualEsSuperusuario) {
+        $object->superusuario = 0;
+    }
     try {
         $object->save(true, true);
         header('Location: usuarios.php?accion=mostrar&pk=' . urlencode($object->pk));
@@ -19,8 +24,18 @@ if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
         $accion = 'crear';
     }
 } elseif (checkVar("accion", 'update') && currentUserCan("usuario.change_usuario")) {
+    $targetPk = getvar('pk');
+
+    $object->get($targetPk);
+    $superusuarioVerificadoEnBD = (bool) $object->superusuario;
+
     $object->fromArray($_POST);
-    $object->pk = getvar('pk');
+    $object->pk = $targetPk;
+
+    if (!$usuarioActualEsSuperusuario) {
+        $object->superusuario = $superusuarioVerificadoEnBD ? 1 : 0;
+    }
+
     try {
         $object->save(true, true);
         header('Location: usuarios.php?accion=mostrar&pk=' . urlencode($object->pk));
