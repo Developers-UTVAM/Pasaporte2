@@ -6,7 +6,9 @@ include_once __DIR__ . '/../usuario/model.php';
 
 date_default_timezone_set('America/Mexico_City');
 
-session_start();
+include_once __DIR__ . '/../../helpers/session_security.php';
+secure_session_start();
+validate_session_fingerprint();
 if (!isset($_SESSION["current_user"]) || !($_SESSION["current_user"]->can("asistencia.add_asistencia") || $_SESSION["current_user"]->can("asistencia.asistencia.*"))) {
     header('Content-Type: application/json');
     echo json_encode(['status' => 'error', 'message' => 'No autorizado.']);
