@@ -1,6 +1,8 @@
 <?php
 include_once "app/usuario/model.php";
-session_start();
+include_once "helpers/session_security.php";
+secure_session_start();
+validate_session_fingerprint();
 
 include_once 'helpers/db.php';
 include_once 'helpers/vars.php';

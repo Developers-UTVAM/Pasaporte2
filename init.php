@@ -1,7 +1,9 @@
 <?php
 function startAPI($permissions = null, $models = null) {
     loadModels("usuario");
-    session_start();
+    include_once __DIR__ . "/helpers/session_security.php";
+    secure_session_start();
+    validate_session_fingerprint();
     date_default_timezone_set('America/Mexico_City');
 
     include_once __DIR__ . "/helpers/vars.php";
