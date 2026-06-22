@@ -28,7 +28,34 @@ function getvar($variable): mixed {
     if ($var === null) {
         $var = getGET($variable);
     }
-    return $var;
+    return sanitize_value($var);
+}
+
+function sanitize_value($v) {
+    if (is_array($v)) {
+        $out = [];
+        foreach ($v as $k => $item) $out[$k] = sanitize_value($item);
+        return $out;
+    }
+    if (!is_string($v)) return $v;
+    $v = trim($v);
+    $v = preg_replace('/[\x00-\x1F\x7F]/u', '', $v);
+    return $v;
+}
+
+function getIntVar($variable): ?int {
+    $value = getvar($variable);
+    if ($value === null || $value === '') return null;
+    if (is_array($value)) return null;
+    $filtered = filter_var($value, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+    return $filtered === false ? null : (int) $filtered;
+}
+
+function sanitizeTeamName(string $name, int $maxLength = 100): string {
+    $name = trim($name);
+    if ($name === '') return '';
+    $name = preg_replace('/[^\p{L}\p{N}\s\-\_\.]/u', '', $name);
+    return mb_substr($name, 0, $maxLength);
 }
 
 function checkVar($variable, $value, $strict_mode = false) : bool {

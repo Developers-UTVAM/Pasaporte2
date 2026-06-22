@@ -23,9 +23,10 @@ $errors = [];
 if ($method === 'POST' && $accion === 'procesar_qr') {
     header('Content-Type: application/json');
     $evento_id = intval(getvar('evento_id'));
-    $qr_data = getvar('matricula');
+    $qr_data = trim((string) getvar('matricula'));
 
-    if ($evento_id <= 0 || empty($qr_data)) {
+    // Validación simple: evento_id positivo y QR no vacío
+    if ($evento_id <= 0 || $qr_data === '') {
         echo json_encode(['status' => 'error', 'message' => 'Faltan datos (Evento o QR).']);
         exit;
     }
@@ -44,7 +45,7 @@ if ($method === 'POST' && $accion === 'procesar_qr') {
                 $usuario_row = $userModel->select("matricula = ?", [trim($json_data['mat'])]);
             }
         }
-        if (!$usuario_row) {
+            if (!$usuario_row) {
             if (filter_var($search_value, FILTER_VALIDATE_URL)) {
                 $query_string = parse_url($search_value, PHP_URL_QUERY);
                 if ($query_string) {
@@ -66,7 +67,7 @@ if ($method === 'POST' && $accion === 'procesar_qr') {
             }
         }
 
-        if (!$usuario_row) {
+            if (!$usuario_row) {
             echo json_encode(['status' => 'error', 'message' => 'Usuario no encontrado. Código leído: ' . htmlspecialchars($qr_data)]);
             exit;
         }
@@ -112,6 +113,11 @@ if ($method === 'POST' && $accion === 'procesar_qr') {
     header('Content-Type: application/json');
     $evento_id = intval(getvar('evento_id'));
     $usuario_id = intval(getvar('usuario_id'));
+
+    if ($evento_id <= 0 || $usuario_id <= 0) {
+        echo json_encode(['status' => 'error', 'message' => 'Parámetros inválidos.']);
+        exit;
+    }
 
     try {
         $asistio = $object->autoRegistrarYAsistir($evento_id, $usuario_id, $_SESSION["current_user"]->id);

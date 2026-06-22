@@ -29,8 +29,12 @@ $ultimo_registro = $object->getLatestAttendance();
 
 if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete_asistencia") || $_SESSION["current_user"]->can("asistencia.asistencia.*"))) {
     try {
-        $evento_id = getvar('evento_id');
-        $usuario_id = getvar('usuario_id');
+        $evento_id = intval(getvar('evento_id'));
+        $usuario_id = intval(getvar('usuario_id'));
+
+        if ($evento_id <= 0 || $usuario_id <= 0) {
+            throw new Exception('Parámetros inválidos para eliminar asistencia.');
+        }
 
         $object->eliminarAsistencia($evento_id, $usuario_id);
         header('Location: asistencia.php?accion=listar&mensaje=' . urlencode('Registro de asistencia eliminado.'));
