@@ -72,15 +72,23 @@ if(checkVar("type", "usuario") && currentUserCan("reporte.usuario")) {
         <thead>
             <tr>
                 <?php foreach ($headers as $header): ?>
-                    <th><?= $header; ?></th>
+                    <th><?= htmlspecialchars((string)$header); ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($data as $row): ?>
                 <tr>
-                    <?php foreach ($row as $cell): ?>
-                        <td><?= $cell; ?></td>
+                    <?php foreach ($row as $key => $cell): ?>
+                        <td>
+                            <?php
+                            if ($key === 'matricula' || $key === 'nombre') {
+                                echo $cell;
+                            } else {
+                                echo htmlspecialchars((string)$cell);
+                            }
+                            ?>
+                        </td>
                     <?php endforeach; ?>
                 </tr>
             <?php endforeach; ?>

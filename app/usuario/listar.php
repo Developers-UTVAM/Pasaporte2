@@ -52,16 +52,16 @@ $data = $object->getAll();
                 <td><?php echo htmlspecialchars($usuario["matricula"] ?? ""); ?></td>
                 <td><?php echo htmlspecialchars($usuario["grupo"] ?? ""); ?></td>
                 <td>
-                    <a title="Enviar E-Mail" class="btn btn-outline-secondary" href="mailto:<?= $usuario['email']; ?>" target="_blank" >
+                    <a title="Enviar E-Mail" class="btn btn-outline-secondary" href="mailto:<?= htmlspecialchars($usuario['email'] ?? ''); ?>" target="_blank" >
                         <i class="fa-regular fa-envelope"></i>
                         <!-- E-Mail -->
                     </a>
                     <?php if($usuario['whatsapp']): ?>
-                    <a title="Llamar por Teléfono" class="btn btn-outline-secondary" href="tel:<?= $usuario['whatsapp']; ?>" target="_blank" >
+                    <a title="Llamar por Teléfono" class="btn btn-outline-secondary" href="tel:<?= htmlspecialchars($usuario['whatsapp']); ?>" target="_blank" >
                         <i class="fa-solid fa-phone"></i>
                         <!-- Teléfono -->
                     </a>
-                    <a title="Enviar WhatsApp" class="btn btn-outline-secondary" href="https://api.whatsapp.com/send?phone=52<?= $usuario['whatsapp']; ?>" target="_blank" >
+                    <a title="Enviar WhatsApp" class="btn btn-outline-secondary" href="https://api.whatsapp.com/send?phone=52<?= htmlspecialchars($usuario['whatsapp']); ?>" target="_blank" >
                         <i class="fa-brands fa-whatsapp"></i>
                         <!-- WhatsApp -->
                     </a>
