@@ -19,6 +19,8 @@ if ($method === 'POST') {
 	} else {
 		try {
 			$success = $object->crearMasivo($evento_id, $usuario_ids, getvar('equipo'));
+			$_GET = [];
+			$_REQUEST = array_merge($_REQUEST, $_GET);
 		} catch (Exception $e) {
 			error_log('Error registro rapido: ' . $e->getMessage());
 			$errors[] = 'Error al guardar: ' . $e->getMessage();
