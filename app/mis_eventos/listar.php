@@ -16,24 +16,28 @@ $mis_eventos = $registro->listarPorUsuario($usuario_id);
             <div class="table-responsive">
                 <table id="data-list" class="table table-hover table-sm">
                     <thead>
-                        <tr>
+                        <tr >
                             <th>Nombre</th>
                             <th>Fecha y Hora</th>
                             <th>Lugar</th>
                             <th>Responsable Interno</th>
-                            <th>Responsable Externo</th>
-                            <th>Fecha de Registro</th>
+                            <!--<th>Responsable Externo</th>-->
+                            <!--<th>Fecha de Registro</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($mis_eventos as $ev): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($ev['nombre']); ?></td>
+                                <td> <?php if (isset($ev['asistencia']) && $ev['asistencia'] == 1) : ?>
+                                        <span class="badge bg-success me-1">Asistió</span> 
+                                    <?php endif; ?>
+                                    <?php echo htmlspecialchars($ev['nombre']); ?>
+                                </td>
                                 <td><?php echo htmlspecialchars((new DateTime($ev['fecha_hora']))->format('d/m/Y H:i')); ?></td>
                                 <td><?php echo htmlspecialchars($ev['lugar'] ?? 'No especificado'); ?></td>
                                 <td><?php echo htmlspecialchars($ev['responsable_interno'] ?? ''); ?></td>
-                                <td><?php echo htmlspecialchars($ev['responsable_externo'] ?? ''); ?></td>
-                                <td><?php echo htmlspecialchars((new DateTime($ev['fecha_registro']))->format('d/m/Y H:i')); ?></td>
+                                <!-- <td><?php echo htmlspecialchars($ev['responsable_externo'] ?? ''); ?></td> -->
+                                <!-- <td><?php echo htmlspecialchars((new DateTime($ev['fecha_registro']))->format('d/m/Y H:i')); ?></td> -->
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -42,3 +46,16 @@ $mis_eventos = $registro->listarPorUsuario($usuario_id);
         </div>
     </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        let sortTable = () => {
+            if(datatblDataList !== null) {
+                datatblDataList.order([1, 'asc'], [0, 'asc']).draw();
+            } else {
+                setTimeout(sortTable, 100);
+            }
+        }
+        sortTable();
+    });
+</script>

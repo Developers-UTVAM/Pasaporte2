@@ -53,7 +53,7 @@ $participantes = $tblRegistro->query(
     </fieldset>
 </div></div>
 
-<h3 class="text-secondary mt-4">
+<h4 class="text-secondary mt-4">
     <i class="fa-solid fa-users"></i>
     Participantes
     <span class="badge bg-secondary ms-2"><?php echo count($participantes); ?></span>
@@ -63,7 +63,7 @@ $participantes = $tblRegistro->query(
 <?php if (empty($participantes)): ?>
     <p class="text-muted mb-0">No hay usuarios registrados en este evento.</p>
 <?php else: ?>
-    <table class="table table-hover table-sm mb-0">
+    <table id="data-list" class="table table-hover table-sm mb-0">
         <thead>
             <tr>
                 <th>Nombre</th>

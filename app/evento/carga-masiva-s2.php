@@ -13,9 +13,6 @@ if (isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0) {
                 $evento->fecha_hora = DateTime::createFromFormat(
                     'd/m/Y H:i', $row[1])->format('Y-m-d H:i:s');
                 $evento->lugar = $row[2];
-                $evento->costo_interno = $row[5];
-                $evento->costo_externo = $row[6];
-                $evento->requiere_registro = 1;
                 $evento->responsable_interno = $row[3];
                 $evento->responsable_externo = $row[4];
                 $evento->save();

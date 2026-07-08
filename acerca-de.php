@@ -2,6 +2,7 @@
 <html lang="es-MX">
 <head>
     <?php include 'templates/head.php'; ?>
+    <!-- Suponiendo que el CSS nuevo está en styles.css -->
 </head>
 <body class="d-flex flex-column vh-100">
     <?php include 'templates/header.php'; ?>
@@ -76,29 +77,48 @@
             </div>
         </div>
 
-        <!--
-        <h4 class="text-center mb-4" style="color: var(--text-color); font-weight: var(--font-weight-light); opacity: 0.8;">
-            Descubre nuestras últimas actividades
-        </h4>
-
-        <div class="card p-3 mb-4" style="border-radius: 24px;">
-            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-            <iframe src="//lightwidget.com/widgets/ec85b02092e35b879334c0f3b5a05c69.html"
-                    scrolling="no"
-                    allowtransparency="true"
-                    class="lightwidget-widget"
-                    style="width:100%; border:0; overflow:hidden;">
-            </iframe>
+        <!-- SECCIÓN 3: Banner Intermedio (Animación de entrada lenta) -->
+        <div class="text-center mb-5 animate-on-load delay-3">
+            <h2 class="mb-0">
+                <!-- Usamos tu clase big-text combinada con el brillo -->
+                <span class="shiny-title big-text fw-black opacity-90">¡Prepara tu perfil y comienza tu viaje!</span>
+            </h2>
         </div>
 
-        <div class="text-center mt-4">
-            <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow">
-                <i class="fab fa-instagram me-2"></i> Síguenos
-            </a>
-        </div>
-        -->
+        <!-- SECCIÓN 4: Aviso de Privacidad (Entrada final) -->
+        <div class="animate-on-load delay-4 mb-5">
+            <div class="card glass-panel p-4 p-md-5 border-0 shadow-lg">
+                <h1 class="mb-5 text-primary fw-bold" style="font-size: var(--text-3xl);">Aviso de Privacidad - Pasaporte TICs 2026</h1>
 
-        <div style="min-height: 100px;"></div>
+                <!-- Reestructurado para mejor lectura y estilo -->
+                <div class="row row-cols-1 row-cols-lg-2 g-4">
+                    <div class="col card bg-transparent border-0 p-3">
+                        <h2 class="h4 text-secondary fw-bold">1. Responsable</h2>
+                        <p class="text-light opacity-75 small">Proyecto Pasaporte TICs 2026 (carrera de TICs & Prof. Rubén Ramírez). Domicilio digital: <a href="http://utvam.imagilex.com.mx/pasaporte">utvam.imagilex.com.mx</a></p>
+                    </div>
+                    <div class="col card bg-transparent border-0 p-3">
+                        <h2 class="h4 text-secondary fw-bold">2. Datos Recabados</h2>
+                        <p class="text-light opacity-75 small">Matrícula, Nombre, Carrera, Grupo, Correo, Teléfono, Registros de asistencia e IP (seguridad).</p>
+                    </div>
+                    <div class="col card bg-transparent border-0 p-3">
+                        <h2 class="h4 text-secondary fw-bold">3. Finalidad</h2>
+                        <p class="text-light opacity-75 small">Gestión de acceso, control de asistencia, reportes de acreditación para UTVAM y estadística anonimizada.</p>
+                    </div>
+                    <div class="col card bg-transparent border-0 p-3">
+                        <h2 class="h4 text-secondary fw-bold">4. Derechos ARCO</h2>
+                        <p class="text-light opacity-75 small">Solicita rectificación o eliminación enviando correo a: <strong class="text-info">r.ramirez@utvam.edu.mx</strong>.</p>
+                    </div>
+                </div>
+
+                <hr class="border-secondary opacity-25 my-4">
+                <p class="text-muted small mb-0 text-center">Consulta la política completa en el portal oficial.</p>
+            </div>
+        </div>
+
+        <!-- Footer interno -->
+        <div class="text-center mt-auto pb-4 animate-on-load delay-4 opacity-50">
+             <p class="text-muted small">Pasaporte TICs. Copyright &copy; 2026. Todos los derechos reservados.</p>
+        </div>
 
     </main>
     <?php include 'templates/footer.php'; ?>

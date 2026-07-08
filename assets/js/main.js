@@ -35,7 +35,7 @@ if (savedTheme) {
 document.addEventListener('DOMContentLoaded', () => {
     $.extend($.fn.dataTable.defaults, {
         searching: true,
-        ordering: true,
+        ordering: [],
         pageLength: 50,
         lengthMenu: [10, 25, 50, 75, 100, -1],
         language: {

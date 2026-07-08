@@ -155,9 +155,10 @@ class Registro
 
     public function listarPorUsuario(int $usuario_id): array
     {
-        $sql = "SELECT e.*, r.fecha_registro
+        $sql = "SELECT e.*, r.fecha_registro, a.fecha_entrada is not null as asistencia
                 FROM evento e 
                 INNER JOIN registro r ON e.id = r.evento_id 
+                left JOIN asistencia a ON a.evento_id = e.id AND a.usuario_id = r.usuario_id
                 WHERE r.usuario_id = ? 
                 ORDER BY e.fecha_hora ASC";
         return $this->tbl->query($sql, [$usuario_id]);

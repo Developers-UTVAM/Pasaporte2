@@ -186,6 +186,7 @@ class Usuario extends Model
 
     public function authenticate($usr, $pwd): bool {
         if(($user = $this->checkLogin($usr, $pwd)) !== null && $user->activo) {
+            regenerate_session_on_login();
             $user->authenticated = true;
             $_SESSION["current_user"] = $user;
             return true;
@@ -195,7 +196,8 @@ class Usuario extends Model
 
     public static function logout(): void {
         if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+            include_once __DIR__ . '/../../helpers/session_security.php';
+            secure_session_start();
         }
         unset($_SESSION["current_user"]);
         session_destroy();

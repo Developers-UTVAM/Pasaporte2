@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . "/init.php";
 
-startAPI(null, ["evento", "registroevento"]);
+startAPI("login", ["evento", "registroevento"]);
 
 $accion = getvar('accion');
 $registro = new Registro();

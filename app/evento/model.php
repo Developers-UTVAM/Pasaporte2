@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 include_once __DIR__ . '/../../helpers/db.php';
 
 class Evento extends Model
@@ -20,21 +16,29 @@ class Evento extends Model
     {
         date_default_timezone_set('America/Mexico_City');
         $fecha_hora_actual = date('Y-m-d H:i:s');
-        
-        return $this->selectAll('fecha_hora >= ?', [$fecha_hora_actual]);
+
+        $data = $this->selectAll('fecha_hora >= ?', [$fecha_hora_actual]);
+        uasort($data, function ($a, $b) {
+            $cmp = strcmp($a['fecha_hora'], $b['fecha_hora']);
+            if($cmp !== 0) return $cmp;
+            return strcmp($a['nombre'], $b['nombre']);
+        });
+        return $data;
     }
-    
+
     public function getEventosExpirados(): array
     {
-        return $this->selectAll('fecha_hora < NOW()', []);
+        $data = $this->selectAll('fecha_hora < NOW()', []);
+        uasort($data, function ($a, $b) {
+            $cmp = strcmp($a['fecha_hora'], $b['fecha_hora']);
+            if($cmp !== 0) return $cmp;
+            return strcmp($a['nombre'], $b['nombre']);
+        });
+        return $data;
     }
 
    public function getEventosPorRol($es_admin): array
     {
-        if ($es_admin) {
-            return $this->getEventosDisponibles(); 
-        } else {
-            return $this->getEventosDisponibles(); 
-        }
+        return $this->getEventosDisponibles();
     }
-} 
+}
