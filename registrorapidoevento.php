@@ -30,31 +30,37 @@ if ($method === 'POST') {
 <head>
 	<?php include 'templates/head.php'; ?>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 	<?php include 'templates/header.php'; ?>
 
-	<main class="container">
-		<h1>Registro Rápido a Eventos</h1>
+	<main class="container flex-grow-1 d-flex flex-column py-4">
+		<div class="text-center mb-5 animate-on-load">
+			<h2 class="mb-2"><span class="shiny-title fw-bold"><i class="fa-solid fa-bolt me-2"></i> Registro Rápido</span></h2>
+			<p class="text-light opacity-75 fs-5">Inscribe múltiples participantes a un evento de forma simultánea</p>
+		</div>
 
 		<?php if ($success !== null): ?>
-			<div class="alert alert-success alert-dismissible fade show">
-				<i class="fa-solid fa-circle-check"></i>
+			<div class="alert alert-dismissible fade show shadow-sm mx-auto animate-on-load delay-1" role="alert" style="max-width: 900px; background: rgba(25, 135, 84, 0.1); border: 1px solid rgba(25, 135, 84, 0.3); color: var(--color-green-400); border-radius: 16px;">
+				<i class="fa-solid fa-circle-check me-2"></i>
 				<strong><?= $success['nuevos'] ?> usuario(s) registrado(s) correctamente.</strong>
 				<?php if ($success['duplicados'] > 0): ?>
 					&nbsp;(<?= $success['duplicados'] ?> ya estaban inscritos y se omitieron.)
 				<?php endif; ?>
-				<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php endif; ?>
 
 		<?php foreach ($errors as $error): ?>
-			<div class="alert alert-danger">
-				<i class="fa-solid fa-triangle-exclamation"></i>
+			<div class="alert alert-dismissible fade show shadow-sm mx-auto animate-on-load delay-1" role="alert" style="max-width: 900px; background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: var(--color-red-400); border-radius: 16px;">
+				<i class="fa-solid fa-triangle-exclamation me-2"></i>
 				<?= htmlspecialchars($error) ?>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		<?php endforeach; ?>
 
-		<?php include 'app/registrorapidoevento/crear.php'; ?>
+		<div class="animate-on-load delay-2 w-100 mx-auto" style="max-width: 900px;">
+			<?php include 'app/registrorapidoevento/crear.php'; ?>
+		</div>
 	</main>
 
 	<?php include 'templates/footer.php'; ?>

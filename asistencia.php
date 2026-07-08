@@ -50,18 +50,16 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
     <style>#qr-reader video { border-radius: 10px; object-fit: cover; }</style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php include 'templates/header.php'; ?>
 
-    <main class="container">
-        <div class="row mb-4 pt-3 align-items-center">
-            <div class="col-12 text-center text-md-start">
-                <h1 class="mb-2"><span class="colores-gay big-text"><i class="fa-solid fa-clipboard-user"></i> Módulo de Asistencia</span></h1>
-                <p class="mt-2 mb-0" style="color: var(--text-color); opacity: 0.8;">Gestiona el acceso y registra la asistencia de los participantes.</p>
-            </div>
+    <main class="container flex-grow-1 d-flex flex-column py-4">
+        <div class="text-center mb-5 animate-on-load">
+            <h2 class="mb-2"><span class="shiny-title fw-bold"><i class="fa-solid fa-clipboard-user me-2"></i> Módulo de Asistencia</span></h2>
+            <p class="text-light opacity-75 fs-5">Gestiona el acceso y registra la asistencia de los participantes.</p>
         </div>
 
-        <div class="row g-3 mb-4">
+        <div class="row g-3 mb-5 animate-on-load delay-1">
             <div class="col-md-4">
                 <div class="kpi-card glass-panel">
                     <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
@@ -101,19 +99,20 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
         </div>
 
         <?php foreach ($errors as $error): ?>
-            <div class="alert alert-dismissible fade show shadow-sm" role="alert" style="background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: var(--color-red-400); border-radius: 16px;">
-                <i class="fa-solid fa-triangle-exclamation"></i> <?php echo htmlspecialchars($error); ?>
+            <div class="alert alert-dismissible fade show shadow-sm mx-auto animate-on-load delay-1" role="alert" style="max-width: 800px; background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.3); color: var(--color-red-400); border-radius: 16px;">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i> <?php echo htmlspecialchars($error); ?>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endforeach; ?>
 
         <?php if ($mensaje): ?>
-            <div class="alert alert-dismissible fade show shadow-sm" role="alert" style="background: rgba(25, 135, 84, 0.1); border: 1px solid rgba(25, 135, 84, 0.3); color: var(--color-green-400); border-radius: 16px;">
-                <i class="fa-solid fa-circle-check"></i> <?php echo htmlspecialchars($mensaje); ?>
+            <div class="alert alert-dismissible fade show shadow-sm mx-auto animate-on-load delay-1" role="alert" style="max-width: 800px; background: rgba(25, 135, 84, 0.1); border: 1px solid rgba(25, 135, 84, 0.3); color: var(--color-green-400); border-radius: 16px;">
+                <i class="fa-solid fa-circle-check me-2"></i> <?php echo htmlspecialchars($mensaje); ?>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
 
+        <div class="animate-on-load delay-2 w-100">
         <?php
         if ($accion === 'listar' || $accion === null || $accion === 'escanear' || $accion === 'manual') {
             include 'app/asistencia/listar.php';
@@ -121,21 +120,22 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
             include 'app/asistencia/mostrar.php';
         }
         ?>
+        </div>
     </main>
     <div class="modal fade" id="modalRegistroAsistencia" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-          <div class="modal-header border-0 pb-0">
-            <h2 class="modal-title" id="modalRegistroLabel"><i class="fa-solid fa-clipboard-check me-2"></i> Capturar Asistencia</h2>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="detenerEscaneo()"></button>
+          <div class="modal-header border-0 pb-3 pt-4 px-4" style="background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 15%, transparent), transparent); border-bottom: 1px solid rgba(255,255,255,0.05) !important;">
+            <h2 class="modal-title fs-4" id="modalRegistroLabel"><i class="fa-solid fa-clipboard-check me-2" style="color: var(--primary); filter: drop-shadow(0 0 10px color-mix(in oklab, var(--primary) 60%, transparent));"></i> Capturar Asistencia</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="detenerEscaneo()"></button>
           </div>
-          <div class="modal-body p-4" style="color: var(--text-color);">
+          <div class="modal-body p-4">
             <div id="modal-alert-container"></div>
 
             <div class="row justify-content-center mb-4">
                 <div class="col-md-10">
                     <div class="form-floating">
-                        <select id="evento_id_global" class="form-select" style="background-color: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-color); border-radius: 16px;" required>
+                        <select id="evento_id_global" class="form-select" required>
                             <option value="">— Selecciona un evento —</option>
                             <?php foreach($eventos as $e): ?>
                                 <option value="<?= htmlspecialchars($e['id']) ?>">
@@ -143,19 +143,19 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <label for="evento_id_global" style="color: rgba(255,255,255,0.7);"><i class="fa-solid fa-calendar-check text-primary me-1"></i> 1. Evento Destino</label>
+                        <label for="evento_id_global"><i class="fa-solid fa-calendar-check text-primary me-1"></i> 1. Evento Destino</label>
                     </div>
                 </div>
             </div>
 
-            <ul class="nav nav-pills nav-justified mb-4 mx-auto" style="max-width: 400px; gap: 10px;" id="registroTabs" role="tablist">
+            <ul class="nav nav-pills custom-pills nav-justified mb-4 mx-auto" style="max-width: 400px;" id="registroTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active btn btn-outline-primary w-100" id="qr-tab" data-bs-toggle="pill" data-bs-target="#qr-pane" type="button" role="tab" aria-selected="true">
+                    <button class="nav-link active w-100 fw-bold" id="qr-tab" data-bs-toggle="pill" data-bs-target="#qr-pane" type="button" role="tab" aria-selected="true">
                         <i class="fa-solid fa-qrcode me-1"></i> Escáner
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link btn btn-outline-secondary w-100" id="manual-tab" data-bs-toggle="pill" data-bs-target="#manual-pane" type="button" role="tab" aria-selected="false" onclick="detenerEscaneo()">
+                    <button class="nav-link w-100 fw-bold" id="manual-tab" data-bs-toggle="pill" data-bs-target="#manual-pane" type="button" role="tab" aria-selected="false" onclick="detenerEscaneo()">
                         <i class="fa-solid fa-keyboard me-1"></i> Manual
                     </button>
                 </li>
@@ -165,27 +165,27 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                 <div class="tab-pane fade show active text-center" id="qr-pane" role="tabpanel" aria-labelledby="qr-tab">
                     <div class="form-check form-switch d-flex justify-content-center align-items-center gap-2 mb-4">
                         <input class="form-check-input mt-0" type="checkbox" role="switch" id="modoContinuo" checked style="width: 40px; height: 20px; cursor: pointer;">
-                        <label class="form-check-label m-0" for="modoContinuo" style="cursor: pointer;">Modo Continuo</label>
+                        <label class="form-check-label m-0 text-light opacity-75" for="modoContinuo" style="cursor: pointer;">Modo Continuo</label>
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-primary px-4" id="btn-iniciar-qr" onclick="iniciarEscaneo()">
+                        <button class="btn btn-action-gradient px-4 py-3 fw-bold rounded-pill shadow" id="btn-iniciar-qr" onclick="iniciarEscaneo()">
                             <i class="fa-solid fa-camera me-2"></i> Activar Escáner
                         </button>
-                        <button class="btn btn-secondary px-4 d-none" style="color: #ff4d4d; border-color: #ff4d4d;" id="btn-detener-qr" onclick="detenerEscaneo()">
+                        <button class="btn btn-secondary px-4 py-3 d-none fw-bold rounded-pill shadow" style="color: var(--color-red-400); border-color: var(--color-red-400); background: rgba(220, 53, 69, 0.1);" id="btn-detener-qr" onclick="detenerEscaneo()">
                             <i class="fa-solid fa-stop me-2"></i> Detener Cámara
                         </button>
                     </div>
 
-                    <div id="qr-reader-container" class="mx-auto mb-3" style="width: 100%; max-width: 350px; display: none; border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); background: var(--glass-bg);">
+                    <div id="qr-reader-container" class="mx-auto mb-3" style="width: 100%; max-width: 350px; display: none; border-radius: 24px; overflow: hidden; border: 2px solid color-mix(in oklab, var(--primary) 50%, transparent); box-shadow: 0 0 20px color-mix(in oklab, var(--primary) 20%, transparent); background: rgba(0, 0, 0, 0.5);">
                         <div id="qr-reader" style="width: 100%; border: none;"></div>
                     </div>
 
                     <div id="qr-status" class="mt-3 fs-5 mx-auto" style="max-width: 500px; min-height: 40px;"></div>
 
                     <div id="lista-escaneados" class="mt-4 text-start mx-auto" style="max-width: 450px; display: none;">
-                        <h6 class="text-primary fw-bold text-uppercase small mb-3"><i class="fa-solid fa-clock-rotate-left me-1"></i> Historial Reciente:</h6>
-                        <ul class="list-group list-group-flush shadow-sm" style="border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden;" id="ul-escaneados"></ul>
+                        <h6 class="fw-bold text-uppercase small mb-3" style="color: var(--text-color); opacity: 0.8;"><i class="fa-solid fa-clock-rotate-left me-1" style="color: var(--primary);"></i> Historial Reciente:</h6>
+                        <ul class="list-group list-group-flush shadow-sm" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden; background: rgba(0,0,0,0.2);" id="ul-escaneados"></ul>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="manual-pane" role="tabpanel" aria-labelledby="manual-tab">
@@ -195,10 +195,10 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                         <div class="row justify-content-center mt-2 mb-4">
                             <div class="col-md-10 text-center">
                                 <div class="form-floating mb-4">
-                                    <input type="text" name="usuario_id" id="usuario_id_manual" class="form-control" required placeholder="Ingresar matrícula o ID" style="background: var(--glass-bg); border: 1px solid var(--glass-border); color: var(--text-color); border-radius: 16px;">
-                                    <label for="usuario_id_manual" style="color: rgba(255,255,255,0.7);"><i class="fa-solid fa-id-card me-1"></i> Matrícula del Usuario</label>
+                                    <input type="text" name="usuario_id" id="usuario_id_manual" class="form-control" required placeholder="Ingresar matrícula o ID">
+                                    <label for="usuario_id_manual"><i class="fa-solid fa-id-card me-1"></i> Matrícula del Usuario</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100" style="border-radius: 16px; font-size: 1.1rem; font-weight: bold; padding: 0.8rem;" onclick="return syncEventoManual()">
+                                <button type="submit" class="btn btn-action-gradient w-100 py-3" onclick="return syncEventoManual()">
                                     <i class="fa-solid fa-check-to-slot me-2"></i> Registrar Manualmente
                                 </button>
                             </div>
@@ -215,5 +215,18 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
 
     <?php include 'templates/footer.php'; ?>
     <script src="assets/js/asistencia.js"></script>
+    <script>
+        $(document).ready(function() {
+            if ($.fn.select2) {
+                $('#evento_id_global').select2({
+                    dropdownParent: $('#modalRegistroAsistencia'),
+                    width: '100%',
+                    language: {
+                        noResults: function() { return "No se encontraron eventos"; }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
