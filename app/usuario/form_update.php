@@ -50,8 +50,14 @@
     </div>
     <div class="col-sm-4">
         <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" value="1" role="switch" id="superusuario" name="superusuario" <?php echo isset($object) && $object->superusuario == 1 ? 'checked="checked"' : ''; ?> />
+            <?php $puedeAsignarSuperusuario = isset($_SESSION['current_user']) && $_SESSION['current_user']->superusuario; ?>
+            <input class="form-check-input" type="checkbox" value="1" role="switch" id="superusuario" name="superusuario"
+                <?php echo isset($object) && $object->superusuario == 1 ? 'checked="checked"' : ''; ?>
+                <?php echo !$puedeAsignarSuperusuario ? 'disabled="disabled"' : ''; ?> />
             <label class="form-check-label" for="superusuario">Superusuario</label>
+            <?php if (!$puedeAsignarSuperusuario): ?>
+                <div class="form-text">Solo un Superusuario puede otorgar o revocar este privilegio.</div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
