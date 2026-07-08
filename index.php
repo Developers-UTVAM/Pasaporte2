@@ -110,7 +110,7 @@ if(checkVar("accion", "login")) {
                             $uid = @$_SESSION["current_user"]->id;
                             $fallback = @$_SESSION["current_user"]->getQrData();
                         ?>
-                        <div id="qrcode" class="d-flex justify-content-center mb-4 position-relative" data-matricula="<?php echo $mat; ?>" data-id="<?php echo $uid; ?>" data-fallback="<?php echo $fallback; ?>"></div>
+                        <div id="qrcode" class="d-flex justify-content-center mb-4 position-relative" data-matricula="<?php echo htmlspecialchars((string)$mat); ?>" data-id="<?php echo htmlspecialchars((string)$uid); ?>" data-fallback="<?php echo htmlspecialchars((string)$fallback); ?>"></div>
                         <h4 id="qr-label" class="m-0 font-monospace text-primary fw-bold mb-2" style="letter-spacing: 2px;"></h4>
                         <small style="color: var(--text-color); opacity: 0.6;"><i class="fa-solid fa-expand me-1"></i> Muestra este código en la entrada</small>
                     </div>

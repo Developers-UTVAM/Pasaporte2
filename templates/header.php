@@ -4,7 +4,7 @@ if(!function_exists("currentUserCan")) {
 }
 ?><script type="text/javascript">
     <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
-        let current_user = `<?php echo $_SESSION["current_user"]; ?>`;
+        let current_user = <?php echo json_encode((string)$_SESSION["current_user"]); ?>;
     <?php else: ?>
         let current_user = `Anonymous`;
     <?php endif; ?>

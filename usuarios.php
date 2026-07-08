@@ -91,7 +91,7 @@ if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
         <?php if (isset($success)): ?>
             <div class="alert alert-success" role="alert">
                 <i class="fa-solid fa-circle-check"></i>
-                <?php echo $success; ?>
+                <?php echo htmlspecialchars($success); ?>
             </div>
         <?php endif; ?>
 

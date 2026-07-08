@@ -1,5 +1,26 @@
 <?php
 
+if (!function_exists('sanitize_input_data')) {
+    function sanitize_input_data(&$data, $is_root = true) {
+        if (is_array($data)) {
+            foreach ($data as $key => &$value) {
+                if ($is_root && in_array($key, ['password', 'password_confirm'], true)) {
+                    continue;
+                }
+                sanitize_input_data($value, false);
+            }
+        } elseif (is_string($data)) {
+            $data = strip_tags($data);
+            $data = trim($data);
+        }
+    }
+
+    sanitize_input_data($_GET);
+    sanitize_input_data($_POST);
+    sanitize_input_data($_REQUEST);
+    sanitize_input_data($_COOKIE);
+}
+
 /**
  * Gets a POST var
  * @param mixed $variable Variable name

@@ -71,7 +71,7 @@ $usr_aux = new Usuario();
 
 <h4 class="text-secondary mt-4">
     <i class="fa-regular fa-calendar-days"></i>
-    Eventos en los que participa <?= $object; ?>
+    Eventos en los que participa <?= htmlspecialchars((string)$object); ?>
     <span class="badge bg-secondary ms-2"><?php echo count($evts); ?></span>
 </h4>
 
