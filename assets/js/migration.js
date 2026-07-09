@@ -6,7 +6,7 @@
             const modalContent = document.getElementById('sqlModalContent');
             
             if (modalTitle) modalTitle.textContent = filename;
-            if (modalContent) modalContent.textContent = "Cargando...";
+            if (modalContent) modalContent.innerHTML = '<div class="d-flex flex-column align-items-center justify-content-center py-4"><div class="lottie-dynamic-spinner" data-size="50" style="width: 50px; height: 50px;"></div><span class="mt-2 text-muted">Cargando SQL...</span></div>';
             const modalEl = document.getElementById('sqlModal');
             if (modalEl) {
                 const modal = new bootstrap.Modal(modalEl);

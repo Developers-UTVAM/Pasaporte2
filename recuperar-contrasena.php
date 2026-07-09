@@ -24,11 +24,9 @@ $mensajes = procesar_solicitud_recuperacion();
     <main class="container flex-grow-1 d-flex flex-column py-4">
         <div class="flex-grow-1 d-flex justify-content-center align-items-center pb-5">
             <form class="card p-4 p-md-5 shadow-lg w-100 animate-on-load delay-1" style="max-width: 450px; border-radius: 20px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08);" method="post" action="recuperar-contrasena.php" autocomplete="off">
-                <div class="text-center mb-4">
-                    <div class="d-inline-flex justify-content-center align-items-center mb-3 shadow-sm" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, color-mix(in oklab, var(--secondary) 20%, transparent), rgba(0,0,0,0.5)); border: 1px solid color-mix(in oklab, var(--secondary) 50%, transparent);">
-                        <i class="fa-solid fa-unlock-keyhole" style="font-size: 2.2rem; color: var(--secondary); filter: drop-shadow(0 0 10px color-mix(in oklab, var(--secondary) 60%, transparent));"></i>
-                    </div>
-                    <h2 class="mb-1 fw-bold" style="color: #fff; letter-spacing: 0.5px;">Recuperar Acceso</h2>
+                <div class="text-center mb-5">
+                    <h2 class="fw-black mb-1" style="color:#fff; font-size:1.75rem; letter-spacing:-0.04em;">Recuperar Acceso</h2>
+                    <p class="small m-0" style="color:rgba(255,255,255,0.45); letter-spacing:0.01em;">Te enviaremos un enlace a tu correo</p>
                 </div>
 
                 <?php if (!empty($mensajes['error'])): ?>

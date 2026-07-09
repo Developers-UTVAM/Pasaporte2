@@ -1,0 +1,90 @@
+/* qr.css — credencial QR, scanner láser y overrides de DataTable */
+
+main table.dataTable.dtr-inline.collapsed>tbody>tr.dtr-expanded>td.dtr-control::before {
+    border-top-color: var(--primary);
+}
+
+main table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control::before {
+    border-left-color: var(--primary);
+}
+
+main table.table tr.fila-inscrita td {
+    color: var(--bs-info);
+}
+
+#qrcode {
+    position: relative;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* .card-title — gradiente de texto para título de tarjeta QR */
+main .card-title {
+    font-weight: var(--font-weight-black);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}
+
+#qr-label {
+    color: var(--primary) !important;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px color-mix(in oklab, var(--primary) 40%, transparent);
+    margin-top: 15px;
+}
+
+/* .qr-wrapper — marco del scanner con borde neon del color primario */
+.qr-wrapper {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 25px color-mix(in oklab, var(--primary) 30%, transparent);
+    background: var(--bg-color);
+}
+
+/* .qr-container-wrapper — contenedor relativo para el efecto scanner laser */
+.qr-container-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.qr-container-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+    box-shadow: 0 0 8px #00f5ff, 0 0 15px #00f5ff;
+    animation: scanLaser 4s ease-in-out infinite;
+    z-index: 20;
+    pointer-events: none;
+}
+
+@keyframes scanLaser {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+}
+
+#qrcode img,
+#qrcode canvas {
+    background-color: transparent !important;
+    display: block;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 220px;
+    max-height: 220px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}

@@ -1,0 +1,145 @@
+/* === MOBILE.CSS (Estilos Responsivos y Media Queries) === */
+@media (max-width: 991.98px) {
+    /* Caja de cristal exclusiva para el menÃº desplegado en mÃ³vil */
+    #nav-principal {
+        background: color-mix(in oklab, var(--bg-color) 95%, transparent);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        padding: 1rem;
+        margin-top: 1rem !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Alineamos a la izquierda para mejor experiencia tÃ¡ctil */
+    .nav-item.text-center {
+        text-align: left !important;
+        margin-bottom: 5px;
+    }
+
+    /* En mÃ³vil ocultamos la rayita animada inferior */
+    .nav-link-custom::after {
+        display: none;
+    }
+
+    /* Hacemos que el submenÃº se integre sin parecer una caja separada */
+    .dropdown-menu-glass {
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-left: 2px solid var(--primary) !important;
+        border-radius: 0;
+        margin-left: 1rem;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .dropdown-menu-glass .dropdown-item {
+        padding: 10px 15px;
+    }
+}
+
+/* Permitimos que el contenedor salte a la siguiente lÃ­nea para que el menÃº mÃ³vil baje correctamente */
+.navbar > .container-fluid {
+    flex-wrap: wrap;
+}
+
+/* En pantallas extremadamente pequeÃ±as (ej. iPhone SE), reducimos sutilmente el texto para que quepa en 1 sola lÃ­nea */
+@media (max-width: 380px) {
+    .shiny-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* === BENTO MOBILE RESPONSIVENESS === */
+@media (max-width: 991.98px) {
+    /* Desplazar el contenido hacia abajo para que la cabecera sticky no lo oculte */
+    main.container {
+        margin-top: 15px !important;
+    }
+
+    .bento-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .bento-qr, .bento-welcome, .bento-next {
+        grid-column: span 1 !important;
+        grid-row: auto !important;
+        min-height: auto !important;
+    }
+    
+    /* Centrar QR en móviles y adaptar tamaño */
+    .qr-container-wrapper {
+        padding: 12px !important;
+        max-width: 240px;
+        margin: 0 auto;
+    }
+
+    #qrcode img, #qrcode canvas {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 200px;
+    }
+    
+    /* Agrandar botones e ítems en móviles para ergonomía táctil */
+    .quick-link-item {
+        padding: 14px 18px !important;
+    }
+
+    /* Estilos del contenedor del menú móvil de cristal translúcido */
+    #nav-principal {
+        background: rgba(10, 10, 15, 0.7) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 20px;
+        padding: 1.25rem !important;
+        margin-top: 0.75rem !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                    0 0 25px rgba(37, 99, 235, 0.1) !important;
+    }
+
+    /* Items individuales de navegación en móvil */
+    #nav-principal .nav-item {
+        margin-bottom: 6px;
+    }
+
+    #nav-principal .nav-link-custom {
+        display: flex !important;
+        align-items: center;
+        padding: 12px 16px !important;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.8) !important;
+        transition: all 0.25s ease;
+    }
+
+    #nav-principal .nav-link-custom:hover,
+    #nav-principal .nav-link-custom:focus {
+        background: rgba(37, 99, 235, 0.08) !important;
+        border-color: rgba(37, 99, 235, 0.2) !important;
+        color: #fff !important;
+        transform: translateX(4px);
+    }
+
+    /* Separar los iconos en el menú móvil horizontalmente */
+    #nav-principal .nav-link-custom i {
+        margin-bottom: 0 !important; /* Quita el margen inferior de desktop */
+        margin-right: 12px !important;
+        font-size: 1.1rem;
+        width: 24px;
+        text-align: center;
+        color: var(--primary);
+    }
+
+    /* Submenú adaptado a móvil sin bordes cuadrados */
+    .dropdown-menu-glass {
+        background: rgba(255, 255, 255, 0.02) !important;
+        border-left: 2px solid var(--primary) !important;
+        margin-left: 1.5rem !important;
+        padding: 4px 0 !important;
+    }
+}
+

@@ -1,0 +1,47 @@
+/* tables.css — estilos para table.table y DataTables */
+
+table.table {
+    color: inherit;
+    --bs-table-bg: transparent;
+    border-collapse: collapse;
+}
+
+table.table th,
+table.dataTable thead th {
+    text-align: left;
+    color: var(--primary) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--text-xs);
+    background: rgba(13, 13, 18, 0.5) !important;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+    padding: .85rem 1.1rem;
+    font-weight: 600;
+}
+
+table.dataTable thead th span.dt-column-title {
+    background: transparent !important;
+}
+
+table.table td,
+table.dataTable tbody td {
+    color: rgba(255, 255, 255, 0.75);
+    padding: .85rem 1.1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* tbody tr — transición de fondo en hover */
+table.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+table.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.015) !important;
+}
+
+table.table tbody tr:hover td {
+    color: #fff;
+}
+

@@ -146,7 +146,7 @@ function onScanSuccess(decodedText, decodedResult) {
     reproducirSonido();
     mostrarAlerta("QR detectado. Procesando asistencia...", 'info');
     const statusDiv = document.getElementById('qr-status');
-    if(statusDiv) statusDiv.innerHTML = '<span class="text-info fw-bold"><i class="fa-solid fa-spinner fa-spin"></i> Código detectado, enviando...</span>';
+    if(statusDiv) statusDiv.innerHTML = '<span class="text-info fw-bold d-flex align-items-center justify-content-center"><div class="lottie-dynamic-spinner" data-size="24" style="width: 24px; height: 24px; margin-right: 8px;"></div> Código detectado, enviando...</span>';
 
     procesarAsistencia(decodedText);
 }
@@ -158,7 +158,7 @@ function procesarAsistencia(matricula) {
     const evento_id = document.getElementById('evento_id_global').value;
     const statusDiv = document.getElementById('qr-status');
 
-    statusDiv.innerHTML = '<span class="text-info"><i class="fa-solid fa-spinner fa-spin"></i> Validando asistencia...</span>';
+    statusDiv.innerHTML = '<span class="text-info d-flex align-items-center justify-content-center"><div class="lottie-dynamic-spinner" data-size="24" style="width: 24px; height: 24px; margin-right: 8px;"></div> Validando asistencia...</span>';
 
     const formData = new FormData();
     formData.append('accion', 'procesar_qr');

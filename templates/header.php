@@ -11,6 +11,26 @@ if(!function_exists("currentUserCan")) {
     console.log("Current User:", current_user);
 </script>
 
+<!-- Precargador Global (Lottie Spinner Overlay) -->
+<div id="global-preloader">
+    <div class="preloader-content text-center">
+        <div id="lottie-spinner" style="width: 150px; height: 150px; margin: 0 auto;"></div>
+        <p class="preloader-text mt-3 fw-bold text-light" style="font-size: 1.1rem; letter-spacing: 0.5px;">Cargando...</p>
+    </div>
+</div>
+<script>
+    window.lottieSpinnerData = <?php echo file_get_contents(__DIR__ . '/../assets/spinner/spinner.json'); ?>;
+    if (typeof lottie !== 'undefined' && window.lottieSpinnerData) {
+        window.globalPreloaderAnim = lottie.loadAnimation({
+            container: document.getElementById('lottie-spinner'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            animationData: window.lottieSpinnerData
+        });
+    }
+</script>
+
 <!-- Agregamos header-glass y animate-header -->
 <header id="main-header" class="sticky-top header-glass animate-header">
     <nav class="navbar navbar-expand-lg navbar-dark py-2">
@@ -32,7 +52,7 @@ if(!function_exists("currentUserCan")) {
                     </a>
                     <?php endif; ?>
                     <a href="logout.php" title="Cerrar Sesión" class="text-decoration-none icon-action-header me-2">
-                        <img src="assets/img/Logout.png" alt="Salir" width="26" height="26">
+                        <i class="fa-solid fa-right-from-bracket fs-5"></i>
                     </a>
                     <button id="menu-toggler" class="navbar-toggler ms-2 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nav-principal" aria-controls="nav-principal" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-solid fa-bars text-primary fs-3"></i>

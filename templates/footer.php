@@ -23,5 +23,4 @@
     </div>
 </footer>
 
-<!-- AQUÍ ESTÁ LA MAGIA: Este script hace que funcione tu menú de hamburguesa y los dropdowns -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

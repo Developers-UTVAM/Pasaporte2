@@ -22,7 +22,15 @@
 <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.7/fc-5.0.5/fh-4.0.6/r-3.0.8/sc-2.4.3/datatables.min.css" rel="stylesheet" integrity="sha384-6H63q+3PEPz6o1C1/Lc1Ra9vymHD3YcIQMlGbK81A5C+iNw1HMsNNcYRw+65vV5B" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<link rel="stylesheet" href="assets/css/styles.css" />
+<link rel="stylesheet" href="assets/css/modules/variables.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/modules/navigation.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/modules/forms.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/modules/tables.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/modules/kpi.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/modules/qr.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/theme.css?v=<?php echo time(); ?>" />
+<link rel="stylesheet" href="assets/css/desktop.css?v=<?php echo time(); ?>" media="screen and (min-width: 992px)" />
+<link rel="stylesheet" href="assets/css/mobile.css?v=<?php echo time(); ?>" media="screen and (max-width: 991px)" />
 
 <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.3.7/fc-5.0.5/fh-4.0.6/r-3.0.8/sc-2.4.3/datatables.min.js" integrity="sha384-VgprZLSXuAea3+5t8EDIN34wN49ZfY8fQCxuUEV2UmNRrX3m3wG2UfsBpJ5GXdmZ" crossorigin="anonymous"></script>
@@ -31,4 +39,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="assets/js/main.js"></script>
+<script>
+    <?php echo file_get_contents(__DIR__ . '/../assets/js/lottie.min.js'); ?>
+</script>
+<script src="assets/js/main.js?v=<?php echo time(); ?>"></script>

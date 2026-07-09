@@ -17,7 +17,7 @@ $can_delete = $_SESSION["current_user"]->can("asistencia.delete_asistencia") || 
                 <i class="fa-solid fa-filter me-2" style="color: var(--primary);"></i> Filtrar Historial
             </h2>
             <?php if ($_SESSION["current_user"]->can("asistencia.add_asistencia") || $_SESSION["current_user"]->can("asistencia.asistencia.*")): ?>
-            <button type="button" class="btn btn-action-gradient w-100 w-lg-auto" data-bs-toggle="modal" data-bs-target="#modalRegistroAsistencia">
+            <button type="button" class="btn-minimal-pill w-100 w-lg-auto mt-0 px-4 py-2.5" data-bs-toggle="modal" data-bs-target="#modalRegistroAsistencia">
                 <i class="fa-solid fa-qrcode me-2"></i> Registrar Asistencia
             </button>
             <?php endif; ?>
@@ -58,18 +58,18 @@ $can_delete = $_SESSION["current_user"]->can("asistencia.delete_asistencia") || 
 
             <div class="col-12 col-md-4">
                 <div class="form-floating">
-                    <input type="text" name="busqueda" id="f_busqueda" class="form-control custom-input-glass"
-                           placeholder="Matrícula o nombre..."
+                    <input type="text" name="busqueda" id="f_busqueda" class="form-control"
+                           placeholder=" "
                            value="<?= htmlspecialchars($filtro_busqueda) ?>" />
                     <label for="f_busqueda">Buscar (Matrícula / Nombre)</label>
                 </div>
             </div>
 
             <div class="col-12 col-md-2 d-flex gap-2">
-                <button type="submit" class="btn btn-action-gradient w-100" style="height: 58px; border-radius: var(--radius-xl);" title="Buscar">
+                <button type="submit" class="btn-minimal-pill w-100 mt-0" style="height: 58px !important;" title="Buscar">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <a href="asistencia.php" class="btn btn-secondary w-100 d-flex align-items-center justify-content-center" style="height: 58px; border-radius: var(--radius-xl);" title="Limpiar Filtros">
+                <a href="asistencia.php" class="btn-minimal-pill w-100 d-flex align-items-center justify-content-center mt-0" style="height: 58px !important;" title="Limpiar Filtros">
                     <i class="fa-solid fa-eraser"></i>
                 </a>
             </div>
