@@ -18,18 +18,18 @@ $errors = registrar_usuario();
     <?php include 'templates/head.php'; ?>
     <title>Registro de Usuario</title>
 </head>
-<body class="d-flex flex-column vh-100">
+<body class="d-flex flex-column vh-100 login-page">
     <?php include 'templates/header.php'; ?>
 
     <main class="container flex-grow-1 d-flex flex-column py-4">
-        <div class="flex-grow-1 d-flex justify-content-center align-items-center pb-5">
-            <form class="card p-4 p-md-5 shadow-lg w-100 animate-on-load delay-1" style="max-width: 600px; border-radius: 20px; background: rgba(15, 15, 20, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08);" method="post" action="registro.php" autocomplete="off">
-                <div class="text-center mb-4">
-                    <div class="d-inline-flex justify-content-center align-items-center mb-3 shadow-sm" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 20%, transparent), rgba(0,0,0,0.5)); border: 1px solid color-mix(in oklab, var(--primary) 50%, transparent);">
-                        <i class="fa-solid fa-user-plus" style="font-size: 2.2rem; color: var(--primary); filter: drop-shadow(0 0 10px color-mix(in oklab, var(--primary) 60%, transparent));"></i>
-                    </div>
-                    <h2 class="mb-1 fw-bold" style="color: #fff; letter-spacing: 0.5px;">Registro</h2>
-                    <p class="small m-0" style="color: rgba(255,255,255,0.6);">Crea tu cuenta para acceder al evento</p>
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center pb-5 position-relative" style="z-index: 1;">
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+
+            <form class="card w-100 registro-card animate-on-load delay-1" method="post" action="registro.php" autocomplete="off">
+                <div class="text-center mb-5">
+                    <h2 class="fw-black mb-1" style="color:#fff; font-size:1.75rem; letter-spacing:-0.04em;">Registro</h2>
+                    <p class="small m-0" style="color:rgba(255,255,255,0.45); letter-spacing:0.01em;">Crea tu cuenta para acceder al evento</p>
                 </div>
 
                 <?php if (!empty($errors)): ?>
@@ -43,54 +43,104 @@ $errors = registrar_usuario();
 
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label for="nombre" class="form-label text-light opacity-75">Nombre(s) <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder=" " value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>" required>
+                                <label for="nombre">Nombre(s) *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="apaterno" class="form-label text-light opacity-75">Apellido Paterno <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="apaterno" name="apaterno" value="<?php echo htmlspecialchars($_POST['apaterno'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="apaterno" name="apaterno" placeholder=" " value="<?php echo htmlspecialchars($_POST['apaterno'] ?? ''); ?>" required>
+                                <label for="apaterno">Apellido Paterno *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="amaterno" class="form-label text-light opacity-75">Apellido Materno</label>
-                        <input type="text" class="form-control" id="amaterno" name="amaterno" value="<?php echo htmlspecialchars($_POST['amaterno'] ?? ''); ?>">
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-user"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="amaterno" name="amaterno" placeholder=" " value="<?php echo htmlspecialchars($_POST['amaterno'] ?? ''); ?>">
+                                <label for="amaterno">Apellido Materno</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="matricula" class="form-label text-light opacity-75">Matrícula <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="matricula" name="matricula" value="<?php echo htmlspecialchars($_POST['matricula'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-id-badge"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="matricula" name="matricula" placeholder=" " value="<?php echo htmlspecialchars($_POST['matricula'] ?? ''); ?>" required>
+                                <label for="matricula">Matrícula *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12">
-                        <label for="email" class="form-label text-light opacity-75">Correo Electrónico <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-envelope"></i></span>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" name="email" placeholder=" " value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
+                                <label for="email">Correo Electrónico *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="whatsapp" class="form-label text-light opacity-75">WhatsApp <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="<?php echo htmlspecialchars($_POST['whatsapp'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder=" " value="<?php echo htmlspecialchars($_POST['whatsapp'] ?? ''); ?>" required>
+                                <label for="whatsapp">WhatsApp *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="grupo" class="form-label text-light opacity-75">Grupo <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="grupo" name="grupo" value="<?php echo htmlspecialchars($_POST['grupo'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-solid fa-users"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="grupo" name="grupo" placeholder=" " value="<?php echo htmlspecialchars($_POST['grupo'] ?? ''); ?>" required>
+                                <label for="grupo">Grupo *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12">
-                        <label for="username" class="form-label text-light opacity-75">Nombre de Usuario <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-regular fa-circle-user"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="username" placeholder=" " value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
+                                <label for="username">Nombre de Usuario *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="password" class="form-label text-light opacity-75">Contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" name="password" placeholder=" " required>
+                                <label for="password">Contraseña *</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="password_confirm" class="form-label text-light opacity-75">Confirmar Contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
+                        <div class="input-group-minimal">
+                            <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder=" " required>
+                                <label for="password_confirm">Confirmar Contraseña *</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-action-gradient w-100 mt-4 py-3"><i class="fa-solid fa-user-check me-2"></i> Registrarse</button>
-                <p class="text-center mt-4 mb-0">
-                    <small style="color: rgba(255,255,255,0.6);">¿Ya tienes una cuenta?</small><br>
-                    <a href="index.php" class="text-decoration-none fw-bold" style="color: var(--primary); text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);"><i class="fa-solid fa-right-to-bracket me-1"></i> Inicia sesión aquí</a>
-                </p>
+
+                <button type="submit" class="btn-minimal-pill w-100 mt-4"><i class="fa-solid fa-user-check me-2"></i> Registrarse</button>
+                
+                <a href="index.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-right-to-bracket me-2"></i> Iniciar Sesión</a>
             </form>
         </div>
+
     </main>
 
     <?php include 'templates/footer.php'; ?>

@@ -1,0 +1,212 @@
+/* navigation.css — navbar, header, footer y dropdowns */
+
+header#main-header nav.navbar {
+    background-color: transparent;
+}
+
+header#main-header nav.navbar .navbar-brand,
+.colores-gay {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+header button#menu-toggler {
+    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: #f8fafc !important;
+    margin-right: 15px;
+    border-radius: 50px !important;
+    padding: 6px 16px !important;
+    transition: transform 0.2s var(--spring-transition), background-color 0.2s ease, border-color 0.2s ease;
+}
+
+header button#menu-toggler:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: #fff !important;
+    transform: scale(1.04) translateY(-0.5px);
+}
+
+header button#menu-toggler:active {
+    transform: scale(0.96) translateY(0);
+}
+
+/* Mejora de enlaces para que tengan efecto al pasar el mouse */
+main a:not(.btn) {
+    color: var(--primary);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+main a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--secondary);
+    transform-origin: bottom center;
+    transition: transform 0.3s var(--spring-transition);
+}
+
+main a:not(.btn):hover {
+    color: var(--secondary);
+}
+
+main a:not(.btn):hover::after {
+    transform: scaleX(1);
+}
+
+/* .link-plain — excluye el subrayado animado y el cambio de color en hover */
+main a.link-plain,
+main a.link-plain:hover {
+    color: inherit;
+}
+
+main a.link-plain::after,
+main a.link-plain:hover::after,
+main a.btn-minimal-pill::after,
+main a.btn-minimal-pill:hover::after,
+main a.btn-modal-primary::after,
+main a.btn-modal-primary:hover::after,
+main a.btn-modal-secondary::after,
+main a.btn-modal-secondary:hover::after,
+main a.footer-link::after,
+main a.icon-action-header::after {
+    display: none !important;
+}
+
+.footer-glass {
+    /* Toma tus variables de cristal */
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-link {
+    color: color-mix(in oklab, var(--color-white) 70%, transparent);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-link:hover {
+    color: var(--primary);
+    text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);
+    transform: translateY(-1.5px);
+}
+
+/* Animación para que el footer suba suavemente */
+@keyframes slideUpFooter {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-footer {
+    animation: slideUpFooter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.8s; /* Aparece justo después de que el main termina de cargar */
+    opacity: 0; /* Empieza invisible */
+}
+
+.header-glass {
+    background: rgba(10, 10, 14, 0.7) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* .nav-link-custom — enlaces del menú con línea animada de degradado al hover */
+.nav-link-custom {
+    color: rgba(255, 255, 255, 0.75) !important;
+    transition: color 0.25s ease, transform 0.25s var(--spring-transition);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-link-custom:hover {
+    color: #fff !important;
+}
+
+/* Línea de neón animada debajo del link */
+.nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: 0;
+    left: 10%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform-origin: bottom center;
+    transition: transform 0.3s var(--spring-transition);
+}
+
+.nav-link-custom:hover::after {
+    transform: scaleX(1);
+}
+
+/* Submenús (Dropdowns) estilo Glass */
+.dropdown-menu-glass {
+    background: rgba(10, 10, 14, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+    padding: 6px 0;
+}
+
+.dropdown-menu-glass .dropdown-item {
+    color: rgba(255, 255, 255, 0.75) !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 8px 20px;
+}
+
+.dropdown-menu-glass .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+}
+
+
+/* AnimaciÃ³n de entrada desde arriba */
+@keyframes slideDownHeader {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-header {
+    animation: slideDownHeader 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Brillo para los íconos de la derecha (cerrar sesión, etc.) */
+.icon-action-header {
+    transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    opacity: 0.75;
+    color: rgba(255, 255, 255, 0.85) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.icon-action-header:hover {
+    opacity: 1;
+    transform: scale(1.08) translateY(-0.5px);
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-action-header:active {
+    transform: scale(0.96);
+}

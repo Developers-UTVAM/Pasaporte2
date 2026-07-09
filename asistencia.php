@@ -126,7 +126,7 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
         ?>
         </div>
     </main>
-    <div class="modal fade" id="modalRegistroAsistencia" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
+    <div class="modal fade modal-glass" id="modalRegistroAsistencia" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header border-0 pb-3 pt-4 px-4" style="background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 15%, transparent), transparent); border-bottom: 1px solid rgba(255,255,255,0.05) !important;">
@@ -152,7 +152,7 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                 </div>
             </div>
 
-            <ul class="nav nav-pills custom-pills nav-justified mb-4 mx-auto" style="max-width: 400px;" id="registroTabs" role="tablist">
+            <ul class="nav nav-pills custom-segment-tabs nav-justified mb-4 mx-auto" id="registroTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active w-100 fw-bold" id="qr-tab" data-bs-toggle="pill" data-bs-target="#qr-pane" type="button" role="tab" aria-selected="true">
                         <i class="fa-solid fa-qrcode me-1"></i> Escáner
@@ -173,15 +173,15 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                     </div>
 
                     <div class="mb-3">
-                        <button class="btn btn-action-gradient px-4 py-3 fw-bold rounded-pill shadow" id="btn-iniciar-qr" onclick="iniciarEscaneo()">
+                        <button class="btn-modal-primary px-5 py-3 fw-bold shadow" id="btn-iniciar-qr" onclick="iniciarEscaneo()">
                             <i class="fa-solid fa-camera me-2"></i> Activar Escáner
                         </button>
-                        <button class="btn btn-secondary px-4 py-3 d-none fw-bold rounded-pill shadow" style="color: var(--color-red-400); border-color: var(--color-red-400); background: rgba(220, 53, 69, 0.1);" id="btn-detener-qr" onclick="detenerEscaneo()">
+                        <button class="btn-modal-secondary px-5 py-3 d-none fw-bold shadow" style="color: var(--color-red-400) !important; border-color: var(--color-red-400) !important;" id="btn-detener-qr" onclick="detenerEscaneo()">
                             <i class="fa-solid fa-stop me-2"></i> Detener Cámara
                         </button>
                     </div>
 
-                    <div id="qr-reader-container" class="mx-auto mb-3" style="width: 100%; max-width: 350px; display: none; border-radius: 24px; overflow: hidden; border: 2px solid color-mix(in oklab, var(--primary) 50%, transparent); box-shadow: 0 0 20px color-mix(in oklab, var(--primary) 20%, transparent); background: rgba(0, 0, 0, 0.5);">
+                    <div id="qr-reader-container" class="mx-auto mb-3" style="width: 100%; max-width: 350px; display: none; background: rgba(0, 0, 0, 0.5);">
                         <div id="qr-reader" style="width: 100%; border: none;"></div>
                     </div>
 
@@ -199,10 +199,10 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
                         <div class="row justify-content-center mt-2 mb-4">
                             <div class="col-md-10 text-center">
                                 <div class="form-floating mb-4">
-                                    <input type="text" name="usuario_id" id="usuario_id_manual" class="form-control" required placeholder="Ingresar matrícula o ID">
+                                    <input type="text" name="usuario_id" id="usuario_id_manual" class="form-control" required placeholder=" ">
                                     <label for="usuario_id_manual"><i class="fa-solid fa-id-card me-1"></i> Matrícula del Usuario</label>
                                 </div>
-                                <button type="submit" class="btn btn-action-gradient w-100 py-3" onclick="return syncEventoManual()">
+                                <button type="submit" class="btn-modal-primary w-100 py-3" onclick="return syncEventoManual()">
                                     <i class="fa-solid fa-check-to-slot me-2"></i> Registrar Manualmente
                                 </button>
                             </div>
@@ -214,6 +214,7 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
         </div>
       </div>
     </div>
+
 
     <audio id="audio-qr" src="assets/sounds/qr.mp3" preload="auto"></audio>
 

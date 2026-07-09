@@ -1,0 +1,102 @@
+/* === THEME.CSS (Archivo Raíz) === */
+
+/* Importación de módulos directos gestionada en head.php */
+
+/* ==========================================================
+   SOBREESCRITURA DE LEGIBILIDAD (CONTRASTE DE TEXTOS OSCUROS)
+   ========================================================== */
+.text-muted {
+    color: #94a3b8 !important;
+    /* Gris slate brillante */
+}
+
+.text-light {
+    color: #f1f5f9 !important;
+    /* Casi blanco, muy legible */
+}
+
+/* KPIs y Cajas de Estadísticas */
+.kpi-title {
+    color: rgba(241, 245, 249, 0.7) !important;
+}
+
+.stat-box .text-muted {
+    color: #cbd5e1 !important;
+    /* Slate 300 para las etiquetas "REGISTRADOS", etc. */
+}
+
+/* En móvil, asegurar contraste en descripciones secundarias */
+.opacity-75 {
+    opacity: 0.9 !important;
+    /* Aumentamos opacidad del 75% al 90% para legibilidad */
+}
+
+/* === GLOBAL PRELOADER (LOTTIE OVERLAY) === */
+#global-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999; /* Asegura estar por encima de todo */
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s ease;
+}
+
+#global-preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: preloader-fade-in 0.6s ease-out;
+}
+
+.preloader-text {
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    animation: preloader-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes preloader-pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(0.98);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes preloader-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Soporte para spinner dentro de contenedores inline */
+.lottie-inline-spinner {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}

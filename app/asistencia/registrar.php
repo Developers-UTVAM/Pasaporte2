@@ -92,7 +92,7 @@ if (!isset($eventos)) {
                     document.getElementById('btn-iniciar-qr').classList.add('d-none');
                     document.getElementById('btn-detener-qr').classList.remove('d-none');
                     document.getElementById('qr-reader-container').style.display = 'block';
-                    document.getElementById('qr-status').innerHTML = '<span class="text-info"><i class="fa-solid fa-spinner fa-spin"></i> Inicializando cámara...</span>';
+                    document.getElementById('qr-status').innerHTML = '<span class="text-info d-flex align-items-center justify-content-center"><div class="lottie-dynamic-spinner" data-size="24" style="width: 24px; height: 24px; margin-right: 8px;"></div> Inicializando cámara...</span>';
 
                     if (!html5QrcodeScanner) {
                         html5QrcodeScanner = new Html5Qrcode("qr-reader");
@@ -120,7 +120,7 @@ if (!isset($eventos)) {
                             lastScannedTime = now;
                             const audio = document.getElementById('audio-qr');
                             if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
-                            document.getElementById('qr-status').innerHTML = `<span class="text-info fw-bold"><i class="fa-solid fa-spinner fa-spin"></i> QR detectado. Procesando...</span>`;
+                            document.getElementById('qr-status').innerHTML = `<span class="text-info fw-bold d-flex align-items-center justify-content-center"><div class="lottie-dynamic-spinner" data-size="24" style="width: 24px; height: 24px; margin-right: 8px;"></div> QR detectado. Procesando...</span>`;
                             setTimeout(() => {
                                 procesarCodigoMulti(decodedText, eventoId);
                             }, 600);
@@ -148,7 +148,7 @@ if (!isset($eventos)) {
                 }
 
                 function procesarCodigoMulti(codigo, eventoId) {
-                    document.getElementById('qr-status').innerHTML = `<span class="text-warning"><i class="fa-solid fa-spinner fa-spin"></i> Procesando: ${codigo}...</span>`;
+                    document.getElementById('qr-status').innerHTML = `<span class="text-warning d-flex align-items-center justify-content-center"><div class="lottie-dynamic-spinner" data-size="24" style="width: 24px; height: 24px; margin-right: 8px;"></div> Procesando: ${codigo}...</span>`;
 
                     fetch('asistencia.php', {
                         method: 'POST',

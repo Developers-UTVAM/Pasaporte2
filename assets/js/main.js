@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "infoPostFix": "",
             "thousands": ",",
             "lengthMenu": "Mostrar _MENU_ entradas",
-            "loadingRecords": "Cargando...",
-            "processing": "Procesando...",
+            "loadingRecords": '<div class="d-flex align-items-center justify-content-center py-2"><div class="lottie-dynamic-spinner" data-size="40" style="width: 40px; height: 40px; margin-right: 8px;"></div> Cargando...</div>',
+            "processing": '<div class="d-flex align-items-center justify-content-center py-2"><div class="lottie-dynamic-spinner" data-size="40" style="width: 40px; height: 40px; margin-right: 8px;"></div> Procesando...</div>',
             "search": "Buscar:",
             "zeroRecords": "No se encontraron registros coincidentes",
             "paginate": {
@@ -81,3 +81,63 @@ document.addEventListener('DOMContentLoaded', function() {
         window.history.replaceState(null, null, window.location.href);
     }
 }); 
+
+// === CONTROL DE CICLO DE VIDA DEL PRELOADER Y DYNAMIC SPINNERS ===
+
+// Ocultar preloader global al terminar de cargar la página
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('global-preloader');
+    if (preloader) {
+        preloader.classList.add('hide');
+    }
+});
+
+// Reactivar preloader en envíos de formularios estándar
+document.addEventListener('submit', function(e) {
+    const form = e.target;
+    // Evitar si es una acción cancelada o interna de DataTables
+    if (form && !form.classList.contains('dt-form') && !e.defaultPrevented) {
+        // No mostrar precargador si la validación del navegador falla
+        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+            return;
+        }
+        const preloader = document.getElementById('global-preloader');
+        if (preloader) {
+            const textEl = preloader.querySelector('.preloader-text');
+            if (textEl) {
+                textEl.textContent = 'Procesando...';
+            }
+            preloader.classList.remove('hide');
+            // Forzar reproducción del spinner de Lottie para asegurar que se anime al re-mostrar
+            if (window.globalPreloaderAnim) {
+                window.globalPreloaderAnim.goToAndPlay(0, true);
+            }
+        }
+    }
+});
+
+// MutationObserver para inicializar automáticamente cualquier spinner Lottie dinámico
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof MutationObserver !== 'undefined') {
+        const observer = new MutationObserver(function(mutations) {
+            document.querySelectorAll('.lottie-dynamic-spinner').forEach(function(el) {
+                if (!el.hasAttribute('data-lottie-loaded')) {
+                    el.setAttribute('data-lottie-loaded', 'true');
+                    const size = el.getAttribute('data-size') || '30';
+                    el.style.width = size + 'px';
+                    el.style.height = size + 'px';
+                    if (typeof lottie !== 'undefined' && window.lottieSpinnerData) {
+                        lottie.loadAnimation({
+                            container: el,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            animationData: window.lottieSpinnerData
+                        });
+                    }
+                }
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+});
