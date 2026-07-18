@@ -693,5 +693,24 @@ body.login-page #main-footer {
     }
 }
 
+/* Botón de acción principal con degradado y texto blanco */
+.btn-action-gradient {
+    background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: var(--radius-xl, 12px) !important;
+    font-weight: var(--font-weight-bold) !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-action-gradient:hover,
+.btn-action-gradient:focus,
+.btn-action-gradient:active {
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 25px var(--primary) !important;
+}
+
+
 
 
