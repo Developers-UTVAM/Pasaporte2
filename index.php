@@ -114,7 +114,7 @@ if(checkVar("accion", "login")) {
                     <!-- Cabecera de la credencial -->
                     <div class="qr-badge-header d-flex justify-content-between align-items-center px-4 py-3" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--glass-border);">
                         <span class="small fw-black text-uppercase tracking-wider text-light opacity-75" style="font-size: 11px; letter-spacing: 1px;"><i class="fa-solid fa-id-card me-1 text-primary"></i> PASS-ID DIGITAL</span>
-                        <img src="assets/img/utvam_logo_favicon.png" alt="UTVAM" width="22" height="22" style="object-fit: contain;">
+                        <div id="badge-lottie-logo" style="width: 24px; height: 24px;" class="d-inline-flex align-items-center justify-content-center"></div>
                     </div>
                     <!-- Cuerpo central con el QR -->
                     <div class="qr-badge-body d-flex flex-column align-items-center justify-content-center px-4 py-4 flex-grow-1 position-relative">

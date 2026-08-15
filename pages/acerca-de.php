@@ -33,13 +33,13 @@
 
             <h2 class="mb-3" style="color: var(--primary);"><i class="fa-solid fa-circle-question me-2 opacity-75"></i>¿De qué se trata?</h2>
             <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
-                En el marco de la <strong style="color: var(--secondary);">Semana de TICs</strong> de la <strong>Universidad Tecnológica de la Zona Metropolitana del Valle de México</strong>,
-                presentamos el <strong>PASS-ID TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="<?php echo PAGES_URL; ?>creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
+                En el marco del desarrollo de la plataforma,
+                presentamos <strong>PASS-ID</strong>, una innovadora solución digital diseñada por el equipo <a href="<?php echo PAGES_URL; ?>creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
             </p>
 
             <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-gears me-2 opacity-75"></i>¿Cómo funciona?</h2>
             <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
-                El <strong>PASS-ID TICs</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
+                El <strong>PASS-ID</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
                 evento. Olvida los registros tradicionales; con esta herramienta, los alumnos podrán validar su asistencia y
                 participación en conferencias, talleres y actividades especiales de manera ágil y moderna.
             </p>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">3. Finalidad</h2>
-                        <p class="text-light opacity-75 small">Gestión de acceso, control de asistencia, reportes de acreditación para UTVAM y estadística anonimizada.</p>
+                        <p class="text-light opacity-75 small">Gestión de acceso, control de asistencia, reportes de acreditación institucional y estadística anonimizada.</p>
                     </div>
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">4. Derechos ARCO</h2>

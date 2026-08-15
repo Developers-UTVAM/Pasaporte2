@@ -12,6 +12,36 @@ header#main-header nav.navbar .navbar-brand,
     background-clip: text;
 }
 
+.brand-pill {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 6px 16px;
+    border-radius: 50px;
+}
+
+.brand-pill:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(0, 245, 255, 0.35) !important;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 576px) {
+    .brand-pill {
+        padding: 4px 12px !important;
+    }
+    #brand-lottie-logo {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .brand-title-text {
+        font-size: 1rem !important;
+    }
+}
+
 header button#menu-toggler {
     border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
     background: rgba(255, 255, 255, 0.03) !important;

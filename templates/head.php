@@ -4,9 +4,13 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<title>TICs 2026</title>
+<title>PASS-ID</title>
 
-<link rel="icon" href="<?php echo ROOT_URL; ?>assets/img/utvam_logo_favicon.png" type="image/png" />
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo ROOT_URL; ?>assets/logo/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="<?php echo ROOT_URL; ?>assets/logo/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo ROOT_URL; ?>assets/logo/favicon_io/favicon-16x16.png">
+<link rel="shortcut icon" href="<?php echo ROOT_URL; ?>assets/logo/favicon_io/favicon.ico">
+<link rel="manifest" href="<?php echo ROOT_URL; ?>assets/logo/favicon_io/site.webmanifest">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
