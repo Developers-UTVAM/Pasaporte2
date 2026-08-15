@@ -24,10 +24,6 @@ if(checkVar("accion", "login")) {
     <main class="container flex-grow-1 d-flex flex-column">
 
         <?php if(!(isset($_SESSION["current_user"]) && $_SESSION["current_user"])): ?>
-            <div class="text-center mt-4 mb-3 animate-on-load">
-                <h1 class="shiny-title big-text mb-2" style="font-weight: 900; line-height: 1.1; letter-spacing: -1px;">Semana de TICs 2026</h1>
-            </div>
-
             <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center pb-5 position-relative" style="z-index: 1;">
                 <div class="glow-orb glow-orb-1"></div>
                 <div class="glow-orb glow-orb-2"></div>
@@ -143,7 +139,7 @@ if(checkVar("accion", "login")) {
                 <div class="glass-panel bento-card bento-welcome bento-delay-2 p-4 d-flex flex-column justify-content-between">
                     <div>
                         <h2 class="mb-2"><span class="shiny-title fw-bold">¡Hola, <?php echo htmlspecialchars((string)($_SESSION["current_user"] ?? '')); ?>!</span></h2>
-                        <p class="text-light opacity-75 fs-6 mb-4">Aquí tienes el resumen de tu participación en la Semana de TICs 2026.</p>
+                        <p class="text-light opacity-75 fs-6 mb-4">Aquí tienes el resumen de tu participación en el portal PASS-ID 2026.</p>
                     </div>
 
                     <div class="row g-3 text-center mb-2">

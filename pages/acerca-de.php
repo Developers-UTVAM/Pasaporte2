@@ -63,7 +63,7 @@
 
             <hr style="border-color: var(--glass-border); margin: 2rem 0;">
 
-            <h2 class="text-center mb-0 mt-3" style="line-height: 1.3;"><span class="colores-gay fw-black">¡Prepara tu perfil y comienza tu viaje por la Semana de TICs!</span></h2>
+            <h2 class="text-center mb-0 mt-3" style="line-height: 1.3;"><span class="colores-gay fw-black">¡Prepara tu perfil y comienza tu viaje con PASS-ID!</span></h2>
 
         </div>
 
