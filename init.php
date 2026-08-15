@@ -1,4 +1,14 @@
 <?php
+set_include_path(__DIR__ . PATH_SEPARATOR . get_include_path());
+
+if (!defined('ROOT_URL')) {
+    $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+    $inPages = str_contains($scriptName, '/pages/');
+    $inSubdir = $inPages || str_contains($scriptName, '/migraciones_db/');
+    define('ROOT_URL', $inSubdir ? '../' : '');
+    define('PAGES_URL', $inPages ? '' : ($inSubdir ? '../pages/' : 'pages/'));
+}
+
 function startAPI($permissions = null, $models = null) {
     loadModels("usuario");
     include_once __DIR__ . "/helpers/session_security.php";
@@ -24,7 +34,7 @@ function startAPI($permissions = null, $models = null) {
 
 function requireLogin() {
     if (!isset($_SESSION["current_user"]) || !$_SESSION["current_user"]->is_authenticated()) {
-        header("Location: index.php");
+        header("Location: " . ROOT_URL . "index.php");
         exit();
     }
 }
@@ -36,7 +46,7 @@ function currentUserCan($permissions) {
 function requirePermission($permissions) {
     requireLogin();
     if (!currentUserCan($permissions)) {
-        header("Location: index.php");
+        header("Location: " . ROOT_URL . "index.php");
         exit();
     }
 }

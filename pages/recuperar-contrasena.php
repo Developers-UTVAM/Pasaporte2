@@ -1,12 +1,12 @@
 <?php
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 
 startAPI();
 
 include_once 'app/Olvidar-contrasena/controlador_recuperacion.php';
 
 if (isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()) {
-    header('Location: index.php');
+    header('Location: ' . ROOT_URL . 'index.php');
     exit();
 }
 
@@ -44,7 +44,7 @@ $mensajes = procesar_solicitud_recuperacion();
                     <button type="submit" class="btn btn-action-gradient w-100 py-3"><i class="fa-solid fa-envelope-open-text me-2"></i> Enviar Enlace</button>
                 <?php endif; ?>
 
-                <p class="text-center mt-4 mb-0"><a href="index.php" class="text-decoration-none fw-bold" style="color: var(--primary); text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);"><i class="fa-solid fa-arrow-left me-1"></i> Volver al inicio de sesión</a></p>
+                <p class="text-center mt-4 mb-0"><a href="<?php echo ROOT_URL; ?>index.php" class="text-decoration-none fw-bold" style="color: var(--primary); text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 40%, transparent);"><i class="fa-solid fa-arrow-left me-1"></i> Volver al inicio de sesión</a></p>
             </form>
         </div>
     </main>

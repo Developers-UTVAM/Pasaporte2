@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 startAPI();
 ?><!DOCTYPE html>
 <html lang="es-MX">
@@ -30,6 +30,6 @@ startAPI();
     <?php include 'templates/footer.php'; ?>
 
     <script src="https://unpkg.com/html5-qrcode"></script>
-    <script src="assets/js/escaner.js"></script>
+    <script src="<?php echo ROOT_URL; ?>assets/js/escaner.js"></script>
 </body>
 </html>

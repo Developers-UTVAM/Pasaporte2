@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . "/../init.php";
 include_once "app/usuario/model.php";
 include_once "helpers/session_security.php";
 secure_session_start();
@@ -10,7 +11,7 @@ include_once 'app/asistencia/modelo_asistencia.php';
 include_once 'app/evento/model.php';
 
 if (!isset($_SESSION["current_user"]) || (!$_SESSION["current_user"]->can("asistencia.view_asistencia") && !$_SESSION["current_user"]->can("asistencia.asistencia.*"))) {
-    header("Location: index.php");
+    header("Location: " . ROOT_URL . "index.php");
     exit();
 }
 
@@ -216,10 +217,10 @@ if ($accion === 'eliminar' && ($_SESSION["current_user"]->can("asistencia.delete
     </div>
 
 
-    <audio id="audio-qr" src="assets/sounds/qr.mp3" preload="auto"></audio>
+    <audio id="audio-qr" src="<?php echo ROOT_URL; ?>assets/sounds/qr.mp3" preload="auto"></audio>
 
     <?php include 'templates/footer.php'; ?>
-    <script src="assets/js/asistencia.js"></script>
+    <script src="<?php echo ROOT_URL; ?>assets/js/asistencia.js"></script>
     <script>
         $(document).ready(function() {
             if ($.fn.select2) {

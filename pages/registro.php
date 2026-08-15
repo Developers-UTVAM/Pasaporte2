@@ -1,12 +1,12 @@
 <?php
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 
 startAPI();
 
 include_once 'app/registro/controlador_registro.php';
 
 if (isset($_SESSION["current_user"]) && $_SESSION["current_user"]) {
-    header('Location: index.php');
+    header('Location: ' . ROOT_URL . 'index.php');
     exit();
 }
 
@@ -137,7 +137,7 @@ $errors = registrar_usuario();
 
                 <button type="submit" class="btn-minimal-pill w-100 mt-4"><i class="fa-solid fa-user-check me-2"></i> Registrarse</button>
                 
-                <a href="index.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-right-to-bracket me-2"></i> Iniciar Sesión</a>
+                <a href="<?php echo ROOT_URL; ?>index.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-right-to-bracket me-2"></i> Iniciar Sesión</a>
             </form>
         </div>
 

@@ -23,7 +23,14 @@ class DataBase
 			if (!empty($db) && is_array($db)) {
 				$config = $db;
 			} else {
-				if (file_exists(__DIR__ . '/../configs.php')) {
+				if (file_exists(__DIR__ . '/../config/configs.php')) {
+					include __DIR__ . '/../config/configs.php';
+					if (!empty($db) && is_array($db)) {
+						$config = $db;
+					} else {
+						throw new Exception('Database configuration not found in config/configs.php');
+					}
+				} elseif (file_exists(__DIR__ . '/../configs.php')) {
 					include __DIR__ . '/../configs.php';
 					if (!empty($db) && is_array($db)) {
 						$config = $db;
@@ -31,7 +38,7 @@ class DataBase
 						throw new Exception('Database configuration not found in configs.php');
 					}
 				} else {
-					throw new Exception('Database configuration not provided and configs.php not found');
+					throw new Exception('Database configuration not provided and config/configs.php not found');
 				}
 			}
 		}

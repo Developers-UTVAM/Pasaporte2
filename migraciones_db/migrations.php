@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 
 startAPI("migracion.run_migracion");
 
@@ -127,7 +127,7 @@ extract($data);
   </div>
 </div>
 
-<script src="assets/js/migration.js"></script>
+<script src="<?php echo ROOT_URL; ?>assets/js/migration.js"></script>
 
     <?php endif; ?>
     </main>
