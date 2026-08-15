@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . "/../init.php"; ?>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -33,7 +34,7 @@
             <h2 class="mb-3" style="color: var(--primary);"><i class="fa-solid fa-circle-question me-2 opacity-75"></i>¿De qué se trata?</h2>
             <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
                 En el marco de la <strong style="color: var(--secondary);">Semana de TICs</strong> de la <strong>Universidad Tecnológica de la Zona Metropolitana del Valle de México</strong>,
-                presentamos el <strong>Pasaporte TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
+                presentamos el <strong>Pasaporte TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="<?php echo PAGES_URL; ?>creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
             </p>
 
             <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-gears me-2 opacity-75"></i>¿Cómo funciona?</h2>

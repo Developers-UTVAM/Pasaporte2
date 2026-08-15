@@ -41,4 +41,6 @@ Thumbs.db
 
 temp/
 configs.php
+config/configs.php
 grok_logs.csv
+

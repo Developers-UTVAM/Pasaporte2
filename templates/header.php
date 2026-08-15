@@ -37,8 +37,8 @@ if(!function_exists("currentUserCan")) {
         <div class="container-fluid">
 
             <!-- Marca / Logo con toque brillante -->
-            <a class="navbar-brand d-flex align-items-center fw-bold" href="index.php">
-                <img src="assets/img/utvam_logo_favicon.png" alt="UTVAM" width="42" height="42" class="me-2" style="filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 60%, transparent)); object-fit: contain;">
+            <a class="navbar-brand d-flex align-items-center fw-bold" href="<?php echo ROOT_URL; ?>index.php">
+                <img src="<?php echo ROOT_URL; ?>assets/img/utvam_logo_favicon.png" alt="UTVAM" width="42" height="42" class="me-2" style="filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 60%, transparent)); object-fit: contain;">
                 <span class="shiny-title d-none d-sm-inline">UTVAM Pasaporte</span>
                 <span class="shiny-title d-inline d-sm-none fs-5">UTVAM</span>
             </a>
@@ -47,11 +47,11 @@ if(!function_exists("currentUserCan")) {
             <div class="d-flex align-items-center order-lg-last">
                 <?php if(isset($_SESSION["current_user"]) && $_SESSION["current_user"]->is_authenticated()): ?>
                     <?php if(currentUserCan("otro.restaturar_contraseña")): ?>
-                    <a href="olvide_mi_contrasena.php" class="me-2 me-sm-3 text-white text-decoration-none icon-action-header" title="Cambiar Contraseña">
+                    <a href="<?php echo PAGES_URL; ?>olvide_mi_contrasena.php" class="me-2 me-sm-3 text-white text-decoration-none icon-action-header" title="Cambiar Contraseña">
                         <i class="fa-solid fa-key fs-5"></i>
                     </a>
                     <?php endif; ?>
-                    <a href="logout.php" title="Cerrar Sesión" class="text-decoration-none icon-action-header me-2">
+                    <a href="<?php echo PAGES_URL; ?>logout.php" title="Cerrar Sesión" class="text-decoration-none icon-action-header me-2">
                         <i class="fa-solid fa-right-from-bracket fs-5"></i>
                     </a>
                     <button id="menu-toggler" class="navbar-toggler ms-2 border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nav-principal" aria-controls="nav-principal" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ if(!function_exists("currentUserCan")) {
 
                     <?php if (currentUserCan("otro.update_perfil")): ?>
                     <li class="nav-item text-center px-2">
-                        <a href="mi_perfil.php" class="nav-link nav-link-custom">
+                        <a href="<?php echo PAGES_URL; ?>mi_perfil.php" class="nav-link nav-link-custom">
                             <i class="fa-solid fa-user-gear mb-1 d-block d-lg-inline"></i> Mi Perfil
                         </a>
                     </li>
@@ -75,21 +75,21 @@ if(!function_exists("currentUserCan")) {
 
                     <?php if (currentUserCan("asistencia.add_asistencia")): ?>
                         <li class="nav-item text-center px-2">
-                            <a href="asistencia.php" class="nav-link nav-link-custom">
+                            <a href="<?php echo PAGES_URL; ?>asistencia.php" class="nav-link nav-link-custom">
                                 <i class="fa-solid fa-check mb-1 d-block d-lg-inline"></i> Asistencia
                         </a></li>
                     <?php endif; ?>
 
                     <?php if (currentUserCan("otro.autorregistrarse")): ?>
                     <li class="nav-item text-center px-2">
-                        <a href="autoregistro.php" class="nav-link nav-link-custom">
+                        <a href="<?php echo PAGES_URL; ?>autoregistro.php" class="nav-link nav-link-custom">
                             <i class="fa-solid fa-user-plus mb-1 d-block d-lg-inline"></i> Eventos
                     </a></li>
                     <?php endif; ?>
 
                     <?php if (currentUserCan("otro.registrar_en_evento_rapido")): ?>
                         <li class="nav-item text-center px-2">
-                            <a href="registrorapidoevento.php" class="nav-link nav-link-custom">
+                            <a href="<?php echo PAGES_URL; ?>registrorapidoevento.php" class="nav-link nav-link-custom">
                                 <i class="fa-solid fa-bolt mb-1 d-block d-lg-inline"></i> Registro Rápido
                         </a></li>
                     <?php endif; ?>
@@ -104,18 +104,18 @@ if(!function_exists("currentUserCan")) {
                             <ul class="dropdown-menu dropdown-menu-glass dropdown-menu-end border-0">
 
                             <?php if (currentUserCan("otro.registrar_en_evento")): ?>
-                                <li><a href="registroevento.php" class="dropdown-item">
+                                <li><a href="<?php echo PAGES_URL; ?>registroevento.php" class="dropdown-item">
                                     <i class="fa-solid fa-user-plus me-2 text-primary"></i> Administrar Registros
                                 </a></li>
                             <?php endif; ?>
 
                             <?php if (currentUserCan("evento.*")): ?>
-                                <li><a href="eventos.php" class="dropdown-item">
+                                <li><a href="<?php echo PAGES_URL; ?>eventos.php" class="dropdown-item">
                                     <i class="fa-regular fa-calendar-days me-2 text-primary"></i> Eventos
                                 </a></li>
                             <?php endif; ?>
                             <li>
-                                <a href="mis_eventos.php" class="dropdown-item">
+                                <a href="<?php echo PAGES_URL; ?>mis_eventos.php" class="dropdown-item">
                                     <i class="fa-solid fa-calendar-check me-2 text-primary"></i> Mis Eventos
                                 </a>
                             </li>
@@ -134,41 +134,41 @@ if(!function_exists("currentUserCan")) {
                             <ul class="dropdown-menu dropdown-menu-glass dropdown-menu-end border-0">
 
                                 <?php if (currentUserCan("migracion.run_migracion")): ?>
-                                    <li><a href="migrations.php" class="dropdown-item">
+                                    <li><a href="<?php echo ROOT_URL; ?>migraciones_db/migrations.php" class="dropdown-item">
                                         <i class="fa-solid fa-database me-2 text-secondary"></i> Migraciones
                                     </a></li>
                                 <?php endif; ?>
 
                                 <?php if (currentUserCan("reporte.usuario")): ?>
-                                    <li><a href="reporte.php?type=usuario" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>reporte.php?type=usuario" class="dropdown-item">
                                         <i class="fa-solid fa-users me-2 text-secondary"></i> Reporte Usuarios
                                     </a></li>
                                 <?php endif; ?>
 
                                 <?php if (currentUserCan("reporte.evento")): ?>
-                                    <li><a href="reporte.php?type=evento" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>reporte.php?type=evento" class="dropdown-item">
                                         <i class="fa-solid fa-calendar-day me-2 text-secondary"></i> Reporte Eventos
                                     </a></li>
-                                    <li><a href="reporte.php?type=evento-usuario" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>reporte.php?type=evento-usuario" class="dropdown-item">
                                         <i class="fa-regular fa-chart-bar me-2 text-secondary"></i> Reporte Evt-Usuario
                                     </a></li>
                                 <?php endif; ?>
 
                                 <?php if (currentUserCan("usuario.*")): ?>
                                     <li><hr class="dropdown-divider border-secondary opacity-25"></li>
-                                    <li><a href="usuarios.php" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>usuarios.php" class="dropdown-item">
                                         <i class="fa-solid fa-users-gear me-2 text-primary"></i> Usuarios
                                     </a></li>
                                 <?php endif; ?>
 
                                 <?php if (currentUserCan("perfil.*")): ?>
-                                    <li><a href="perfiles.php" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>perfiles.php" class="dropdown-item">
                                         <i class="fa-solid fa-id-badge me-2 text-primary"></i> Perfiles
                                     </a></li>
                                 <?php endif; ?>
 
                                 <?php if (currentUserCan("permiso.*")): ?>
-                                    <li><a href="permisos.php" class="dropdown-item">
+                                    <li><a href="<?php echo PAGES_URL; ?>permisos.php" class="dropdown-item">
                                         <i class="fa-solid fa-unlock-keyhole me-2 text-primary"></i> Permisos
                                     </a></li>
                                 <?php endif; ?>

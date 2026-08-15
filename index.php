@@ -51,10 +51,10 @@ if(checkVar("accion", "login")) {
 
                         <button type="submit" class="btn-minimal-pill w-100"><i class="fa-solid fa-right-to-bracket me-2"></i> Entrar</button>
 
-                        <a href="registro.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-user-plus me-2"></i> Crear Cuenta</a>
+                        <a href="<?php echo PAGES_URL; ?>registro.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-user-plus me-2"></i> Crear Cuenta</a>
 
                         <div class="text-center mt-4">
-                            <a href="recuperar-contrasena.php" class="link-plain text-decoration-none small text-white-50" style="font-size: 0.85rem;"><i class="fa-solid fa-key me-1"></i> ¿Olvidaste tu contraseña? Recupérala aquí</a>
+                            <a href="<?php echo PAGES_URL; ?>recuperar-contrasena.php" class="link-plain text-decoration-none small text-white-50" style="font-size: 0.85rem;"><i class="fa-solid fa-key me-1"></i> ¿Olvidaste tu contraseña? Recupérala aquí</a>
                         </div>
                     </form>
                 </div>
@@ -194,7 +194,7 @@ if(checkVar("accion", "login")) {
                             <?php endif; ?>
                         </div>
                         <div class="col-md-4 p-0 text-md-end text-center d-flex flex-column gap-2 justify-content-center align-items-md-end align-items-center">
-                            <a href="autoregistro.php" class="btn btn-sm btn-outline-secondary rounded-pill px-4" style="max-width: 200px;"><i class="fa-solid fa-calendar-plus me-1"></i> Ver Catálogo</a>
+                            <a href="<?php echo PAGES_URL; ?>autoregistro.php" class="btn btn-sm btn-outline-secondary rounded-pill px-4" style="max-width: 200px;"><i class="fa-solid fa-calendar-plus me-1"></i> Ver Catálogo</a>
                             <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="text-decoration-none small mt-1" style="color: var(--secondary); text-shadow: 0 0 8px color-mix(in oklab, var(--secondary) 30%, transparent);">
                                 <i class="fab fa-instagram me-1"></i> @cybervibe_2026
                             </a>

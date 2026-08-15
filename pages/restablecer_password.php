@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 
 startAPI();
 
@@ -29,7 +29,7 @@ $mensajes = procesar_restablecimiento_password($token);
 
                 <?php if (!empty($mensajes['exito'])): ?>
                     <div class="alert alert-success" role="alert"><?php echo htmlspecialchars($mensajes['exito']); ?></div>
-                    <p class="text-center mt-4 mb-0"><a href="index.php" class="btn btn-primary w-100">Ir a Iniciar Sesión</a></p>
+                    <p class="text-center mt-4 mb-0"><a href="<?php echo ROOT_URL; ?>index.php" class="btn btn-primary w-100">Ir a Iniciar Sesión</a></p>
                 <?php else: ?>
                     <?php if ($mensajes['token_valido']): ?>
                         <div class="mb-3">

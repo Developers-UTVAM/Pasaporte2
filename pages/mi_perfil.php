@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . "/init.php";
+include_once __DIR__ . "/../init.php";
 
 startAPI("otro.update_perfil");
 
@@ -24,7 +24,7 @@ if ($accion === 'update') {
         $object->save();
 
         $object->logout();
-        header('Location: index.php?updated=1');
+        header('Location: ' . ROOT_URL . 'index.php?updated=1');
         exit();
     } catch (Exception $e) {
         error_log("Error actualizando perfil propio: " . $e->getMessage());

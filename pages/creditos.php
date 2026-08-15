@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . "/../init.php"; ?>
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
@@ -27,7 +28,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/tt.png" alt="Oscar Camara" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/tt.png" alt="Oscar Camara" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Oscar Camara</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;"></p>
@@ -37,7 +38,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/nito.jpg" alt="Nicolás Hernández" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/nito.jpg" alt="Nicolás Hernández" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Nicolás Hernández</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;">
@@ -51,7 +52,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/yaeljl.jpg" alt="Irving Juárez" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/yaeljl.jpg" alt="Irving Juárez" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Irving Juárez</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;">
@@ -66,7 +67,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/tt.png" alt="Ángel Ortiz" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/tt.png" alt="Ángel Ortiz" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Ángel Ortiz</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;"></p>
@@ -76,7 +77,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/tt.png" alt="Dayron Romero" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/tt.png" alt="Dayron Romero" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Dayron Romero</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;"></p>
@@ -86,7 +87,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/jona.jpg" alt="Jonathan Valenzuela" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/jona.jpg" alt="Jonathan Valenzuela" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Jonathan Valenzuela</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;">
@@ -114,7 +115,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/dd.png" alt="Leonardo Polo" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/dd.png" alt="Leonardo Polo" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Leonardo Polo</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;"></p>
@@ -124,7 +125,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/dd.png" alt="Joshua Torres" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/dd.png" alt="Joshua Torres" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Joshua Torres</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;"></p>
@@ -142,7 +143,7 @@
 
             <div class="col">
                 <div class="card h-100 glass-panel shadow-lg border-0" style="border-radius: 24px; overflow: hidden;">
-                    <img src="assets/img/the-tech-pantheon/rubenrg.jpg" alt="Rubén Ramírez Gómez" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
+                    <img src="<?php echo ROOT_URL; ?>assets/img/the-tech-pantheon/rubenrg.jpg" alt="Rubén Ramírez Gómez" class="card-img-top" style="height: 250px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--glass-border);">
                     <div class="card-body p-4">
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Rubén Ramírez</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;">

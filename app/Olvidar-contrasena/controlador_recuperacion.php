@@ -3,8 +3,12 @@ include_once 'app/usuario/model.php';
 include_once 'app/Olvidar-contrasena/modelo_recuperacion.php';
 function enviar_correo_smtp($destinatario, $asunto, $cuerpo) {
   global $smtp;
-    if (empty($smtp) && file_exists(__DIR__ . '/../../configs.php')) {
-        include __DIR__ . '/../../configs.php';
+    if (empty($smtp)) {
+        if (file_exists(__DIR__ . '/../../config/configs.php')) {
+            include __DIR__ . '/../../config/configs.php';
+        } elseif (file_exists(__DIR__ . '/../../configs.php')) {
+            include __DIR__ . '/../../configs.php';
+        }
     }
 
     $smtp_host = $smtp['host'] ?? 'ssl://utvam.imagilex.com.mx';
