@@ -39,7 +39,7 @@ if(!function_exists("currentUserCan")) {
             <!-- Marca / Logo con toque brillante -->
             <a class="navbar-brand d-flex align-items-center fw-bold" href="<?php echo ROOT_URL; ?>index.php">
                 <img src="<?php echo ROOT_URL; ?>assets/img/utvam_logo_favicon.png" alt="UTVAM" width="42" height="42" class="me-2" style="filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 60%, transparent)); object-fit: contain;">
-                <span class="shiny-title d-none d-sm-inline">UTVAM Pasaporte</span>
+                <span class="shiny-title d-none d-sm-inline">UTVAM PASS-ID</span>
                 <span class="shiny-title d-inline d-sm-none fs-5">UTVAM</span>
             </a>
 

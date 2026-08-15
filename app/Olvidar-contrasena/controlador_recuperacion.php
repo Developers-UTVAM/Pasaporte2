@@ -40,7 +40,7 @@ function enviar_correo_smtp($destinatario, $asunto, $cuerpo) {
     fwrite($socket, "RCPT TO: <$destinatario>\r\n"); $leer_respuesta();
     fwrite($socket, "DATA\r\n"); $leer_respuesta();
 
-    $headers = "MIME-Version: 1.0\r\nContent-type: text/plain; charset=utf-8\r\nFrom: Sistema Pasaporte UTVAM <$smtp_user>\r\nTo: <$destinatario>\r\nSubject: =?utf-8?B?" . base64_encode($asunto) . "?=\r\n";
+    $headers = "MIME-Version: 1.0\r\nContent-type: text/plain; charset=utf-8\r\nFrom: Sistema PASS-ID UTVAM <$smtp_user>\r\nTo: <$destinatario>\r\nSubject: =?utf-8?B?" . base64_encode($asunto) . "?=\r\n";
     fwrite($socket, $headers . "\r\n" . $cuerpo . "\r\n.\r\n"); $leer_respuesta();
     fwrite($socket, "QUIT\r\n"); fclose($socket);
     return true;

@@ -24,9 +24,8 @@ if(checkVar("accion", "login")) {
     <main class="container flex-grow-1 d-flex flex-column">
 
         <?php if(!(isset($_SESSION["current_user"]) && $_SESSION["current_user"])): ?>
-            <div class="text-center mt-4 mb-4 animate-on-load">
+            <div class="text-center mt-4 mb-3 animate-on-load">
                 <h1 class="shiny-title big-text mb-2" style="font-weight: 900; line-height: 1.1; letter-spacing: -1px;">Semana de TICs 2026</h1>
-                <p class="fs-5 mt-2 text-light opacity-75">Inicia sesión para acceder a tu pasaporte digital</p>
             </div>
 
             <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center pb-5 position-relative" style="z-index: 1;">
@@ -35,9 +34,9 @@ if(checkVar("accion", "login")) {
 
                 <div class="card w-100 login-card animate-on-load delay-1">
                     <form id="main-form" method="post" autocomplete="off">
-                        <div class="text-center mb-5">
+                        <div class="text-center mb-4">
                             <h2 class="fw-black mb-1" style="color:#fff; font-size:1.75rem; letter-spacing:-0.04em;">Iniciar Sesión</h2>
-                            <p class="small m-0" style="color:rgba(255,255,255,0.45); letter-spacing:0.01em;">Ingresa tus datos para acceder al portal</p>
+                            <p class="small m-0" style="color:rgba(255,255,255,0.6); letter-spacing:0.01em;">Ingresa tus datos para acceder a tu <strong>PASS-ID</strong> digital</p>
                         </div>
 
                         <?php if(isset($err) && $err):?>
@@ -118,7 +117,7 @@ if(checkVar("accion", "login")) {
                 <div class="glass-panel bento-card bento-qr bento-delay-1 p-0 overflow-hidden d-flex flex-column align-items-stretch">
                     <!-- Cabecera de la credencial -->
                     <div class="qr-badge-header d-flex justify-content-between align-items-center px-4 py-3" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--glass-border);">
-                        <span class="small fw-black text-uppercase tracking-wider text-light opacity-75" style="font-size: 11px; letter-spacing: 1px;"><i class="fa-solid fa-passport me-1 text-primary"></i> PASAPORTE DIGITAL</span>
+                        <span class="small fw-black text-uppercase tracking-wider text-light opacity-75" style="font-size: 11px; letter-spacing: 1px;"><i class="fa-solid fa-id-card me-1 text-primary"></i> PASS-ID DIGITAL</span>
                         <img src="assets/img/utvam_logo_favicon.png" alt="UTVAM" width="22" height="22" style="object-fit: contain;">
                     </div>
                     <!-- Cuerpo central con el QR -->

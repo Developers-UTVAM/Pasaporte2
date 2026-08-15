@@ -14,8 +14,8 @@
             <!-- Copyright -->
             <div class="col-sm-6 text-center text-sm-end pe-sm-4">
                 <a href="<?php echo PAGES_URL; ?>acerca-de.php" class="footer-link small text-uppercase letter-spacing-wide">
-                    <i class="fa-solid fa-passport me-1 opacity-50"></i>
-                    Pasaporte TICs &copy; <?php echo date("Y"); ?>
+                    <i class="fa-solid fa-id-card me-1 opacity-50"></i>
+                    PASS-ID TICs &copy; <?php echo date("Y"); ?>
                 </a>
             </div>
 
