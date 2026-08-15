@@ -69,7 +69,7 @@ if (empty($errors)) {
     <main class="container flex-grow-1 d-flex flex-column py-4">
         <div class="text-center mb-5 animate-on-load">
             <h2 class="mb-2"><span class="shiny-title fw-bold"><i class="fa-solid fa-calendar-plus me-2"></i> Registro a Eventos</span></h2>
-            <p class="text-light opacity-75 fs-5">Inscríbete a las próximas actividades de la Semana de TICs</p>
+            <p class="text-light opacity-75 fs-5">Inscríbete a las próximas actividades del evento</p>
         </div>
 
         <?php include 'templates/messages.php'; ?>

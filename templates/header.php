@@ -20,14 +20,40 @@ if(!function_exists("currentUserCan")) {
 </div>
 <script>
     window.lottieSpinnerData = <?php echo file_get_contents(__DIR__ . '/../assets/spinner/spinner.json'); ?>;
-    if (typeof lottie !== 'undefined' && window.lottieSpinnerData) {
-        window.globalPreloaderAnim = lottie.loadAnimation({
-            container: document.getElementById('lottie-spinner'),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            animationData: window.lottieSpinnerData
-        });
+    window.brandLogoData = <?php echo file_get_contents(__DIR__ . '/../assets/logo/logo.json'); ?>;
+
+    function renderLottieBrandLogos() {
+        if (typeof lottie === 'undefined') return;
+
+        if (window.lottieSpinnerData && document.getElementById('lottie-spinner') && !document.getElementById('lottie-spinner').hasChildNodes()) {
+            window.globalPreloaderAnim = lottie.loadAnimation({
+                container: document.getElementById('lottie-spinner'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                animationData: window.lottieSpinnerData
+            });
+        }
+
+        if (window.brandLogoData) {
+            document.querySelectorAll('#brand-lottie-logo, #badge-lottie-logo').forEach(function(container) {
+                if (container && !container.querySelector('svg')) {
+                    lottie.loadAnimation({
+                        container: container,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        animationData: window.brandLogoData
+                    });
+                }
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderLottieBrandLogos);
+    } else {
+        renderLottieBrandLogos();
     }
 </script>
 
@@ -36,11 +62,10 @@ if(!function_exists("currentUserCan")) {
     <nav class="navbar navbar-expand-lg navbar-dark py-2">
         <div class="container-fluid">
 
-            <!-- Marca / Logo con toque brillante -->
-            <a class="navbar-brand d-flex align-items-center fw-bold" href="<?php echo ROOT_URL; ?>index.php">
-                <img src="<?php echo ROOT_URL; ?>assets/img/utvam_logo_favicon.png" alt="UTVAM" width="42" height="42" class="me-2" style="filter: drop-shadow(0 0 8px color-mix(in oklab, var(--primary) 60%, transparent)); object-fit: contain;">
-                <span class="shiny-title d-none d-sm-inline">UTVAM Pasaporte</span>
-                <span class="shiny-title d-inline d-sm-none fs-5">UTVAM</span>
+            <!-- Marca / Logo con cápsula de cristal brillante -->
+            <a class="navbar-brand d-flex align-items-center brand-pill text-decoration-none" href="<?php echo ROOT_URL; ?>index.php">
+                <div id="brand-lottie-logo" style="width: 36px; height: 36px;" class="me-2 d-inline-flex align-items-center justify-content-center"></div>
+                <span class="shiny-title fw-black tracking-wider brand-title-text fs-5" style="letter-spacing: 0.5px;">PASS<span style="color: var(--primary);">-ID</span></span>
             </a>
 
             <!-- Botones de Acción (Móvil y Derecha) -->

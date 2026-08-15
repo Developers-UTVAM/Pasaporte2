@@ -43,7 +43,7 @@
                         <h4 class="card-title fw-bold mb-3" style="color: var(--primary);">Nicolás Hernández</h4>
                         <p class="card-text" style="color: var(--text-color); opacity: 0.85; line-height: 1.6;">
                             Soy Nicolas, estudiante de desarrollo de software. Participé apoyando a la universidad para crear
-                            esta app web de pasaporte para nuestra semana de TICs. Cuando necesito despejarme, me gusta editar
+                            esta app web de PASS-ID para nuestra semana de TICs. Cuando necesito despejarme, me gusta editar
                             fotos y videos, jugar unas partidas de Minecraft o pasar un buen rato con mi novia y mi gato.
                         </p>
                     </div>

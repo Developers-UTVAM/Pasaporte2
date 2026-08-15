@@ -13,10 +13,10 @@
         <div class="text-center my-4">
             <h1 class="fw-bold mb-2">
                 <i class="fa-solid fa-passport me-2" style="color: var(--primary);"></i>
-                Pasaporte TICs
+                PASS-ID TICs
             </h1>
             <h4 style="color: var(--text-color); opacity: 0.8; font-weight: var(--font-weight-light);">
-            Pasaporte TICs: Tu Ruta al Conocimiento
+            PASS-ID TICs: Tu Ruta al Conocimiento
             </h4>
         </div>
 
@@ -33,20 +33,20 @@
 
             <h2 class="mb-3" style="color: var(--primary);"><i class="fa-solid fa-circle-question me-2 opacity-75"></i>¿De qué se trata?</h2>
             <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
-                En el marco de la <strong style="color: var(--secondary);">Semana de TICs</strong> de la <strong>Universidad Tecnológica de la Zona Metropolitana del Valle de México</strong>,
-                presentamos el <strong>Pasaporte TICs</strong>, una innovadora solución digital diseñada por el equipo <a href="<?php echo PAGES_URL; ?>creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
+                En el marco del desarrollo de la plataforma,
+                presentamos <strong>PASS-ID</strong>, una innovadora solución digital diseñada por el equipo <a href="<?php echo PAGES_URL; ?>creditos.php" class="text-decoration-none fw-bold" style="color: var(--primary);"><em>The Tech Pantheon</em></a>.
             </p>
 
             <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-gears me-2 opacity-75"></i>¿Cómo funciona?</h2>
             <p class="fs-5 mb-4" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
-                El <strong>Pasaporte TICs</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
+                El <strong>PASS-ID</strong> es una plataforma de seguimiento dinámico que acompaña a cada estudiante en su recorrido por el
                 evento. Olvida los registros tradicionales; con esta herramienta, los alumnos podrán validar su asistencia y
                 participación en conferencias, talleres y actividades especiales de manera ágil y moderna.
             </p>
 
             <h2 class="mb-3 mt-2" style="color: var(--primary);"><i class="fa-solid fa-bullseye me-2 opacity-75"></i>Nuestra Misión</h2>
             <p class="fs-5 mb-3" style="color: var(--text-color); opacity: 0.85; line-height: 1.7;">
-                Cada participación cuenta. A través de este "pasaporte digital", los estudiantes pueden:
+                Cada participación cuenta. A través de este "PASS-ID digital", los estudiantes pueden:
             </p>
 
             <ul class="list-unstyled fs-5 mb-4 ms-2 ms-md-4" style="color: var(--text-color); opacity: 0.9;">
@@ -63,11 +63,11 @@
 
             <hr style="border-color: var(--glass-border); margin: 2rem 0;">
 
-            <h2 class="text-center mb-0 mt-3" style="line-height: 1.3;"><span class="colores-gay fw-black">¡Prepara tu perfil y comienza tu viaje por la Semana de TICs!</span></h2>
+            <h2 class="text-center mb-0 mt-3" style="line-height: 1.3;"><span class="colores-gay fw-black">¡Prepara tu perfil y comienza tu viaje con PASS-ID!</span></h2>
 
         </div>
 
-        <p class="text-center mb-2" style="color: var(--text-color); opacity: 0.6; font-size: 0.9rem;">Pasaporte TICs. Copyright &copy; <?php echo date("Y"); ?>. Todos los derechos reservados.</p>
+        <p class="text-center mb-2" style="color: var(--text-color); opacity: 0.6; font-size: 0.9rem;">PASS-ID TICs. Copyright &copy; <?php echo date("Y"); ?>. Todos los derechos reservados.</p>
 
         <div class="row mb-5">
             <div class="col text-center">
@@ -89,13 +89,13 @@
         <!-- SECCIÓN 4: Aviso de Privacidad (Entrada final) -->
         <div class="animate-on-load delay-4 mb-5">
             <div class="card glass-panel p-4 p-md-5 border-0 shadow-lg">
-                <h1 class="mb-5 text-primary fw-bold" style="font-size: var(--text-3xl);">Aviso de Privacidad - Pasaporte TICs 2026</h1>
+                <h1 class="mb-5 text-primary fw-bold" style="font-size: var(--text-3xl);">Aviso de Privacidad - PASS-ID TICs 2026</h1>
 
                 <!-- Reestructurado para mejor lectura y estilo -->
                 <div class="row row-cols-1 row-cols-lg-2 g-4">
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">1. Responsable</h2>
-                        <p class="text-light opacity-75 small">Proyecto Pasaporte TICs 2026 (carrera de TICs & Prof. Rubén Ramírez). Domicilio digital: <a href="http://utvam.imagilex.com.mx/pasaporte">utvam.imagilex.com.mx</a></p>
+                        <p class="text-light opacity-75 small">Proyecto PASS-ID TICs 2026 (carrera de TICs & Prof. Rubén Ramírez). Domicilio digital: <a href="http://utvam.imagilex.com.mx/pasaporte">utvam.imagilex.com.mx</a></p>
                     </div>
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">2. Datos Recabados</h2>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">3. Finalidad</h2>
-                        <p class="text-light opacity-75 small">Gestión de acceso, control de asistencia, reportes de acreditación para UTVAM y estadística anonimizada.</p>
+                        <p class="text-light opacity-75 small">Gestión de acceso, control de asistencia, reportes de acreditación institucional y estadística anonimizada.</p>
                     </div>
                     <div class="col card bg-transparent border-0 p-3">
                         <h2 class="h4 text-secondary fw-bold">4. Derechos ARCO</h2>
@@ -118,7 +118,7 @@
 
         <!-- Footer interno -->
         <div class="text-center mt-auto pb-4 animate-on-load delay-4 opacity-50">
-             <p class="text-muted small">Pasaporte TICs. Copyright &copy; 2026. Todos los derechos reservados.</p>
+             <p class="text-muted small">PASS-ID TICs. Copyright &copy; 2026. Todos los derechos reservados.</p>
         </div>
 
     </main>
