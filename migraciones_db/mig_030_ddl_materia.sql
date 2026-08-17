@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS materia (
     creditos INT UNSIGNED NOT NULL DEFAULT 0,
     horas_semana INT UNSIGNED NOT NULL DEFAULT 0,
     cuatrimestre INT UNSIGNED NULL,             -- Cuatrimestre sugerido (1-12+)
-    carrera_id BIGINT NULL,
+    carrera_id BIGINT UNSIGNED NULL,
     activa TINYINT NOT NULL DEFAULT 1,
     CONSTRAINT fk_materia_carrera FOREIGN KEY (carrera_id)
         REFERENCES carrera(id) ON DELETE SET NULL ON UPDATE CASCADE
