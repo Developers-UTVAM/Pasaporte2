@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS horario (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     materia_id BIGINT NOT NULL,
     profesor_id BIGINT NOT NULL,              -- FK a usuario.id (usuario con perfil profesor)
-    aula_id BIGINT NULL,
+    aula_id BIGINT UNSIGNED NULL,
     grupo VARCHAR(10) NOT NULL DEFAULT 'A',   -- Ej: "A", "B", "101"
     dia_semana ENUM('lunes','martes','miercoles','jueves','viernes','sabado') NOT NULL,
     hora_inicio TIME NOT NULL,
