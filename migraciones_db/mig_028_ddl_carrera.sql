@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS carrera (
-    id      BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    clave   VARCHAR(20)     NOT NULL,
-    nombre  VARCHAR(200)    NOT NULL,
-    activa  TINYINT(1)      NOT NULL DEFAULT 1,
-    PRIMARY KEY (id),
-    UNIQUE KEY uk_carrera_clave (clave)
-) ;
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    clave VARCHAR(20) NOT NULL UNIQUE,
+    nombre VARCHAR(200) NOT NULL,
+    siglas VARCHAR(10) NULL,
+    nivel VARCHAR(50) NULL,
+    activa TINYINT NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
