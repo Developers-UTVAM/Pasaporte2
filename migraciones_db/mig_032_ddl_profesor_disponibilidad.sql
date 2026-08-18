@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS profesor_disponibilidad (
-    id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    profesor_id BIGINT UNSIGNED NOT NULL,
+    id          BIGINT(20)      NOT NULL AUTO_INCREMENT,
+    profesor_id BIGINT(20)      NOT NULL,
     dia_semana  ENUM('lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
                                 NOT NULL,
     hora_inicio TIME            NOT NULL,
@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS profesor_disponibilidad (
         FOREIGN KEY (profesor_id) REFERENCES usuario (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-) ;
+);
