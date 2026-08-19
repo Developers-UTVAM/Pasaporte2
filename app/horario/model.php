@@ -18,13 +18,19 @@ class Horario extends Model
         return "SELECT h.id, h.materia_id, h.profesor_id, h.aula_id, h.grupo,
                        h.dia_semana, h.hora_inicio, h.hora_fin, h.periodo, h.activo,
                        m.nombre AS materia_nombre, m.clave AS materia_clave,
-                       m.carrera_id, m.cuatrimestre,
-                       CONCAT(u.nombre, ' ', u.apaterno, ' ', IFNULL(u.amaterno, '')) AS profesor_nombre,
+                       m.carrera_id, m.periodo AS materia_periodo,
+                       TRIM(CONCAT(u.nombre, ' ', u.apaterno, ' ', IFNULL(u.amaterno, ''))) AS profesor_nombre,
                        a.codigo AS aula_codigo, a.edificio AS aula_edificio
                 FROM horario h
                 INNER JOIN materia m ON m.id = h.materia_id
                 INNER JOIN usuario u ON u.id = h.profesor_id
                 LEFT JOIN aula a ON a.id = h.aula_id";
+    }
+
+    public function getTodosEnriquecidos(): array
+    {
+        $sql = $this->selectEnriquecidoBase() . " ORDER BY h.periodo DESC, h.dia_semana, h.hora_inicio";
+        return $this->query($sql);
     }
 
     public function getHorariosPorPeriodo(string $periodo): array
@@ -43,19 +49,12 @@ class Horario extends Model
         return $this->query($sql, [$profesorId, $periodo]);
     }
 
-    public function getHorariosPorCarrera(int $carreraId, string $periodo, ?int $cuatrimestre = null): array
+    public function getHorariosPorCarrera(int $carreraId, string $periodo): array
     {
         $sql = $this->selectEnriquecidoBase() . "
-                WHERE m.carrera_id = ? AND h.periodo = ? AND h.activo = 1";
-        $params = [$carreraId, $periodo];
-
-        if ($cuatrimestre !== null) {
-            $sql .= " AND m.cuatrimestre = ?";
-            $params[] = $cuatrimestre;
-        }
-
-        $sql .= " ORDER BY h.dia_semana, h.hora_inicio";
-        return $this->query($sql, $params);
+                WHERE m.carrera_id = ? AND h.periodo = ? AND h.activo = 1
+                ORDER BY h.dia_semana, h.hora_inicio";
+        return $this->query($sql, [$carreraId, $periodo]);
     }
 
     public function getHorariosPorAula(int $aulaId, string $periodo): array
