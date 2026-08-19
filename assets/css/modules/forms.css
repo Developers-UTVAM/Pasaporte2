@@ -711,6 +711,39 @@ body.login-page #main-footer {
     box-shadow: 0 0 25px var(--primary) !important;
 }
 
+/* Legibilidad de etiquetas, leyendas y controles deshabilitados (fieldset disabled) en modo oscuro */
+legend,
+fieldset[disabled] legend,
+fieldset[disabled] p,
+fieldset[disabled] h1,
+fieldset[disabled] h2,
+fieldset[disabled] h3,
+fieldset[disabled] h4,
+fieldset[disabled] h5,
+fieldset[disabled] h6,
+.form-floating > label,
+.form-floating > .form-control:disabled ~ label,
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+fieldset[disabled] label,
+fieldset[disabled] .form-check-label,
+fieldset[disabled] .form-control,
+fieldset[disabled] .form-select,
+.form-check-input:disabled ~ label,
+.form-check-input:disabled ~ .form-check-label,
+.form-control:disabled,
+.form-select:disabled {
+    color: #e2e8f0 !important;
+    opacity: 0.95 !important;
+    -webkit-text-fill-color: #e2e8f0 !important;
+}
+
+fieldset[disabled] .form-check-input,
+.form-check-input:disabled {
+    opacity: 0.7 !important;
+    filter: brightness(1.3);
+}
+
 
 
 

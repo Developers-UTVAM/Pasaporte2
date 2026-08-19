@@ -139,62 +139,170 @@ if(checkVar("accion", "login")) {
                     </div>
                 </div>
 
+                <?php
+                // Estadísticas académicas para el panel del alumno
+                $inscripcionTableDash = new Table('inscripcion');
+                $materiasInscritasDash = $inscripcionTableDash->query("SELECT * FROM inscripcion WHERE usuario_id = ? AND periodo = ? AND activa = 1", [$usuario_id, '2026-1']);
+                $total_materias = count($materiasInscritasDash);
+
+                include_once __DIR__ . "/app/horario/model.php";
+                $horarioModelDash = new Horario();
+                $clases_alumno = $horarioModelDash->getHorariosPorAlumno($usuario_id, '2026-1');
+                $horas_semanales = 0;
+                foreach ($clases_alumno as $ca) {
+                    $horas_semanales += (strtotime($ca['hora_fin']) - strtotime($ca['hora_inicio'])) / 3600;
+                }
+                $horas_semanales = round($horas_semanales, 1);
+                ?>
+
                 <!-- 2. Módulo Bienvenida y Estadísticas -->
                 <div class="glass-panel bento-card bento-welcome bento-delay-2 p-4 d-flex flex-column justify-content-between">
                     <div>
-                        <h2 class="mb-2"><span class="shiny-title fw-bold">¡Hola, <?php echo htmlspecialchars((string)($_SESSION["current_user"] ?? '')); ?>!</span></h2>
-                        <p class="text-light opacity-75 fs-6 mb-4">Aquí tienes el resumen de tu participación en el portal PASS-ID 2026.</p>
+                        <h2 class="mb-1"><span class="shiny-title fw-bold">¡Hola, <?php echo htmlspecialchars((string)($_SESSION["current_user"] ?? '')); ?>!</span></h2>
+                        <p class="text-light opacity-75 small mb-3">Resumen de tu actividad académica y eventos PASS-ID 2026.</p>
                     </div>
 
-                    <div class="row g-3 text-center mb-2">
-                        <div class="col-6">
-                            <div class="stat-box p-3 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
-                                <i class="fa-regular fa-calendar-check text-primary fs-3 mb-2"></i>
-                                <div class="fs-4 fw-black text-white"><?php echo $total_registrados; ?></div>
-                                <div class="text-muted small text-uppercase" style="font-size: 10px; letter-spacing: 0.5px;">Registrados</div>
+                    <div class="row g-2 text-center mb-2">
+                        <div class="col-3">
+                            <div class="stat-box p-2 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+                                <i class="fa-solid fa-book text-primary fs-4 mb-1"></i>
+                                <div class="fs-5 fw-black text-white"><?php echo $total_materias; ?></div>
+                                <div class="text-muted small text-uppercase" style="font-size: 9px; letter-spacing: 0.5px;">Materias</div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="stat-box p-3 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
-                                <i class="fa-solid fa-user-check text-success fs-3 mb-2"></i>
-                                <div class="fs-4 fw-black text-white"><?php echo $total_asistidos; ?></div>
-                                <div class="text-muted small text-uppercase" style="font-size: 10px; letter-spacing: 0.5px;">Asistencias</div>
+                        <div class="col-3">
+                            <div class="stat-box p-2 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+                                <i class="fa-solid fa-clock text-info fs-4 mb-1"></i>
+                                <div class="fs-5 fw-black text-white"><?php echo $horas_semanales; ?>h</div>
+                                <div class="text-muted small text-uppercase" style="font-size: 9px; letter-spacing: 0.5px;">Hrs / Sem</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="stat-box p-2 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+                                <i class="fa-regular fa-calendar-check text-warning fs-4 mb-1"></i>
+                                <div class="fs-5 fw-black text-white"><?php echo $total_registrados; ?></div>
+                                <div class="text-muted small text-uppercase" style="font-size: 9px; letter-spacing: 0.5px;">Eventos</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="stat-box p-2 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);">
+                                <i class="fa-solid fa-user-check text-success fs-4 mb-1"></i>
+                                <div class="fs-5 fw-black text-white"><?php echo $total_asistidos; ?></div>
+                                <div class="text-muted small text-uppercase" style="font-size: 9px; letter-spacing: 0.5px;">Asist. Evt</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-3">
-                        <div class="d-flex justify-content-between small text-muted mb-1">
-                            <span>Progreso de Asistencia</span>
-                            <span><?php echo $total_asistidos; ?> de <?php echo $total_registrados; ?> eventos</span>
+                    <div class="mt-2">
+                        <div class="d-flex justify-content-between small text-muted mb-1 fs-7">
+                            <span>Progreso de Eventos</span>
+                            <span><?php echo $total_asistidos; ?> de <?php echo $total_registrados; ?> asistidos</span>
                         </div>
-                        <div class="progress progress-glass" style="height: 8px; border-radius: 4px; background: rgba(255,255,255,0.05);">
+                        <div class="progress progress-glass" style="height: 6px; border-radius: 4px; background: rgba(255,255,255,0.05);">
                             <div class="progress-bar progress-bar-neon" role="progressbar" style="width: <?php echo $porcentaje_asistencia; ?>%; border-radius: 4px;" aria-valuenow="<?php echo $porcentaje_asistencia; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3. Módulo Próximo Evento -->
+                <?php
+                // Obtener siguiente clase académica del alumno
+                include_once __DIR__ . "/app/horario/model.php";
+                $siguiente_clase = null;
+                $horarioModelDash = new Horario();
+                $periodo_actual = '2026-1';
+                $clases_alumno = $horarioModelDash->getHorariosPorAlumno($usuario_id, $periodo_actual);
+
+                $dias_map = [
+                    1 => 'lunes',
+                    2 => 'martes',
+                    3 => 'miercoles',
+                    4 => 'jueves',
+                    5 => 'viernes',
+                    6 => 'sabado',
+                    7 => 'domingo'
+                ];
+                $dia_hoy = $dias_map[date('N')] ?? 'lunes';
+                $hora_actual = date('H:i:s');
+
+                foreach ($clases_alumno as $clase_item) {
+                    if (strtolower($clase_item['dia_semana']) === $dia_hoy && $clase_item['hora_inicio'] >= $hora_actual) {
+                        $siguiente_clase = $clase_item;
+                        break;
+                    }
+                }
+                if (!$siguiente_clase && !empty($clases_alumno)) {
+                    $siguiente_clase = $clases_alumno[0];
+                }
+                ?>
+
+                <!-- 3. Módulo Principal: Siguiente Clase Académica -->
+                <div class="glass-panel bento-card bento-academic bento-delay-3 p-4 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-primary small fw-bold text-uppercase tracking-wider" style="letter-spacing: 1px;">
+                                <i class="fa-solid fa-graduation-cap me-1"></i> Siguiente Clase Académica
+                            </span>
+                            <?php if ($siguiente_clase && !empty($siguiente_clase['aula_codigo'])): ?>
+                                <span class="badge bg-warning text-dark px-2 py-1 fs-7">
+                                    <i class="fa-solid fa-door-open me-1"></i> Aula <?= htmlspecialchars($siguiente_clase['aula_codigo']) ?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ($siguiente_clase): ?>
+                            <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                                <h3 class="text-white fw-bold mb-0 text-truncate" style="font-size: 1.3rem;">
+                                    <?= htmlspecialchars($siguiente_clase['materia_nombre']) ?>
+                                </h3>
+                                <span class="badge bg-primary fs-7">Grupo <?= htmlspecialchars($siguiente_clase['grupo']) ?></span>
+                            </div>
+
+                            <p class="small text-light opacity-75 mb-2">
+                                <i class="fa-solid fa-user-tie me-1 text-info"></i>
+                                <strong>Profesor:</strong> <?= htmlspecialchars($siguiente_clase['profesor_nombre'] ?? 'Docente') ?>
+                            </p>
+
+                            <div class="small text-light opacity-90 mb-3">
+                                <i class="fa-solid fa-clock me-1 text-primary"></i>
+                                <?= htmlspecialchars(ucfirst($siguiente_clase['dia_semana']) . ' ' . date('H:i', strtotime($siguiente_clase['hora_inicio'])) . ' - ' . date('H:i', strtotime($siguiente_clase['hora_fin']))) ?>
+                            </div>
+                        <?php else: ?>
+                            <h5 class="text-white fw-bold mb-1">Sin clases agendadas</h5>
+                            <p class="small text-muted mb-3">No tienes clases académicas registradas para el período actual.</p>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 align-items-center mt-2">
+                        <a href="<?php echo PAGES_URL; ?>carga_academica.php" class="btn btn-primary rounded-pill px-4 py-2 text-nowrap fw-bold shadow-sm" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary, var(--primary)) 100%); border: none;">
+                            <i class="fa-solid fa-calendar-week me-1"></i> Ver Mi Horario
+                        </a>
+                        <a href="<?php echo PAGES_URL; ?>mi_asistencia.php" class="btn rounded-pill px-4 py-2 text-nowrap text-white" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.25);">
+                            <i class="fa-solid fa-chart-line me-1 text-success"></i> Mi Asistencia
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Módulo Secundario: Próximo Evento / Actividades -->
                 <div class="glass-panel bento-card bento-next bento-delay-3 p-4 d-flex flex-column justify-content-between">
                     <div class="row align-items-center w-100 g-3 m-0">
                         <div class="col-md-8 p-0">
-                            <div class="text-muted small text-uppercase mb-2" style="letter-spacing: 1px;"><i class="fa-solid fa-hourglass-half text-secondary me-1"></i> Siguiente Actividad</div>
+                            <div class="text-muted small text-uppercase mb-2" style="letter-spacing: 1px;"><i class="fa-solid fa-hourglass-half text-secondary me-1"></i> Eventos y Actividades Extraescolares</div>
                             <?php if ($siguiente_evento): ?>
-                                <h4 class="text-white fw-bold mb-2 text-truncate-2" style="line-height: 1.3; font-size: 1.15rem;">
+                                <h5 class="text-white fw-bold mb-1 text-truncate-2" style="line-height: 1.3; font-size: 1.05rem;">
                                     <?php echo htmlspecialchars($siguiente_evento['nombre']); ?>
-                                </h4>
-                                <div class="d-flex flex-row gap-3 mt-2 small text-light opacity-75">
+                                </h5>
+                                <div class="d-flex flex-row gap-3 mt-1 small text-light opacity-75">
                                     <div><i class="fa-regular fa-clock text-primary me-2"></i> <?php echo htmlspecialchars((new DateTime($siguiente_evento['fecha_hora']))->format('d/m/Y H:i')); ?></div>
                                     <div><i class="fa-solid fa-location-dot text-primary me-2"></i> <?php echo htmlspecialchars($siguiente_evento['lugar'] ?? 'No especificado'); ?></div>
                                 </div>
                             <?php else: ?>
-                                <h5 class="text-white fw-bold mb-2">Sin eventos próximos</h5>
-                                <p class="small text-muted mb-0">No tienes actividades agendadas. ¡Explora el catálogo y regístrate a una!</p>
+                                <h6 class="text-white fw-bold mb-1">Sin eventos próximos</h6>
+                                <p class="small text-muted mb-0">No tienes actividades agendadas. Explora el catálogo de eventos.</p>
                             <?php endif; ?>
                         </div>
-                        <div class="col-md-4 p-0 text-md-end text-center d-flex flex-column gap-2 justify-content-center align-items-md-end align-items-center">
-                            <a href="<?php echo PAGES_URL; ?>autoregistro.php" class="btn btn-sm btn-outline-secondary rounded-pill px-4" style="max-width: 200px;"><i class="fa-solid fa-calendar-plus me-1"></i> Ver Catálogo</a>
-                            <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="text-decoration-none small mt-1" style="color: var(--secondary); text-shadow: 0 0 8px color-mix(in oklab, var(--secondary) 30%, transparent);">
+                        <div class="col-md-4 p-0 text-md-end text-center d-flex flex-column gap-1 justify-content-center align-items-md-end align-items-center">
+                            <a href="<?php echo PAGES_URL; ?>autoregistro.php" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1" style="max-width: 200px;"><i class="fa-solid fa-calendar-plus me-1"></i> Ver Catálogo</a>
+                            <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="text-decoration-none small mt-1 opacity-75" style="color: var(--secondary);">
                                 <i class="fab fa-instagram me-1"></i> @cybervibe_2026
                             </a>
                         </div>
