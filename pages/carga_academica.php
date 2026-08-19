@@ -3,7 +3,7 @@ include_once __DIR__ . "/../init.php";
 
 include_once __DIR__ . "/../app/horario/disponibilidad_model.php";
 
-startAPI("login", ["horario", "usuario"]);
+startAPI("horario.view_carga_academica", ["horario", "usuario"]);
 
 $currentUser = $_SESSION['current_user'];
 $esAdmin = currentUserCan("horario.*");
