@@ -150,6 +150,52 @@ if(!function_exists("currentUserCan")) {
                     </li>
                     <?php endif; ?>
 
+                    <li class="nav-item text-center px-2">
+                        <div class="dropdown">
+                            <a class="nav-link nav-link-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#" role="button">
+                                <i class="fa-solid fa-graduation-cap mb-1 d-block d-lg-inline"></i> Académico
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-glass dropdown-menu-end border-0">
+
+                                <?php if (currentUserCan("horario.view_horario")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>horarios.php" class="dropdown-item">
+                                        <i class="fa-regular fa-clock me-2 text-primary"></i> Horarios
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("materia.view_materia")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>materias.php" class="dropdown-item">
+                                        <i class="fa-solid fa-book me-2 text-primary"></i> Materias
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("carrera.view_carrera")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>carreras.php" class="dropdown-item">
+                                        <i class="fa-solid fa-graduation-cap me-2 text-primary"></i> Carreras
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("aula.view_aula")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>aulas.php" class="dropdown-item">
+                                        <i class="fa-solid fa-door-open me-2 text-primary"></i> Aulas
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("horario.manage_disponibilidad")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>disponibilidad.php" class="dropdown-item">
+                                        <i class="fa-solid fa-user-clock me-2 text-primary"></i> Disponibilidad
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <li><hr class="dropdown-divider border-secondary opacity-25"></li>
+                                <li><a href="<?php echo PAGES_URL; ?>carga_academica.php" class="dropdown-item">
+                                    <i class="fa-solid fa-calendar-week me-2 text-info"></i> Mi Carga Académica
+                                </a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+
                     <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*", "reporte.*"])): ?>
                     <li class="nav-item text-center px-2">
                         <div class="dropdown">
