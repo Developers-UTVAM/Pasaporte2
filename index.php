@@ -44,9 +44,13 @@ if(checkVar("accion", "login")) {
 
                         <?php include "app/usuario/form_login.php"; ?>
 
-                        <button type="submit" class="btn-minimal-pill w-100"><i class="fa-solid fa-right-to-bracket me-2"></i> Entrar</button>
+                        <button type="submit" class="btn w-100 py-3 rounded-pill fw-bold text-white mb-3" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary, var(--primary)) 100%); border: none; box-shadow: 0 6px 20px -4px color-mix(in oklab, var(--primary) 50%, transparent); font-size: 1.05rem; letter-spacing: 0.5px;">
+                            <i class="fa-solid fa-right-to-bracket me-2"></i> Iniciar Sesión
+                        </button>
 
-                        <a href="<?php echo PAGES_URL; ?>registro.php" class="btn-minimal-pill w-100 mt-3"><i class="fa-solid fa-user-plus me-2"></i> Crear Cuenta</a>
+                        <a href="<?php echo PAGES_URL; ?>registro.php" class="btn w-100 py-2.5 rounded-pill text-white" style="background: var(--glass-bg, rgba(255, 255, 255, 0.08)); border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.25)); font-size: 0.95rem;">
+                            <i class="fa-solid fa-user-plus me-2" style="color: var(--primary);"></i> Crear Cuenta
+                        </a>
 
                         <div class="text-center mt-4">
                             <a href="<?php echo PAGES_URL; ?>recuperar-contrasena.php" class="link-plain text-decoration-none small text-white-50" style="font-size: 0.85rem;"><i class="fa-solid fa-key me-1"></i> ¿Olvidaste tu contraseña? Recupérala aquí</a>
@@ -71,8 +75,8 @@ if(checkVar("accion", "login")) {
     </div> -->
 
     <div class="text-center mt-4">
-        <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow">
-            <i class="fab fa-instagram me-2"></i> Síguenos
+        <a href="https://www.instagram.com/cybervibe_2026/" target="_blank" class="btn btn-outline-secondary rounded-pill px-4 py-2 opacity-75">
+            <i class="fab fa-instagram me-2"></i> Síguenos en Instagram
         </a>
     </div>
 
