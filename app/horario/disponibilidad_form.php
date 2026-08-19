@@ -4,7 +4,14 @@ if ($accion === 'actualizar') {
 }
 
 $usuarioModel = new Usuario();
-$usuarios = $usuarioModel->getAll();
+$usuarios = $usuarioModel->query(
+    "SELECT DISTINCT u.id, u.nombre, u.apaterno, u.amaterno
+     FROM usuario u
+     INNER JOIN usuario_tiene_perfil up ON up.usuario_id = u.id
+     INNER JOIN perfil p ON p.id = up.perfil_id
+     WHERE p.nombre = 'profesor' AND u.activo = 1
+     ORDER BY u.nombre, u.apaterno"
+);
 $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
 $esEdicion = ($accion === 'actualizar');
 ?>
