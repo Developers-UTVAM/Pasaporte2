@@ -60,7 +60,7 @@ function registrar_usuario(): array
                             }
                         }
                         $usuario->authenticate($_POST['username'], $_POST['password']);
-                        header('Location: index.php');
+                        header('Location: ' . ROOT_URL . 'index.php');
                         exit();
                     } else {
                         $errors[] = "Hubo un error al crear la cuenta. Por favor, inténtelo de nuevo.";

@@ -18,6 +18,7 @@ if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
     try {
         $object->save(true, true);
         header('Location: usuarios.php?accion=mostrar&pk=' . urlencode($object->pk));
+        exit;
     } catch (Exception $e) {
         error_log("Error saving user: " . $e->getMessage());
         $errors[] = "Error al guardar el usuario: " . $e->getMessage();
@@ -39,6 +40,7 @@ if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
     try {
         $object->save(true, true);
         header('Location: usuarios.php?accion=mostrar&pk=' . urlencode($object->pk));
+        exit;
     } catch (Exception $e) {
         error_log("Error saving user: " . $e->getMessage());
         $errors[] = "Error al guardar el usuario: " . $e->getMessage();
@@ -82,6 +84,7 @@ if (checkVar("accion", 'create') && currentUserCan("usuario.add_usuario")) {
     try {
         $object->delete();
         header('Location: usuarios.php?accion=listar');
+        exit;
     } catch (Exception $e) {
         error_log("Error deleting user: " . $e->getMessage());
         $errors[] = "Error al eliminar el usuario: " . $e->getMessage();
