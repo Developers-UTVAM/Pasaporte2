@@ -23,8 +23,8 @@ class Materia extends Model
         return $this->selectAll('carrera_id = ? AND activa = 1', [$carreraId]);
     }
 
-    public function getByCuatrimestre(int $cuatrimestre): array
+    public function getByPeriodo(string $periodo): array
     {
-        return $this->selectAll('cuatrimestre = ? AND activa = 1', [$cuatrimestre]);
+        return $this->selectAll('periodo = ? AND activa = 1', [$periodo]);
     }
 }

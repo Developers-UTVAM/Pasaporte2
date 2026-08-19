@@ -45,3 +45,25 @@ table.table tbody tr:hover td {
     color: #fff;
 }
 
+/* DataTables 2 - Contraste de controles e información */
+div.dt-container .dt-length,
+div.dt-container .dt-search,
+div.dt-container .dt-info,
+div.dt-container label,
+.dataTables_wrapper,
+.dataTables_info,
+.dataTables_length,
+.dataTables_filter {
+    color: #e2e8f0 !important;
+}
+
+div.dt-container .dt-search input,
+div.dt-container .dt-length select {
+    color: #f8fafc !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+
