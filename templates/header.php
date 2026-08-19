@@ -200,6 +200,9 @@ if(!function_exists("currentUserCan")) {
                                 <li><a href="<?php echo PAGES_URL; ?>escanear_qr.php" class="dropdown-item">
                                     <i class="fa-solid fa-qrcode me-2 text-warning"></i> Pase de Lista (QR)
                                 </a></li>
+                                <li><a href="<?php echo PAGES_URL; ?>mi_asistencia.php" class="dropdown-item">
+                                    <i class="fa-solid fa-chart-line me-2 text-success"></i> Mi Asistencia
+                                </a></li>
 
                             </ul>
                         </div>
