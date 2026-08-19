@@ -15,6 +15,12 @@
     /* Casi blanco, muy legible */
 }
 
+.text-primary {
+    color: #38bdf8 !important;
+    /* Azul cielo brillante de alto contraste para tema oscuro */
+}
+
+
 /* KPIs y Cajas de Estadísticas */
 .kpi-title {
     color: rgba(241, 245, 249, 0.7) !important;

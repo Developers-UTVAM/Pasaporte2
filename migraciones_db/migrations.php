@@ -20,7 +20,7 @@ extract($data);
 <head>
     <?php include 'templates/head.php'; ?>
 </head>
-<body class="d-flex flex-column vh-100">
+<body>
     <?php include 'templates/header.php'; ?>
 
     <main class="flex-grow-1 container">
@@ -77,38 +77,36 @@ extract($data);
             <h5 class="m-0">Historial de Ejecución</h5>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <table id="data-list" class="table table-hover table-sm" style="width:100%">
-                    <thead>
+            <table id="data-list" class="table table-hover table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th data-priority="4" class="text-center" style="width: 50px;">ID</th>
+                        <th class="all" data-priority="1">Archivo</th>
+                        <th data-priority="3">Nombre / Acción</th>
+                        <th data-priority="5">Descripción</th>
+                        <th data-priority="4">Tipo</th>
+                        <th class="all text-center" data-priority="2" style="width: 80px;">Acciones</th>
+                        <th data-priority="6">Fecha Aplicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($history as $row): ?>
                         <tr>
-                            <th>ID</th>
-                            <th>Archivo</th>
-                            <th>Nombre / Acción</th>
-                            <th>Descripción</th>
-                            <th>Tipo</th>
-                            <th>Acciones</th>
-                            <th>Fecha Aplicación</th>
+                            <td><?= htmlspecialchars($row['id']) ?></td>
+                            <td class="font-monospace text-primary"><?= htmlspecialchars($row['archivo']) ?></td>
+                            <td class="fw-bold"><?= htmlspecialchars($row['nombre']) ?></td>
+                            <td><?= htmlspecialchars($row['descripcion']) ?></td>
+                            <td><span class="badge bg-secondary"><?= htmlspecialchars($row['tipo']) ?></span></td>
+                            <td class="text-center">
+                                <?php if(currentUserCan("migracion.view_migracion")): ?>
+                                <button class="btn btn-sm btn-outline-primary view-sql-btn" data-file="<?= htmlspecialchars($row['archivo']) ?>" title="Ver SQL"><i class="fa-solid fa-code"></i></button>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= htmlspecialchars($row['fecha_aplicacion']) ?></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($history as $row): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($row['id']) ?></td>
-                                <td class="font-monospace text-primary"><?= htmlspecialchars($row['archivo']) ?></td>
-                                <td class="fw-bold"><?= htmlspecialchars($row['nombre']) ?></td>
-                                <td><?= htmlspecialchars($row['descripcion']) ?></td>
-                                <td><span class="badge bg-secondary"><?= htmlspecialchars($row['tipo']) ?></span></td>
-                                <td class="text-center">
-                                    <?php if(currentUserCan("migracion.view_migracion")): ?>
-                                    <button class="btn btn-sm btn-outline-primary view-sql-btn" data-file="<?= htmlspecialchars($row['archivo']) ?>" title="Ver SQL"><i class="fa-solid fa-code"></i></button>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?= htmlspecialchars($row['fecha_aplicacion']) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -120,8 +118,8 @@ extract($data);
         <h5 class="modal-title">Contenido SQL: <span id="sqlModalTitle" class="fw-bold fs-6 font-monospace"></span></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body bg-light">
-        <pre><code id="sqlModalContent" class="language-sql" style="white-space: pre-wrap;"></code></pre>
+      <div class="modal-body">
+        <pre class="m-0"><code id="sqlModalContent" class="language-sql text-light font-monospace" style="white-space: pre-wrap; font-size: 0.85rem;"></code></pre>
       </div>
     </div>
   </div>
