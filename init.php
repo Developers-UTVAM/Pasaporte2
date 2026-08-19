@@ -57,6 +57,10 @@ function loadModels($models) {
             loadModels($model);
         }
     } else {
-        include_once __DIR__ . "/app/$models/model.php";
+        if (strpos($models, '/') !== false) {
+            include_once __DIR__ . "/app/$models.php";
+        } else {
+            include_once __DIR__ . "/app/$models/model.php";
+        }
     }
 }
