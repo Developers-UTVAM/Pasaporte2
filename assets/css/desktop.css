@@ -107,10 +107,16 @@ main a:not(.btn):hover::after {
     grid-row: 1;
 }
 
-/* Tarjeta Próximo Evento ocupa columnas 2 y 3, fila 2 */
-.bento-next {
+/* Tarjeta Siguiente Clase Académica ocupa la posición principal en columnas 2 y 3, fila 2 */
+.bento-academic {
     grid-column: 2 / span 2;
     grid-row: 2;
+}
+
+/* Tarjeta Próximo Evento pasa a ser posición secundaria en la fila 3 a 3 columnas */
+.bento-next {
+    grid-column: 1 / span 3;
+    opacity: 0.85;
 }
 
 /* Animaciones y transiciones de Bento Cards */

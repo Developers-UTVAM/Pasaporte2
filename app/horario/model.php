@@ -105,4 +105,21 @@ class Horario extends Model
 
         return round(intval($segundos) / 3600, 2);
     }
+
+    public function getHorariosPorAlumno(int $alumnoId, string $periodo): array
+    {
+        $sql = "SELECT h.id, h.materia_id, h.profesor_id, h.aula_id, h.grupo,
+                       h.dia_semana, h.hora_inicio, h.hora_fin, h.periodo, h.activo,
+                       m.nombre AS materia_nombre, m.clave AS materia_clave,
+                       TRIM(CONCAT(u.nombre, ' ', u.apaterno, ' ', IFNULL(u.amaterno, ''))) AS profesor_nombre,
+                       a.codigo AS aula_codigo, a.edificio AS aula_edificio
+                FROM inscripcion i
+                INNER JOIN horario h ON (h.materia_id = i.materia_id AND h.grupo = i.grupo AND h.periodo = i.periodo)
+                INNER JOIN materia m ON m.id = h.materia_id
+                INNER JOIN usuario u ON u.id = h.profesor_id
+                LEFT JOIN aula a ON a.id = h.aula_id
+                WHERE i.usuario_id = ? AND i.periodo = ? AND i.activa = 1 AND h.activo = 1
+                ORDER BY h.dia_semana, h.hora_inicio";
+        return $this->query($sql, [$alumnoId, $periodo]);
+    }
 }

@@ -5,7 +5,7 @@
     <label for="nombre">Nombre del perfil</label>
 </div>
 
-<p>Permisos del Perfil</p>
+<h5 class="text-white fw-bold mt-4 mb-3"><i class="fa-solid fa-key me-2 text-primary"></i>Permisos del Perfil</h5>
 
 <?php foreach($object->todosLosPermisos() as $perm): ?>
 <div class="form-check form-switch">
