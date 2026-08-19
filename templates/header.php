@@ -187,6 +187,12 @@ if(!function_exists("currentUserCan")) {
                                     </a></li>
                                 <?php endif; ?>
 
+                                <?php if (currentUserCan("usuario.*")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>inscripciones.php" class="dropdown-item">
+                                        <i class="fa-solid fa-user-graduate me-2 text-primary"></i> Inscripciones
+                                    </a></li>
+                                <?php endif; ?>
+
                                 <li><hr class="dropdown-divider border-secondary opacity-25"></li>
                                 <li><a href="<?php echo PAGES_URL; ?>carga_academica.php" class="dropdown-item">
                                     <i class="fa-solid fa-calendar-week me-2 text-info"></i> Mi Carga Académica
