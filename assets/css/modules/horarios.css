@@ -1,0 +1,135 @@
+/* horarios.css — Estilos para la grilla de Carga Académica y Horarios */
+
+.schedule-grid-container {
+    background: rgba(13, 13, 18, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    overflow-x: auto;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 6px;
+    min-width: 800px;
+}
+
+.schedule-table th {
+    background: rgba(18, 18, 26, 0.8) !important;
+    color: var(--primary) !important;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.schedule-table td {
+    vertical-align: top;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.015);
+    border-radius: 8px;
+    height: 90px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.2s ease;
+}
+
+.schedule-table td:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.class-card {
+    background: linear-gradient(135deg, rgba(0, 114, 255, 0.25) 0%, rgba(0, 198, 255, 0.15) 100%);
+    border: 1px solid rgba(0, 198, 255, 0.4);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 198, 255, 0.3);
+}
+
+.class-card .class-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.class-card .class-info {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.class-card .badge-group {
+    font-size: 0.7rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: #00c6ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.class-card .badge-aula {
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.time-column {
+    width: 90px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-align: center !important;
+    vertical-align: middle !important;
+    background: rgba(18, 18, 26, 0.5) !important;
+}
+
+.kpi-carga-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+}
+
+/* Select2 Dark Theme override */
+.select2-container--default .select2-selection--single {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    height: 31px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #f1f5f9 !important;
+    line-height: 29px !important;
+    font-size: 0.875rem !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 29px !important;
+}
+.select2-dropdown {
+    background-color: #0f172a !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #f1f5f9 !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
+}
+.select2-results__option {
+    color: #cbd5e1 !important;
+}
