@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/../init.php';
-startAPI('usuario.*');
+startAPI('inscripcion.view_inscripcion');
 include_once 'app/inscripcion/controller.php';
 ?><!DOCTYPE html>
 <html lang="es-MX"><head><?php include 'templates/head.php'; ?></head><body>

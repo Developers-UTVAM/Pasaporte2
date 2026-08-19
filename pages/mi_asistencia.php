@@ -3,10 +3,11 @@ include_once __DIR__ . "/../init.php";
 
 include_once __DIR__ . "/../app/asistencia_clase/model.php";
 
-startAPI("asistencia_clase.view_mi_asistencia", ["usuario", "materia"]);
+startAPI("login", ["usuario", "materia"]);
+requirePermission(["asistencia_clase.ver_mi_asistencia", "asistencia_clase.ver_historial"]);
 
 $currentUser = $_SESSION['current_user'];
-$esAdmin = currentUserCan("horario.*") || currentUserCan("reporte.*");
+$esAdmin = currentUserCan("horario.*") || currentUserCan("reporte.*") || currentUserCan("asistencia_clase.ver_historial");
 
 $alumnoId = getvar('alumno_id');
 if (!$alumnoId || (!$esAdmin && intval($alumnoId) !== intval($currentUser->id))) {
