@@ -3,7 +3,7 @@ include_once __DIR__ . "/../init.php";
 
 include_once __DIR__ . "/../app/asistencia_clase/model.php";
 
-startAPI("asistencia_clase.escanear_qr", ["horario", "usuario", "aula"]);
+startAPI("asistencia_clase.pasar_lista", ["horario", "usuario", "aula"]);
 
 $horarioId = getvar('horario_id');
 $accion = getvar('accion');
