@@ -3,7 +3,7 @@ include_once __DIR__ . "/../init.php";
 
 include_once __DIR__ . "/../app/asistencia_clase/model.php";
 
-startAPI("login", ["usuario", "materia"]);
+startAPI("asistencia_clase.view_mi_asistencia", ["usuario", "materia"]);
 
 $currentUser = $_SESSION['current_user'];
 $esAdmin = currentUserCan("horario.*") || currentUserCan("reporte.*");

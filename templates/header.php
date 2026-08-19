@@ -150,6 +150,11 @@ if(!function_exists("currentUserCan")) {
                     </li>
                     <?php endif; ?>
 
+                    <?php if(currentUserCan([
+                        "horario.view_horario", "materia.view_materia", "carrera.view_carrera",
+                        "aula.view_aula", "horario.manage_disponibilidad", "usuario.*",
+                        "horario.view_carga_academica", "asistencia_clase.escanear_qr", "asistencia_clase.view_mi_asistencia"
+                    ])): ?>
                     <li class="nav-item text-center px-2">
                         <div class="dropdown">
                             <a class="nav-link nav-link-custom dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" href="#" role="button">
@@ -193,20 +198,32 @@ if(!function_exists("currentUserCan")) {
                                     </a></li>
                                 <?php endif; ?>
 
+                                <?php if (currentUserCan("horario.view_carga_academica") || currentUserCan("asistencia_clase.escanear_qr") || currentUserCan("asistencia_clase.view_mi_asistencia")): ?>
                                 <li><hr class="dropdown-divider border-secondary opacity-25"></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("horario.view_carga_academica")): ?>
                                 <li><a href="<?php echo PAGES_URL; ?>carga_academica.php" class="dropdown-item">
                                     <i class="fa-solid fa-calendar-week me-2 text-info"></i> Mi Carga Académica
                                 </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("asistencia_clase.escanear_qr")): ?>
                                 <li><a href="<?php echo PAGES_URL; ?>escanear_qr.php" class="dropdown-item">
                                     <i class="fa-solid fa-qrcode me-2 text-warning"></i> Pase de Lista (QR)
                                 </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("asistencia_clase.view_mi_asistencia")): ?>
                                 <li><a href="<?php echo PAGES_URL; ?>mi_asistencia.php" class="dropdown-item">
                                     <i class="fa-solid fa-chart-line me-2 text-success"></i> Mi Asistencia
                                 </a></li>
+                                <?php endif; ?>
 
                             </ul>
                         </div>
                     </li>
+                    <?php endif; ?>
 
                     <?php if(currentUserCan(["migracion.run_migracion", "usuario.*", "perfil.*", "permiso.*", "reporte.*"])): ?>
                     <li class="nav-item text-center px-2">
