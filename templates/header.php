@@ -191,6 +191,9 @@ if(!function_exists("currentUserCan")) {
                                 <li><a href="<?php echo PAGES_URL; ?>carga_academica.php" class="dropdown-item">
                                     <i class="fa-solid fa-calendar-week me-2 text-info"></i> Mi Carga Académica
                                 </a></li>
+                                <li><a href="<?php echo PAGES_URL; ?>escanear_qr.php" class="dropdown-item">
+                                    <i class="fa-solid fa-qrcode me-2 text-warning"></i> Pase de Lista (QR)
+                                </a></li>
 
                             </ul>
                         </div>
