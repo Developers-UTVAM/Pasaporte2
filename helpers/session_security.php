@@ -35,7 +35,7 @@ function validate_session_fingerprint(): void {
     if ($ua_prefix !== '' && strpos($ua, $ua_prefix) !== 0) {
         session_unset();
         session_destroy();
-        header("Location: index.php");
+        header("Location: " . ROOT_URL . "index.php");
         exit();
     }
     if ($ip !== '' && strpos($_SESSION['ip'], '.') !== false && strpos($ip, '.') !== false) {
@@ -45,7 +45,7 @@ function validate_session_fingerprint(): void {
             if ($s[0] !== $c[0] || $s[1] !== $c[1]) {
                 session_unset();
                 session_destroy();
-                header("Location: index.php");
+                header("Location: " . ROOT_URL . "index.php");
                 exit();
             }
         }
