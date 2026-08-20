@@ -163,9 +163,15 @@ if(!function_exists("currentUserCan")) {
                             </a>
                             <ul class="dropdown-menu dropdown-menu-glass dropdown-menu-end border-0">
 
-                                <?php if (currentUserCan("horario.view_horario")): ?>
-                                    <li><a href="<?php echo PAGES_URL; ?>horarios.php" class="dropdown-item">
-                                        <i class="fa-regular fa-clock me-2 text-primary"></i> Horarios
+                                <?php if (currentUserCan("carrera.view_carrera")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>carreras.php" class="dropdown-item">
+                                        <i class="fa-solid fa-graduation-cap me-2 text-primary"></i> Carreras
+                                    </a></li>
+                                <?php endif; ?>
+
+                                <?php if (currentUserCan("horario.manage_disponibilidad")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>disponibilidad.php" class="dropdown-item">
+                                        <i class="fa-solid fa-user-clock me-2 text-primary"></i> Disponibilidad
                                     </a></li>
                                 <?php endif; ?>
 
@@ -175,21 +181,15 @@ if(!function_exists("currentUserCan")) {
                                     </a></li>
                                 <?php endif; ?>
 
-                                <?php if (currentUserCan("carrera.view_carrera")): ?>
-                                    <li><a href="<?php echo PAGES_URL; ?>carreras.php" class="dropdown-item">
-                                        <i class="fa-solid fa-graduation-cap me-2 text-primary"></i> Carreras
-                                    </a></li>
-                                <?php endif; ?>
-
                                 <?php if (currentUserCan("aula.view_aula")): ?>
                                     <li><a href="<?php echo PAGES_URL; ?>aulas.php" class="dropdown-item">
                                         <i class="fa-solid fa-door-open me-2 text-primary"></i> Aulas
                                     </a></li>
                                 <?php endif; ?>
 
-                                <?php if (currentUserCan("horario.manage_disponibilidad")): ?>
-                                    <li><a href="<?php echo PAGES_URL; ?>disponibilidad.php" class="dropdown-item">
-                                        <i class="fa-solid fa-user-clock me-2 text-primary"></i> Disponibilidad
+                                <?php if (currentUserCan("horario.view_horario")): ?>
+                                    <li><a href="<?php echo PAGES_URL; ?>horarios.php" class="dropdown-item">
+                                        <i class="fa-regular fa-clock me-2 text-primary"></i> Horarios
                                     </a></li>
                                 <?php endif; ?>
 
