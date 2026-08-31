@@ -57,7 +57,7 @@ if(isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0){
 <?php foreach($general_issues as $issue): ?>
 <div class="alert alert-danger" role="alert">
     <strong>Error: </strong>
-    <?php echo $issue; ?>
+    <?php echo htmlspecialchars($issue); ?>
 </div>
 <?php endforeach;?>
 
@@ -74,12 +74,12 @@ if(isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0){
     <tbody>
         <?php foreach($data as $row): ?>
             <tr>
-                <td><?php echo $row["username"]; ?></td>
-                <td><?php echo $row["nombre"]; ?></td>
+                <td><?php echo htmlspecialchars($row["username"] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($row["nombre"] ?? ''); ?></td>
                 <td>
                     <ul>
                         <?php foreach($row["issues"] as $issue): ?>
-                            <li><?php echo $issue; ?></li>
+                            <li><?php echo htmlspecialchars($issue); ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </td>
@@ -101,7 +101,7 @@ if(isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0){
 <input type="hidden" name="accion" value="add-many-step-3" />
 <?php foreach($data as $row): ?>
     <?php if(!$row["skip"]): ?>
-        <input type="hidden" name="data[]" value="<?php echo $row["row"]; ?>" />
+        <input type="hidden" name="data[]" value="<?php echo htmlspecialchars($row["row"], ENT_QUOTES); ?>" />
     <?php endif; ?>
 <?php endforeach; ?>
 <button type="submit" class="btn btn-outline-primary">

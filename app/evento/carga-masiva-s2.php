@@ -21,7 +21,7 @@ if (isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0) {
                 $resultado = false;
             }
             $data[] = [
-                "issues" => implode("</li><li>", $issues),
+                "issues" => implode("</li><li>", array_map('htmlspecialchars', $issues)),
                 "evento" => $row[0],
                 "lugar" => $row[2],
                 "responsable_interno" => $row[3],
@@ -38,7 +38,7 @@ if (isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0) {
 <?php foreach ($general_issues as $issue): ?>
 <div class="alert alert-danger" role="alert">
     <strong>Error: </strong>
-    <?php echo $issue; ?>
+    <?php echo htmlspecialchars($issue); ?>
 </div>
 <?php endforeach; ?>
 
@@ -55,9 +55,9 @@ if (isset($_FILES["archivo-carga"]) && $_FILES["archivo-carga"]["error"] == 0) {
     <tbody>
         <?php foreach($data as $row): ?>
             <tr>
-                <td><?php echo $row["evento"]; ?></td>
-                <td><?php echo $row["lugar"]; ?></td>
-                <td><?php echo $row["responsable_interno"]; ?></td>
+                <td><?php echo htmlspecialchars($row["evento"] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($row["lugar"] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($row["responsable_interno"] ?? ''); ?></td>
                 <td class="text-<?php echo $row["resultado"] ? "success" : "danger" ; ?> text-center">
                     <?php
                     echo $row["resultado"] ?

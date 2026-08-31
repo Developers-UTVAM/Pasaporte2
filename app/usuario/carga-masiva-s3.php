@@ -49,9 +49,9 @@ foreach($usuarios as $usr) {
     <tbody>
         <?php foreach($data as $row): ?>
             <tr>
-                <td><?php echo $row["username"]; ?></td>
-                <td><?php echo $row["nombre"]; ?></td>
-                <td><?php echo $row["resultado"]; ?></td>
+                <td><?php echo htmlspecialchars($row["username"] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($row["nombre"] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($row["resultado"] ?? ''); ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
