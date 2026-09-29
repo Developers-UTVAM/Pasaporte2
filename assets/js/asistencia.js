@@ -165,7 +165,7 @@ function procesarAsistencia(matricula) {
     formData.append('evento_id', evento_id);
     formData.append('matricula', matricula);
 
-    fetch('app/asistencia/controlador_asistencia.php', {
+    fetch('../app/asistencia/controlador_asistencia.php', {
         method: 'POST',
         body: formData
     })
@@ -226,7 +226,7 @@ function confirmarAutoRegistro(evento_id, usuario_id, nombre) {
     formData.append('evento_id', evento_id);
     formData.append('usuario_id', usuario_id);
 
-    fetch('app/asistencia/controlador_asistencia.php', {
+    fetch('../app/asistencia/controlador_asistencia.php', {
         method: 'POST',
         body: formData
     })

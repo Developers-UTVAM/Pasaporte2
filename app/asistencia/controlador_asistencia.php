@@ -143,3 +143,4 @@ if ($method === 'POST' && $accion === 'procesar_qr') {
     }
     exit;
 }
+
